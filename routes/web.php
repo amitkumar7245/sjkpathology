@@ -326,6 +326,7 @@ Route::group(['middleware' => 'admin'], function(){
         Route::get('/staff/print/{id}','StaffPrint')->name('print.staff');
         Route::get('/staff/inactive/{id}', 'StaffInactive')->name('inactive.staff');
         Route::get('/staff/active/{id}', 'StaffActive')->name('active.staff');
+        Route::get('/staff/idcardprofile/{id}', 'IdCardProfile')->name('idcardprofile.staff');
 
         Route::get('/staffstate/ajax/{country_id}','GetStaffState');
         Route::get('/staffcity/ajax/{state_id}','GetStaffCity');
@@ -345,7 +346,10 @@ Route::group(['middleware' => 'admin'], function(){
 
         Route::get('/doctorstate/ajax/{country_id}','GetDoctorState');
         Route::get('/doctorcity/ajax/{state_id}','GetDoctorCity');
-        Route::get('/substrem/ajax/{substrem_id}','GetDoctorCourse');
+
+        Route::get('/strem/ajax/{strem_id}','GetDoctorStrem');
+        Route::get('/substrem/ajax/{substrem_id}','GetDoctorSubstrem');
+        Route::get('/course/ajax/{course_id}','GetDoctorCourse');
     });
 
     Route::controller(DiagnosticController::class)->group(function(){

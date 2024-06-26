@@ -7,7 +7,7 @@
             <img src="{{ asset('backend/assets/images/logo/digionweb-sm.png') }}" alt="" height="30">
         </span>
         <span class="logo-lg">
-            <img src="{{ asset('backend/assets/images/logo/digionweb-logo.png') }}" alt="" height="50">
+            <img src="{{ asset('backend/assets/images/logo/sjk-logo-header.svg') }}" alt="" height="50">
         </span>
     </a>
 

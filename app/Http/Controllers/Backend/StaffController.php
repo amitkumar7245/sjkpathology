@@ -14,6 +14,7 @@ use App\Models\Reportingtype;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Staff;
+use App\Models\Diagnostic;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,7 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\File;
 use Barryvdh\DomPDF\Facade\Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Helpers\TokenHelper;
 
 class StaffController extends Controller
@@ -44,8 +46,9 @@ class StaffController extends Controller
         $city = City::latest()->get();
         $departmenties = Department::latest()->get();
         $designation = Designation::latest()->get();
-
-        return view('admin.staff.staff_add', compact('emptype', 'bankdetails', 'countries', 'states', 'city', 'departmenties', 'designation'), $data);
+        $diagnostic = User::where('role', 'diagnostic')->latest()->get();
+        $collectioncenter = User::where('role', 'collection')->latest()->get();
+        return view('admin.staff.staff_add', compact('emptype', 'bankdetails', 'countries', 'states', 'city', 'departmenties', 'designation', 'diagnostic', 'collectioncenter'), $data);
     }
 
     public function StaffStore(Request $request)
@@ -148,7 +151,7 @@ class StaffController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $staff_id,
         ]);
 
-        
+
         // $save_url = $user->photo; // Initialize save_name with the existing photo name
 
         // if ($request->hasFile('photo')) {
@@ -175,7 +178,7 @@ class StaffController extends Controller
 
         // Update user details
         $user = User::findOrFail($staff_id);
-        
+
         $user->update([
             'name' => $request->full_name,
             'username' => strtolower(str_replace(' ', '-', $request->full_name)),
@@ -327,10 +330,19 @@ class StaffController extends Controller
             $filename .= '.pdf';
         }
 
-        $pdf = Pdf::loadView('admin.pdf.staffidcard', compact('staffPrintIdcard'));
+        $pdf = Pdf::loadView('admin.pdf.staffidcard', compact('staffPrintIdcard'))->setPaper('a4', 'landscape');
         // return $pdf->download('staffidcard.pdf');
         return $pdf->download($filename);
     } //end method
+
+    public function IdCardProfile($id)
+    {
+        $data['header_title'] = "Staff Id Card View";
+
+        $staffIdCard = User::with('staff')->findOrFail($id);
+        return view('admin.staff.staff_profile_idcard', compact('staffIdCard'), $data);
+    }
+
 
     public function StaffView($id)
     {

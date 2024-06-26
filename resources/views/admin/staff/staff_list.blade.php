@@ -119,6 +119,8 @@
                                             @else
                                                 <a href="{{ route('active.staff', $item->id) }}" class="btn btn-danger btn-sm" title="Active"> <i class="fa-solid fa-thumbs-down"></i></a>
                                             @endif
+
+                                            <a href="{{ route('idcardprofile.staff', $item->id) }}" class="btn btn-primary btn-sm" title="Prnit"><i class="fas fa-print"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

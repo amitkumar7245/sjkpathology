@@ -109,35 +109,36 @@
                                     <h4 class="pagetitleh2">Department Details</h4>
                                     <div class="around10">
                                         <div class="row">
-                                            <div class="col-lg-3">
-                                                <label for="course" class="form-label">Strem</label>
-                                                <select class="js-example-basic-single mb-3" name="substrem_id">
+
+                                            <div class="col-lg-3 mb-3">
+                                                <label for="strem_id" class="form-label">Strem</label>
+                                                <select class="js-example-basic-single mb-3" name="strem_id">
                                                     <option>Select Strem</option>
-                                                       @foreach ($substrem as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->substrem_name }}</option>
+                                                       @foreach ($strem as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->strem_name }}</option>
                                                        @endforeach
                                                 </select>
                                             </div>
                                             <!--end col-->
-                                            <div class="col-lg-3">
-                                                <label for="course" class="form-label">Course</label>
-                                                <select class="js-example-basic-single mb-3" name="course_id">
-                                                    <option>Select Course</option>
 
-                                                    {{-- <option value="1">D.Pharma</option>
-                                                    <option value="1">D.Pharma</option>
-                                                    <option value="1">MBBS</option> --}}
+                                            <div class="col-lg-3">
+                                                <label for="substrem_id" class="form-label">Strem</label>
+                                                <select class="js-example-basic-single mb-3" name="substrem_id">
+                                                    <option>Select Strem</option>
                                                 </select>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
-                                                <label for="country" class="form-label">Specialization</label>
-                                                <select class="js-example-basic-single mb-3" name="specialization">
+                                                <label for="course_id" class="form-label">Course</label>
+                                                <select class="js-example-basic-single mb-3" name="course_id">
+                                                    <option>Select Course</option>
+                                                </select>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-3">
+                                                <label for="specialization_id" class="form-label">Specialization</label>
+                                                <select class="js-example-basic-single mb-3" name="specialization_id">
                                                     <option>Select Specialization</option>
-                                                    <option value="1">Ayurved</option>
-                                                    <option value="1">Homeopathy</option>
-                                                    <option value="1">Unani</option>
-                                                    <option value="1">Pharmacy</option>
                                                 </select>
                                             </div>
                                             <!--end col-->
@@ -365,23 +366,7 @@
                                         
                                     </div>
                                 </div>
-                                <div class="tshadow mb25 bozero">
-                                    <h4 class="pagetitleh2">Social Media</h4>
-                                    <div class="around10">
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="nameInput" class="form-label">Facebook Url</label>
-                                                    <input type="text" name="facebook" class="form-control" id="nameInput" placeholder="Facebook Url" value="">
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            
-                                        </div>
-                                        <!--end row-->
-                                        
-                                    </div>
-                                </div>
+                                
                                 <div class="tshadow mb25 bozero">
                                     <h4 class="pagetitleh2">Gallery Images</h4>
                                     <div class="around10">
@@ -487,6 +472,30 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $('select[name="strem_id"]').on('change', function(){
+            var strem_id = $(this).val();
+            if (strem_id) {
+                $.ajax({
+                    url: "{{ url('/strem/ajax') }}/"+strem_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="substrem_id"]').html('');
+                        var d =$('select[name="substrem_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="substrem_id"]').append('<option value="'+ value.id + '">' + value.substrem_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
         $('select[name="substrem_id"]').on('change', function(){
             var substrem_id = $(this).val();
             if (substrem_id) {
@@ -499,6 +508,31 @@
                         var d =$('select[name="course_id"]').empty();
                         $.each(data, function(key, value){
                             $('select[name="course_id"]').append('<option value="'+ value.id + '">' + value.course_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select[name="course_id"]').on('change', function(){
+            var course_id = $(this).val();
+            if (course_id) {
+                $.ajax({
+                    url: "{{ url('/course/ajax') }}/"+course_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="specialization_id"]').html('');
+                        var d =$('select[name="specialization_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="specialization_id"]').append('<option value="'+ value.id + '">' + value.specialization_name + '</option>');
                         });
                     },
                 });

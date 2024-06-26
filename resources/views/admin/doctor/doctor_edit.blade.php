@@ -106,35 +106,45 @@
                                     <h4 class="pagetitleh2">Department Details</h4>
                                     <div class="around10">
                                         <div class="row">
+
+                                            <div class="col-lg-3 mb-3">
+                                                <label for="strem_id" class="form-label">Strem</label>
+                                                <select class="js-example-basic-single mb-3" name="strem_id">
+                                                    <option>Select Strem</option>
+                                                       @foreach ($strem as $item)
+                                                            <option value="{{ $item->id }}"{{ $item->id == $doctor_id->strem_id ? 'selected' : '' }}>{{ $item->strem_name }}</option>
+                                                       @endforeach
+                                                </select>
+                                            </div>
+                                            <!--end col-->
+
                                             <div class="col-lg-3">
-                                                <label for="course" class="form-label">Strem</label>
+                                                <label for="substrem_id" class="form-label">Strem</label>
                                                 <select class="js-example-basic-single mb-3" name="substrem_id">
                                                     <option>Select Strem</option>
-                                                       {{-- @foreach ($substrem as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->substrem_name }}</option>
-                                                       @endforeach --}}
+                                                        @foreach ($substrem as $item)
+                                                            <option value="{{ $item->id }}"{{ $item->id == $doctor_id->substrem_id ? 'selected' : '' }}>{{ $item->substrem_name }}</option>
+                                                       @endforeach
                                                 </select>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
-                                                <label for="course" class="form-label">Course</label>
+                                                <label for="course_id" class="form-label">Course</label>
                                                 <select class="js-example-basic-single mb-3" name="course_id">
                                                     <option>Select Course</option>
-
-                                                    {{-- <option value="1">D.Pharma</option>
-                                                    <option value="1">D.Pharma</option>
-                                                    <option value="1">MBBS</option> --}}
+                                                        @foreach ($course as $item)
+                                                            <option value="{{ $item->id }}"{{ $item->id == $doctor_id->course_id ? 'selected' : '' }}>{{ $item->course_name }}</option>
+                                                       @endforeach
                                                 </select>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
-                                                <label for="country" class="form-label">Specialization</label>
-                                                <select class="js-example-basic-single mb-3" name="specialization">
+                                                <label for="specialization_id" class="form-label">Specialization</label>
+                                                <select class="js-example-basic-single mb-3" name="specialization_id">
                                                     <option>Select Specialization</option>
-                                                    <option value="1">Ayurved</option>
-                                                    <option value="1">Homeopathy</option>
-                                                    <option value="1">Unani</option>
-                                                    <option value="1">Pharmacy</option>
+                                                        @foreach ($specialization as $item)
+                                                            <option value="{{ $item->id }}"{{ $item->id == $doctor_id->specialization_id ? 'selected' : '' }}>{{ $item->specialization_name }}</option>
+                                                       @endforeach
                                                 </select>
                                             </div>
                                             <!--end col-->
@@ -511,7 +521,30 @@
 </script>
 
 <script type="text/javascript">
-  		
+    $(document).ready(function(){
+        $('select[name="strem_id"]').on('change', function(){
+            var strem_id = $(this).val();
+            if (strem_id) {
+                $.ajax({
+                    url: "{{ url('/strem/ajax') }}/"+strem_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="substrem_id"]').html('');
+                        var d =$('select[name="substrem_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="substrem_id"]').append('<option value="'+ value.id + '">' + value.substrem_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
     $(document).ready(function(){
         $('select[name="substrem_id"]').on('change', function(){
             var substrem_id = $(this).val();
@@ -525,6 +558,31 @@
                         var d =$('select[name="course_id"]').empty();
                         $.each(data, function(key, value){
                             $('select[name="course_id"]').append('<option value="'+ value.id + '">' + value.course_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select[name="course_id"]').on('change', function(){
+            var course_id = $(this).val();
+            if (course_id) {
+                $.ajax({
+                    url: "{{ url('/course/ajax') }}/"+course_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="specialization_id"]').html('');
+                        var d =$('select[name="specialization_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="specialization_id"]').append('<option value="'+ value.id + '">' + value.specialization_name + '</option>');
                         });
                     },
                 });

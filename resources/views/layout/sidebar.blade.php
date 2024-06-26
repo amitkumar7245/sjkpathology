@@ -89,6 +89,21 @@
                     </a>
                 </li> --}}
 
+                <li class="nav-item active" data-bs-toggle="tooltip" data-bs-placement="right" title="Location">
+                    <a class="nav-link menu-link" href="#bloodtest" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="bloodtest">
+                        <i class="fa fa-flask" aria-hidden="true"></i><span data-key="t-dashboards">Test</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="bloodtest">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('all.testblood') }}" class="nav-link menu-link {{ ($route ==  'all.testblood')? 'active':  '' }}" data-key="t-alladmin">Test Blood</a>
+                                <a href="{{ route('all.testbloodgroup') }}" class="nav-link menu-link {{ ($route ==  'all.typeoflabtest')? 'active':  '' }}" data-key="t-alladmin">Test Blood Group</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li> <!-- end Master Field Menu -->
+
                 <li class="nav-item active" data-bs-toggle="tooltip" data-bs-placement="right" title="Education">
                     <a class="nav-link menu-link" href="#educationmanage" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="education">
                         <i class="fas fa-user-graduate"></i><span data-key="t-dashboards">Education</span>
@@ -124,8 +139,7 @@
                                 <a href="{{ route('all.pathologysource') }}" class="nav-link menu-link {{ ($route ==  'all.pathologysource')? 'active':  '' }}" data-key="t-alladmin">Pathology Source </a>
                                 <a href="{{ route('all.testsampletype') }}" class="nav-link menu-link {{ ($route ==  'all.testsampletype')? 'active':  '' }}" data-key="t-alladmin">Lab Test Sample Type </a>
                                 <a href="{{ route('all.testunittype') }}" class="nav-link menu-link {{ ($route ==  'all.testunittype')? 'active':  '' }}" data-key="t-alladmin">Lab Test Unit Type</a>
-                                <a href="{{ route('all.testblood') }}" class="nav-link menu-link {{ ($route ==  'all.testblood')? 'active':  '' }}" data-key="t-alladmin">Test Blood</a>
-                                <a href="{{ route('all.testbloodgroup') }}" class="nav-link menu-link {{ ($route ==  'all.typeoflabtest')? 'active':  '' }}" data-key="t-alladmin">Test Blood Group</a>
+                                
                             </li>
                             
                         </ul>

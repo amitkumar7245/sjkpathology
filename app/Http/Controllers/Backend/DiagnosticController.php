@@ -12,6 +12,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Helpers\TokenHelper;
 
 class DiagnosticController extends Controller
 {
@@ -32,17 +33,19 @@ class DiagnosticController extends Controller
         $states = State::latest()->get();
         $city = City::latest()->get();
 
-        return view('admin.diagnostic-center.diagnostic_add', compact('countries','states','city'), $data);
+        return view('admin.diagnostic-center.diagnostic_add', compact('countries', 'states', 'city'), $data);
     }
 
 
     public function DiagnosticCenterStore(Request $request)
     {
         // dd($request->all());
+        $token = TokenHelper::token();
+
         $diagnosticuser_id = User::insertGetId([
-            'reg_number' => mt_rand(100000,999999),
+            'reg_number' => 'Dia -' . $token,
             'name' => $request->name,
-            'username' => strtolower(str_replace(' ','-',$request->name)),
+            'username' => strtolower(str_replace(' ', '-', $request->name)),
             'phone' => $request->phone,
             'email' => $request->email,
             'doj' => $request->doj,
@@ -54,7 +57,7 @@ class DiagnosticController extends Controller
             'created_by' => Auth::user()->id,
             'status' => 'active',
             'created_at' => Carbon::now(),
-          ]);
+        ]);
 
         Diagnostic::insert([
             'diauser_id' => $diagnosticuser_id,
@@ -65,16 +68,15 @@ class DiagnosticController extends Controller
             'created_by' => Auth::user()->id,
             'status' => 'active',
             'created_at' => Carbon::now(),
-        ]);  
+        ]);
 
         $notification = array(
             'message' => 'Diagnostic Center Registration Successfully',
             'alert-type' => 'success'
         );
-        
-        return redirect()->route('all.diagnosticcenter')->with($notification);
 
-    }//end method
+        return redirect()->route('all.diagnosticcenter')->with($notification);
+    } //end method
 
     public function DiagnosticCenterEdit($id)
     {
@@ -87,7 +89,7 @@ class DiagnosticController extends Controller
         $countries = Country::all();
         $states = State::where('country_id', $userdiagnostiCenters->diagnostic->country_id)->get();
         $cities = City::where('state_id', $userdiagnostiCenters->diagnostic->state_id)->get();
-        
+
         return view('admin.diagnostic-center.diagnostic_edit', compact('userdiagnostiCenters', 'countries', 'states', 'cities'), $data);
     }
 
@@ -95,7 +97,7 @@ class DiagnosticController extends Controller
     public function DiagnosticCenterUpdate(Request $request)
     {
         $diagnosticCenters_id = $request->id;
-    
+
         // dd($request->all());
 
         $user = User::findOrFail($diagnosticCenters_id);
@@ -104,13 +106,13 @@ class DiagnosticController extends Controller
             'username' => strtolower(str_replace(' ', '-', $request->name)),
             'email' => $request->email,
             'phone' => $request->phone,
-            'address' => $request->address, 
-            'doj' => $request->doj, 
-            'aadharnumber' => $request->aadharcard, 
+            'address' => $request->address,
+            'doj' => $request->doj,
+            'aadharnumber' => $request->aadharcard,
             'created_by' => Auth::user()->id,
             'updated_at' => Carbon::now(),
         ]);
-    
+
         // Update diagnostics table
         $diagnostic = Diagnostic::where('diauser_id', $diagnosticCenters_id)->firstOrFail();
         $diagnostic->update([
@@ -122,12 +124,12 @@ class DiagnosticController extends Controller
             'status' => 'active',
             'updated_at' => Carbon::now(),
         ]);
-    
+
         $notification = [
             'message' => 'Diagnostic Center Updated Successfully',
             'alert-type' => 'success',
         ];
-    
+
         return redirect()->route('all.diagnosticcenter')->with($notification);
     }
 
@@ -140,7 +142,7 @@ class DiagnosticController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
-    }//end method
+    } //end method
 
     public function DiagnosticCenterView($id)
     {
@@ -185,13 +187,13 @@ class DiagnosticController extends Controller
 
     public function GetDiagnosticState($country_id)
     {
-        $staties = State::where('country_id', $country_id)->orderBy('state_name','ASC')->get();
+        $staties = State::where('country_id', $country_id)->orderBy('state_name', 'ASC')->get();
         return json_encode($staties);
-    }// End Method
+    } // End Method
 
     public function GetDiagnosticCity($state_id)
     {
-        $cities = City::where('state_id',$state_id)->orderBy('city_name','ASC')->get();
+        $cities = City::where('state_id', $state_id)->orderBy('city_name', 'ASC')->get();
         return json_encode($cities);
-    }// End Method
+    } // End Method
 }

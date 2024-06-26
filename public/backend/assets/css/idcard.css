@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-color: #f0f0f0; */
+}
+.idcard {
+    width: 317px;
+    height: 210px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border: 2px solid #24aff1;
+    border-bottom: 5px solid #1371ff;
+}
+.idcardcard-header img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.idcardcard-content {
+    display: flex;
+    justify-content: space-between; 
+}
+.idcardcard-content img {
+    width: 35%;
+    border-radius: 10px;
+    border: 1px solid #57b3e9;
+    float: left;
+}
+.idcardcard-content table {
+    width: 62%;
+    float: right;
+}
+.idcardcard-content table tr td {
+    padding: 0px;
+}
+.idcardcard-footer img {
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.idcardcard-footer{
+    padding-top: 1%;
+}
+#ICARD table, #ICARD p, #ICARD h2 {
+    font-size: 11px;
+    margin: 0;
+    line-height: 12px;
+    font-weight: 400;
+}

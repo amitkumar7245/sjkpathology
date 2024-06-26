@@ -12,6 +12,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Helpers\TokenHelper;
 
 class CollectionController extends Controller
 {
@@ -40,8 +41,9 @@ class CollectionController extends Controller
     public function CollectionCenterStore(Request $request)
     {
         // dd($request->all());
+        $token = TokenHelper::token();
         $collectionuser_id = User::insertGetId([
-            'reg_number' => mt_rand(100000,999999),
+            'reg_number' => 'C - ' .$token,
             'name' => $request->name,
             'username' => strtolower(str_replace(' ','-',$request->name)),
             'phone' => $request->phone,
