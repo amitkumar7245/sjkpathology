@@ -344,14 +344,12 @@
                                                 </div>
                                             </div>
                                             <!--end col-->
-
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label class="form-label"></label>
-                                                    <img id="showImage" src="{{ (!empty($staff_id->photo)) ? url('upload/staff_images/'.$staff_id->photo):url('upload/no_image.jpg') }}" alt="image" style="width:100px; height:100px;">      
+                                                    <img id="showImage" src="{{ (!empty($staff_id->photo)) ? url($staff_id->photo):url('upload/no_image.jpg') }}" alt="image" style="width:100px; height:100px;">      
                                                 </div>
                                             </div>
-
                                             <!--end col-->
                                             <div class="col-md-6 mb-3">
                                                 <div class="input-group mb-3">

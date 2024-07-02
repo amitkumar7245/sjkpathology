@@ -38,4 +38,10 @@ class Collection extends Model
         return $this->belongsTo(Country::class, 'country_id');
     }
 
+    public function diagnostics()
+    {
+        return $this->belongsToMany(Diagnostic::class, 'diagnostics');
+    }
+
+
 }

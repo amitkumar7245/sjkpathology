@@ -16,6 +16,9 @@ use App\Models\Collection;
 use App\Models\Diagnostic;
 use App\Models\Staff;
 use App\Models\Clinic;
+use App\Models\Department;
+use App\Models\Designation;
+use App\Models\EmployeeType;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -30,20 +33,20 @@ class ProfileController extends Controller
         $id = Auth::user()->id;
         $adminData = User::find($id);
 
-        return view('admin.admin_profile_view',compact('adminData'), $data);
-    }//end method
+        return view('admin.admin_profile_view', compact('adminData'), $data);
+    } //end method
 
     public function AdminProfileStore(Request $request)
     {
         $rules = [
-                'name' => 'required|min:3',
-                'email' => 'required|email|unique:users,email,'.Auth::user()->id.',id',
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users,email,' . Auth::user()->id . ',id',
 
         ];
-        
-        $validator = Validator::make($request->all(),$rules);
 
-        if($validator->fails()) {
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
             return redirect()->back()->withInput()->withErrors($validator);
         }
 
@@ -60,32 +63,31 @@ class ProfileController extends Controller
 
         if (!empty($request->photo)) {
 
-            File::delete(public_path('upload/admin_images/'.$data->photo));
-            File::delete(public_path('upload/admin_images/profile/'.$data->photo));
+            File::delete(public_path('upload/admin_images/' . $data->photo));
+            File::delete(public_path('upload/admin_images/profile/' . $data->photo));
 
             $file = $request->photo;
-            $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/admin_images'),$filename);
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'), $filename);
 
             $data['photo'] = $filename;
 
             $manager = new ImageManager(Driver::class);
-            $img = $manager->read(public_path('upload/admin_images/'.$filename)); 
-           
+            $img = $manager->read(public_path('upload/admin_images/' . $filename));
+
             $img->cover(150, 150);
-            $img->save(public_path('upload/admin_images/profile/'.$filename));
+            $img->save(public_path('upload/admin_images/profile/' . $filename));
         }
 
         $data->save();
 
-       $notification = array(
-        'message' => "Admin Profile Successfully",
-        'alert-type' => 'success'
-       );
+        $notification = array(
+            'message' => "Admin Profile Successfully",
+            'alert-type' => 'success'
+        );
 
-       return redirect()->back()->with($notification);
-
-    }//end admin profile
+        return redirect()->back()->with($notification);
+    } //end admin profile
 
 
 
@@ -127,23 +129,23 @@ class ProfileController extends Controller
         $data->aadharnumber = $request->aadharcard;
         $data->address = $request->address;
 
-        if($request->file('photo')) {
-        $file = $request->file('photo');
-        @unlink(public_path('upload/doctor_images/'.$data->photo));
-        $filename = date('YmdHi').$file->getClientOriginalName();
-        $file->move(public_path('upload/doctor_images'),$filename);
-        $data['photo'] = $filename;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('upload/doctor_images/' . $data->photo));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/doctor_images'), $filename);
+            $data['photo'] = $filename;
         }
-    
+
         $data->save();
-    
+
         $notification = array(
-        'message' => "Doctor Basic Profile Successfully",
-        'alert-type' => 'success'
+            'message' => "Doctor Basic Profile Successfully",
+            'alert-type' => 'success'
         );
-    
+
         return redirect()->back()->with($notification);
-    }//end mehod
+    } //end mehod
 
 
 
@@ -164,8 +166,8 @@ class ProfileController extends Controller
         $notification = array(
             'message' => "Doctor Location updated successfully",
             'alert-type' => 'success'
-            );
-        
+        );
+
         return redirect()->back()->with($notification);
     }
 
@@ -185,10 +187,9 @@ class ProfileController extends Controller
         $notification = array(
             'message' => "Bank details updated successfully",
             'alert-type' => 'success'
-            );
-        
-        return redirect()->back()->with($notification);
+        );
 
+        return redirect()->back()->with($notification);
     }
 
 
@@ -215,13 +216,13 @@ class ProfileController extends Controller
         $clinic->created_by = Auth::user()->id;
 
         $clinic->save();
-        
+
         $notification = array(
             'message' => "Clinic details " . ($request->filled('clinic_id') ? 'updated' : 'saved') . " successfully",
             'alert-type' => 'success'
         );
-        
-        return redirect()->back()->with($notification);    
+
+        return redirect()->back()->with($notification);
     }
 
 
@@ -230,16 +231,16 @@ class ProfileController extends Controller
 
     public function GetDoctorProfileState($country_id)
     {
-        $staties = State::where('country_id',$country_id)->orderBy('state_name','ASC')->get();
+        $staties = State::where('country_id', $country_id)->orderBy('state_name', 'ASC')->get();
         return json_encode($staties);
-    }// End Method
+    } // End Method
 
 
     public function GetDoctorProfileCity($state_id)
     {
-        $cities = City::where('state_id',$state_id)->orderBy('city_name','ASC')->get();
+        $cities = City::where('state_id', $state_id)->orderBy('city_name', 'ASC')->get();
         return json_encode($cities);
-    }// End Method
+    } // End Method
 
 
 
@@ -249,9 +250,16 @@ class ProfileController extends Controller
         $data['header_title'] = "Staff Profile";
 
         $id = Auth::user()->id;
+        $countries = Country::latest()->get();
+        $states = State::latest()->get();
+        $city = City::latest()->get();
+        $empType = EmployeeType::latest()->get();
+        $departmenties = Department::latest()->get();
+        $designation = Designation::latest()->get();
+        $banks = Bank::latest()->get();
         $staffData = User::find($id);
 
-        return view('staff.staff_profile_view',compact('staffData'), $data);
+        return view('staff.staff_profile_view', compact('staffData', 'countries', 'states', 'city', 'empType', 'departmenties', 'designation','banks'), $data);
     }
 
     public function StaffProfileStore(Request $request)
@@ -268,23 +276,25 @@ class ProfileController extends Controller
         $data->aadharnumber = $request->aadharcard;
         $data->address = $request->address;
 
-        if($request->file('photo')) {
-        $file = $request->file('photo');
-        @unlink(public_path('upload/staff_images/'.$data->photo));
-        $filename = date('YmdHi').$file->getClientOriginalName();
-        $file->move(public_path('upload/staff_images'),$filename);
-        $data['photo'] = $filename;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            if (File::exists(public_path($data->photo))) {
+                File::delete(public_path($data->photo));
+            }
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/staff_images'), $filename);
+            $data['photo'] = 'upload/staff_images/' . $filename;
         }
-    
+
         $data->save();
-    
+
         $notification = array(
-        'message' => "Staff Basic Profile Successfully",
-        'alert-type' => 'success'
+            'message' => "Staff Basic Profile Successfully",
+            'alert-type' => 'success'
         );
-    
+
         return redirect()->back()->with($notification);
-    }//end mehod
+    } //end mehod
 
 
 
@@ -302,7 +312,7 @@ class ProfileController extends Controller
         $id = Auth::user()->id;
         $patientData = User::find($id);
 
-        return view('patient.patient_profile_view',compact('patientData'), $data);
+        return view('patient.patient_profile_view', compact('patientData'), $data);
     }
 
     public function PatientProfileStore(Request $request)
@@ -320,23 +330,23 @@ class ProfileController extends Controller
         $data->aadharnumber = $request->aadharcard;
         $data->address = $request->address;
 
-        if($request->file('photo')) {
-        $file = $request->file('photo');
-        @unlink(public_path('upload/patient_images/'.$data->photo));
-        $filename = date('YmdHi').$file->getClientOriginalName();
-        $file->move(public_path('upload/patient_images'),$filename);
-        $data['photo'] = $filename;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('upload/patient_images/' . $data->photo));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/patient_images'), $filename);
+            $data['photo'] = $filename;
         }
-    
+
         $data->save();
-    
+
         $notification = array(
-        'message' => "Patient Basic Profile Successfully",
-        'alert-type' => 'success'
+            'message' => "Patient Basic Profile Successfully",
+            'alert-type' => 'success'
         );
-    
+
         return redirect()->back()->with($notification);
-    }//end mehod 
+    } //end mehod 
 
 
 
@@ -354,7 +364,7 @@ class ProfileController extends Controller
         $id = Auth::user()->id;
         $diagnosticData = User::find($id);
 
-        return view('diagnostic.diagnostic_profile_view',compact('diagnosticData'), $data);
+        return view('diagnostic.diagnostic_profile_view', compact('diagnosticData'), $data);
     }
 
     public function DiagnosticProfileStore(Request $request)
@@ -370,22 +380,22 @@ class ProfileController extends Controller
         $data->aadharnumber = $request->aadharcard;
         $data->address = $request->address;
 
-        if($request->file('photo')) {
-        $file = $request->file('photo');
-        @unlink(public_path('upload/diagnostic_images/'.$data->photo));
-        $filename = date('YmdHi').$file->getClientOriginalName();
-        $file->move(public_path('upload/diagnostic_images'),$filename);
-        $data['photo'] = $filename;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('upload/diagnostic_images/' . $data->photo));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/diagnostic_images'), $filename);
+            $data['photo'] = $filename;
         }
         $data->save();
-    
+
         $notification = array(
-        'message' => "Diagnostic Center Basic Profile Successfully",
-        'alert-type' => 'success'
+            'message' => "Diagnostic Center Basic Profile Successfully",
+            'alert-type' => 'success'
         );
-    
+
         return redirect()->back()->with($notification);
-    }//end mehod
+    } //end mehod
 
 
 
@@ -403,7 +413,7 @@ class ProfileController extends Controller
         $id = Auth::user()->id;
         $collectionData = User::find($id);
 
-        return view('collection.collection_profile_view',compact('collectionData'), $data);
+        return view('collection.collection_profile_view', compact('collectionData'), $data);
     }
 
     public function CollectionProfileStore(Request $request)
@@ -419,23 +429,23 @@ class ProfileController extends Controller
         $data->aadharnumber = $request->aadharcard;
         $data->address = $request->address;
 
-        if($request->file('photo')) {
-        $file = $request->file('photo');
-        @unlink(public_path('upload/collection_images/'.$data->photo));
-        $filename = date('YmdHi').$file->getClientOriginalName();
-        $file->move(public_path('upload/collection_images'),$filename);
-        $data['photo'] = $filename;
+        if ($request->file('photo')) {
+            $file = $request->file('photo');
+            @unlink(public_path('upload/collection_images/' . $data->photo));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/collection_images'), $filename);
+            $data['photo'] = $filename;
         }
-    
+
         $data->save();
-    
+
         $notification = array(
-        'message' => "Collection Center Basic Profile Successfully",
-        'alert-type' => 'success'
+            'message' => "Collection Center Basic Profile Successfully",
+            'alert-type' => 'success'
         );
-    
+
         return redirect()->back()->with($notification);
-    }//end mehod
+    } //end mehod
 
 
 

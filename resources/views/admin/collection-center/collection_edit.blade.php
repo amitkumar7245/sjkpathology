@@ -141,7 +141,7 @@
                                         
                                     </div>
                                 </div>
-                                <div class="tshadow mb25 bozero">
+                                {{-- <div class="tshadow mb25 bozero">
                                     <h4 class="pagetitleh2">Social Media</h4>
                                     <div class="around10">
                                         <div class="row">
@@ -152,40 +152,31 @@
                                                 </div>
                                             </div>
                                             <!--end col-->
-                                            {{-- <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="nameInput" class="form-label">Instagram Url</label>
-                                                    <input type="text" class="form-control" name="insta" id="nameInput" placeholder="Instagram Url" value="">
-                                                </div>
-                                            </div> --}}
-                                            <!--end col-->
-                                            {{-- <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="nameInput" class="form-label">Linkedin Url</label>
-                                                    <input type="text" class="form-control" name="linkedin" id="nameInput" placeholder="Linkedin Url" value="">
-                                                </div>
-                                            </div> --}}
-                                            <!--end col-->
-                                            {{-- <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="nameInput" class="form-label">YouTube Url</label>
-                                                    <input type="text" class="form-control" name="youtube" id="nameInput" placeholder="YouTube Url" value="">
-                                                </div>
-                                            </div> --}}
-                                            <!--end col-->
+                                            
                                         </div>
                                         <!--end row-->
                                         
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="tshadow mb25 bozero">
                                     <h4 class="pagetitleh2">Gallery Images</h4>
                                     <div class="around10">
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupFile01">Image</label>
-                                                    <input type="file" name="image" class="form-control" id="inputGroupFile01">
+                                                    <label class="input-group-text">Image</label>
+                                                    <input type="file" name="collectionimage" class="form-control"
+                                                    id="image" accept=".jpg,.png,.jpeg">
+                                                </div>
+                                            </div>
+                                             <!--end col-->
+                                            <div class="col-md-6 mb-3">
+                                                <div class="input-group mb-3">
+    
+                                                    @if (!empty($usercollectionCenters->photo))
+                                                       <img id="showImage" src="{{ asset($usercollectionCenters->photo) }}" style="width: 200px" height="200px">
+                                                    @endif
+                                                       
                                                 </div>
                                             </div>
                                             <!--end col-->
@@ -222,6 +213,18 @@
     <!-- container-fluid -->
 </div>
 <!-- End Page-content -->
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#image').change(function(e){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImage').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(e.target.files['0']);
+		});
+	});
+</script>
 
 <script type="text/javascript">
   		

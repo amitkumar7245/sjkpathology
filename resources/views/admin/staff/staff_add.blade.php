@@ -338,7 +338,7 @@
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupFile01">Photo</label>
                                                     <input type="file" name="photo" class="form-control"
-                                                        id="image">
+                                                        id="image" accept=".jpg,.png,.jpeg">
                                                 </div>
                                             </div>
                                             <!--end col-->

@@ -76,6 +76,11 @@ class User extends Authenticatable
         return $this->hasOne(Diagnostic::class, 'diauser_id');
     }
 
+    public function diagnostics()
+    {
+        return $this->hasMany(Diagnostic::class, 'diauser_id');
+    }
+
     public function collection()
     {
         return $this->hasOne(Collection::class, 'collectionuser_id');

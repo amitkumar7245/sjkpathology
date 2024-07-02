@@ -11,12 +11,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Create Doctor</h4>
+                    <h4 class="mb-sm-0">Edit Doctor</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                            <li class="breadcrumb-item active">Create Doctor</li>
+                            <li class="breadcrumb-item active">Edit Doctor</li>
                         </ol>
                     </div>
 
@@ -273,7 +273,7 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="phonenumberInput" class="form-label">Mobile Number</label>
-                                                    <input type="text" name="phonenumber" class="form-control" id="phonenumberInput" pattern="[0-9]{10}" maxlength="10" placeholder="Enter 10-digit Mobile number" value="{{ $doctor_id->clinic->phone_number ?? '' }}">
+                                                    <input type="tel" name="phonenumber" class="form-control" id="phonenumberInput" pattern="[0-9]{10}" maxlength="10" placeholder="Enter 10-digit Mobile number" value="{{ $doctor_id->clinic->phone_number ?? '' }}">
                                                 </div>
                                             </div>
                                             <!--end col-->
@@ -381,7 +381,7 @@
                                         
                                     </div>
                                 </div>
-                                <div class="tshadow mb25 bozero">
+                                {{-- <div class="tshadow mb25 bozero">
                                     <h4 class="pagetitleh2">Social Media</h4>
                                     <div class="around10">
                                         <div class="row">
@@ -392,54 +392,57 @@
                                                 </div>
                                             </div>
                                             <!--end col-->
-                                            {{-- <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="nameInput" class="form-label">Instagram Url</label>
-                                                    <input type="text" class="form-control" name="location" id="nameInput" placeholder="Instagram Url" value="">
-                                                </div>
-                                            </div> --}}
-                                            <!--end col-->
-                                            {{-- <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="nameInput" class="form-label">Linkedin Url</label>
-                                                    <input type="text" class="form-control" name="location" id="nameInput" placeholder="Linkedin Url" value="">
-                                                </div>
-                                            </div> --}}
-                                            <!--end col-->
-                                            {{-- <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="nameInput" class="form-label">YouTube Url</label>
-                                                    <input type="text" class="form-control" name="location" id="nameInput" placeholder="YouTube Url" value="">
-                                                </div>
-                                            </div> --}}
-                                            <!--end col-->
+                                            
                                         </div>
                                         <!--end row-->
                                         
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="tshadow mb25 bozero">
                                     <h4 class="pagetitleh2">Gallery Images</h4>
                                     <div class="around10">
                                         <div class="row">
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupFile01">Avatar</label>
-                                                    <input type="file" class="form-control" id="inputGroupFile01">
+                                                    <label class="input-group-text" for="inputGroupFile01">Photo</label>
+                                                    <input type="file" name="photo" class="form-control" id="image" accept=".jpg,.png,.jpeg">
                                                 </div>
                                             </div>
                                             <!--end col-->
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label"></label>
+                                                    <img id="showImage" src="{{ (!empty($doctor_id->photo)) ? url($doctor_id->photo):url('upload/no_image.jpg') }}" style="width:100px; height:100px;">      
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+
+                                            <div class="col-md-6 mb-3">
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupFile03">Aadhar Card</label>
                                                     <input type="file" class="form-control" id="inputGroupFile02">
                                                 </div>
                                             </div>
                                             <!--end col-->
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label"></label>
+                                                    <img id="showImage" src="{{ (!empty($doctor_id->aadhar)) ? url($doctor_id->photo):url('upload/no_image.jpg') }}" style="width:100px; height:100px;">      
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+
+                                            <div class="col-md-6 mb-3">
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupFile03">Sign</label>
                                                     <input type="file" class="form-control" id="inputGroupFile03">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label"></label>
+                                                    <img id="showImage" src="{{ (!empty($doctor_id->doctor_sign)) ? url($doctor_id->photo):url('upload/no_image.jpg') }}" style="width:100px; height:100px;">      
                                                 </div>
                                             </div>
                                             <!--end col-->
@@ -470,7 +473,18 @@
 <!-- End Page-content -->
 
 <script type="text/javascript">
-  		
+	$(document).ready(function(){
+		$('#image').change(function(e){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImage').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(e.target.files['0']);
+		});
+	});
+</script>
+
+<script type="text/javascript">
     $(document).ready(function(){
         $('select[name="country_id"]').on('change', function(){
             var country_id = $(this).val();

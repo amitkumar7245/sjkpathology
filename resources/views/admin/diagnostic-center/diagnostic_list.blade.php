@@ -82,7 +82,7 @@
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0">
                                                 @if ($item->photo != '')
-                                                        <img src="{{ asset('upload/diagnostic_images/'.$item->photo) }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                        <img src="{{ asset($item->photo) }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
                                                     @else
                                                         <img src="{{ asset('backend/assets/images/users/user-dummy-img.jpg') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
                                                 @endif

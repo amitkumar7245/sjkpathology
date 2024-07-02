@@ -31,7 +31,7 @@
             <div class="col-lg-12">
                 <div class="card border-top border-0 border-4 border-primary">
                     <div class="card-body p-4">
-                        <form id="myForm" action="{{ route('update.collectioncenter') }}" method="post" enctype="multipart/form-data">
+                        <form id="myForm" action="{{ route('update.diagnosticcenter') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" value="{{ $userdiagnostiCenters->id }}">
 
@@ -75,6 +75,30 @@
                                         <!--end col-->
                                         
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="tshadow mb25 bozero">
+                                <h4 class="pagetitleh2">Collection Center Details</h4>
+                                <div class="around10">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6">
+                                            <div>
+                                                @foreach ($collection as $item)
+                                                    <div class="form-check mb-2">
+                                                        <input class="form-check-input" name="collection_id[]" type="checkbox" id="formCheck{{ $item->id }}" value="{{ $item->id }}" {{ in_array($item->id, explode(',', $userdiagnostiCenters->diagnostic->collection_id)) ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="formCheck{{ $item->id }}">
+                                                            {{ $item->name }}
+                                                        </label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                    </div>
+                                    <!--end row-->
+
                                 </div>
                             </div>
                             
@@ -123,7 +147,7 @@
                                 </div>
                             </div>
 
-                            <div class="tshadow mb25 bozero">
+                            {{-- <div class="tshadow mb25 bozero">
                                 <h4 class="pagetitleh2">Social Media</h4>
                                 <div class="around10">
                                     <div class="row">
@@ -153,7 +177,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="tshadow mb25 bozero">
                                 <h4 class="pagetitleh2">Gallery Images</h4>
@@ -161,8 +185,18 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <div class="input-group mb-3">
-                                                <label class="input-group-text" for="inputGroupFile01">Image</label>
-                                                <input type="file" name="image" class="form-control" id="inputGroupFile01">
+                                                <label class="input-group-text">Image</label>
+                                                <input type="file" name="diaimage" class="form-control"
+                                                id="image" accept=".jpg,.png,.jpeg">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="input-group mb-3">
+
+                                                @if (!empty($userdiagnostiCenters->photo))
+                                                   <img id="showImage" src="{{ asset($userdiagnostiCenters->photo) }}" style="width: 200px" height="200px">
+                                                @endif
+                                                   
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
@@ -201,6 +235,18 @@
     <!-- container-fluid -->
 </div>
 <!-- End Page-content -->
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#image').change(function(e){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImage').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(e.target.files['0']);
+		});
+	});
+</script>
 
 <script type="text/javascript">
   		

@@ -13,6 +13,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Helpers\TokenHelper;
+use App\Models\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class DiagnosticController extends Controller
 {
@@ -32,18 +35,24 @@ class DiagnosticController extends Controller
         $countries = Country::latest()->get();
         $states = State::latest()->get();
         $city = City::latest()->get();
+        $collection = User::where('role', 'collection')->latest()->get();
 
-        return view('admin.diagnostic-center.diagnostic_add', compact('countries', 'states', 'city'), $data);
+        return view('admin.diagnostic-center.diagnostic_add', compact('countries', 'states', 'city', 'collection'), $data);
     }
 
 
     public function DiagnosticCenterStore(Request $request)
     {
-        // dd($request->all());
+
+        $diagnostiProfile = $request->file('diaimage');
+        $name_gen = date('YmdHi') . $diagnostiProfile->getClientOriginalName();
+        $diagnostiProfile->move(public_path('upload/diagnostic_images/'), $name_gen);
+        $save_url = 'upload/diagnostic_images/' . $name_gen;
+
         $token = TokenHelper::token();
 
         $diagnosticuser_id = User::insertGetId([
-            'reg_number' => 'Dia -' . $token,
+            'reg_number' => $token,
             'name' => $request->name,
             'username' => strtolower(str_replace(' ', '-', $request->name)),
             'phone' => $request->phone,
@@ -52,19 +61,20 @@ class DiagnosticController extends Controller
             'aadharnumber' => $request->aadharcard,
             'address' => $request->address,
             'password' => Hash::make($request->password),
-            // 'photo' => $save_url,
+            'photo' => $save_url,
             'role' => 'diagnostic',
             'created_by' => Auth::user()->id,
             'status' => 'active',
             'created_at' => Carbon::now(),
         ]);
 
-        Diagnostic::insert([
+        Diagnostic::create([
             'diauser_id' => $diagnosticuser_id,
             'country_id' => $request->country_id,
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
             'locationname' => $request->location_name,
+            'collection_id' => implode(',', $request->collection_id),
             'created_by' => Auth::user()->id,
             'status' => 'active',
             'created_at' => Carbon::now(),
@@ -76,7 +86,7 @@ class DiagnosticController extends Controller
         );
 
         return redirect()->route('all.diagnosticcenter')->with($notification);
-    } //end method
+    }
 
     public function DiagnosticCenterEdit($id)
     {
@@ -89,18 +99,32 @@ class DiagnosticController extends Controller
         $countries = Country::all();
         $states = State::where('country_id', $userdiagnostiCenters->diagnostic->country_id)->get();
         $cities = City::where('state_id', $userdiagnostiCenters->diagnostic->state_id)->get();
+        $collection = User::where('role', 'collection')->latest()->get();
 
-        return view('admin.diagnostic-center.diagnostic_edit', compact('userdiagnostiCenters', 'countries', 'states', 'cities'), $data);
+        return view('admin.diagnostic-center.diagnostic_edit', compact('userdiagnostiCenters', 'countries', 'states', 'cities', 'collection'), $data);
     }
 
 
     public function DiagnosticCenterUpdate(Request $request)
     {
         $diagnosticCenters_id = $request->id;
-
-        // dd($request->all());
-
         $user = User::findOrFail($diagnosticCenters_id);
+
+        if ($request->hasFile('diaimage')) {
+            $diagnostiProfile = $request->file('diaimage');
+            $name_gen = date('YmdHi') . $diagnostiProfile->getClientOriginalName();
+
+            // Delete old image
+            if ($user->photo && file_exists(public_path($user->photo))) {
+                File::delete(public_path($user->photo));
+            }
+
+            // Save new image
+            $diagnostiProfile->move(public_path('upload/diagnostic_images/'), $name_gen);
+            $user->photo = 'upload/diagnostic_images/' . $name_gen;
+        }
+
+        // Update user details
         $user->update([
             'name' => $request->name,
             'username' => strtolower(str_replace(' ', '-', $request->name)),
@@ -109,6 +133,7 @@ class DiagnosticController extends Controller
             'address' => $request->address,
             'doj' => $request->doj,
             'aadharnumber' => $request->aadharcard,
+            'photo' => $user->photo, // This will only be updated if a new image was uploaded
             'created_by' => Auth::user()->id,
             'updated_at' => Carbon::now(),
         ]);
@@ -120,6 +145,7 @@ class DiagnosticController extends Controller
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
             'locationname' => $request->location_name,
+            'collection_id' => implode(',', $request->collection_id),
             'created_by' => Auth::user()->id,
             'status' => 'active',
             'updated_at' => Carbon::now(),
@@ -132,6 +158,7 @@ class DiagnosticController extends Controller
 
         return redirect()->route('all.diagnosticcenter')->with($notification);
     }
+
 
     public function DiagnosticCenterDestory($id)
     {

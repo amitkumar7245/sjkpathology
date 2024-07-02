@@ -65,7 +65,7 @@ class StaffController extends Controller
             $staffProfile = $request->photo;
             $name_gen = date('YmdHi') . $staffProfile->getClientOriginalName();
             $staffProfile->move(public_path('upload/staff_images/'), $name_gen);
-            $save_url = $name_gen;
+            $save_url = 'upload/staff_images/' . $name_gen;
 
             $manager = new ImageManager(new Driver());
             $img = $manager->read(public_path('upload/staff_images/' . $name_gen));
@@ -152,32 +152,22 @@ class StaffController extends Controller
         ]);
 
 
-        // $save_url = $user->photo; // Initialize save_name with the existing photo name
-
-        // if ($request->hasFile('photo')) {
-        //     $staffProfile = $request->file('photo');
-        //     $name_gen = date('YmdHi') . $staffProfile->getClientOriginalName();
-
-        //     // Delete the old image if it exists
-        //     if ($user->photo && file_exists(public_path('upload/staff_images/' . $user->photo))) {
-        //         File::delete(public_path('upload/staff_images/' . $user->photo));
-        //     }
-
-        //     $staffProfile->move(public_path('upload/staff_images/'), $name_gen);
-        //     $save_url = $name_gen;
-
-        //     // Resize the image
-        //     $manager = new ImageManager(Driver::class);
-        //     $img = $manager->read(public_path('upload/staff_images/' . $name_gen));
-
-        //     $img->resize(100, 100);
-        //     $img->save(public_path('upload/staff_images/' . $name_gen));
-        //     // dd($save_url);
-        // }
-
-
         // Update user details
         $user = User::findOrFail($staff_id);
+
+        if ($request->hasFile('photo')) {
+            $staffsProfile = $request->file('photo');
+            $name_gen = date('YmdHi') . $staffsProfile->getClientOriginalName();
+
+            // Delete old image
+            if ($user->photo && file_exists(public_path($user->photo))) {
+                File::delete(public_path($user->photo));
+            }
+
+            // Save new image
+            $staffsProfile->move(public_path('upload/staff_images/'), $name_gen);
+            $user->photo = 'upload/staff_images/' . $name_gen;
+        }
 
         $user->update([
             'name' => $request->full_name,
@@ -189,7 +179,7 @@ class StaffController extends Controller
             'doj' => Carbon::parse($request->doj),
             'aadharnumber' => $request->aadharcard,
             'address' => $request->address,
-            // 'photo' => $save_url, // Update the photo URL
+            'photo' => $user->photo,  // Update the photo URL
             'status' => 'active',
             'updated_by' => Auth::user()->id,
             'updated_at' => Carbon::now()
@@ -224,90 +214,6 @@ class StaffController extends Controller
 
         return redirect()->route('all.staff')->with($notification);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public function StaffUpdate(Request $request)
-    // {
-    //     $staff_id = $request->id;
-
-    //     $request->validate([
-
-    //         'photo' => 'nullable|image|mimes:jpg,png|max:2048', // Validating image
-    //     ]);
-
-    //     if (!empty($request->photo)) {
-
-    //         $staffProfile = $request->photo;
-    //         $name_gen = date('YmdHi') . $staffProfile->getClientOriginalName();
-
-    //         File::delete(public_path('upload/staff_images/' . $name_gen));
-
-    //         $staffProfile->move(public_path('upload/staff_images/'), $name_gen);
-    //         $save_url = $name_gen;
-
-    //         $manager = new ImageManager(new Driver());
-    //         $img = $manager->read(public_path('upload/staff_images/' . $name_gen));
-
-    //         $img->resize(100, 100);
-    //         $img->save(public_path('upload/staff_images/' . $name_gen));
-    //     }
-
-    //     $user = User::findOrFail($staff_id);
-    //     $user->update([
-    //         'name' => $request->full_name,
-    //         'username' => strtolower(str_replace(' ', '-', $request->full_name)),
-    //         'email' => $request->email,
-    //         'phone' => $request->phone,
-    //         'gender' => $request->gender,
-    //         'dob' => Carbon::parse($request->dob),
-    //         'doj' => Carbon::parse($request->doj),
-    //         'aadharnumber' => $request->aadharcard,
-    //         'address' => $request->address,
-    //         'photo' => $save_url,
-    //         'status' => 'active',
-    //         'created_by' => Auth::user()->id,
-    //         'updated_at' => Carbon::now()
-    //     ]);
-
-    //     $staff = Staff::where('staffuser_id', $staff_id)->firstOrFail();
-    //     $staff->update([
-    //         'employeetype_id' => $request->employeetype_id,
-    //         'department_id' => $request->department_id,
-    //         'designation_id' => $request->designation_id,
-    //         'bankname_id' => $request->bankname_id,
-    //         'branchname' => $request->branchname,
-    //         'ifsccode' => $request->ifsccode,
-    //         'accountnumber' => $request->accountnumber,
-    //         'accountholdername' => $request->accountholdername,
-    //         'commission' => $request->commission,
-    //         'salary' => $request->salary,
-    //         'country_id' => $request->country_id,
-    //         'state_id' => $request->state_id,
-    //         'city_id' => $request->city_id,
-    //         'locationname' => $request->location,
-    //         'created_by' => Auth::user()->id,
-    //         'status' => 'active',
-    //         'updated_at' => Carbon::now()
-    //     ]);
-
-    //     $notification = array(
-    //         'message' => 'Staff updated successfully',
-    //         'alert-type' => 'success'
-    //     );
-
-    //     return redirect()->route('all.staff')->with($notification);
-    // } //end Method
 
     public function StaffDestory($id)
     {

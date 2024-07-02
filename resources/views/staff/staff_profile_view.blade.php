@@ -30,7 +30,7 @@
                     <div class="card-body p-4">
                         <div class="text-center">   
                             <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                <img src="{{ (!empty($staffData->photo)) ? url('upload/staff_images/'.$staffData->photo): url('upload/no_image.jpg') }}" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
+                                <img src="{{ (!empty($staffData->photo)) ? url($staffData->photo): url('upload/no_image.jpg') }}" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
                                 <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                     {{-- <input id="profile-img-file-input" type="file" class="profile-img-file-input"> --}}
                                     <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
@@ -133,13 +133,6 @@
                                     Bank Details
                                 </a>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#changePassword" role="tab">
-                                    <i class="far fa-user"></i>
-                                    Change Password
-                                </a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#experience" role="tab">
                                     <i class="far fa-envelope"></i>
@@ -186,7 +179,7 @@
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label for="phonenumberInput" class="form-label">Mobile Number </label>
-                                                <input type="text" name="phone" class="form-control" id="phonenumberInput" pattern="[0-9]{10}" maxlength="10" placeholder="Enter your phone number" value="{{ $staffData->phone }}">
+                                                <input type="tel" name="phone" class="form-control" id="phonenumberInput" pattern="[0-9]{10}" maxlength="10" placeholder="Enter your phone number" value="{{ $staffData->phone }}">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -231,24 +224,36 @@
                                             </div>
                                         </div>
                                         <!--end col-->
-                                        <div class="col-lg-3">
+                                        {{-- <div class="col-lg-3">
                                             <label for="gender" class="form-label">Employee Type</label>
-                                            <select class="js-example-basic-single mb-3" name="employeeType">
+                                            <select class="js-example-basic-single mb-3" name="employeetype_id">
                                                 <option selected="">Select Employee Type </option>
-                                                <option value="1">Paramanent</option>
-                                                <option value="2">Temprory</option>
-                                                <option value="3">Intership</option>
-                                                <option value="4">Freelance</option>
+                                                    @foreach ($empType as $item )
+                                                        <option value="{{ $item->id }}" {{ $item->id == $staffData->staff->employeetype_id ? 'selected' : '' }}>{{ $item->employee_type_name }}</option>
+                                                    @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <!--end col-->
-                                        <div class="col-lg-3">
-                                            <label for="gender" class="form-label">Role Name</label>
-                                            <select class="js-example-basic-single mb-3" name="roleName">
-                                                <option selected="">Select Role Name </option>
-                                                <option value="1">Lab Technician</option>
+                                        {{-- <div class="col-lg-3">
+                                            <label for="gender" class="form-label">Department Name</label>
+                                            <select class="js-example-basic-single mb-3" name="department_id">
+                                                <option>Select Department Name </option>
+                                                    @foreach ($departmenties as $item )
+                                                        <option value="{{ $item->id }}" {{ $item->id == $staffData->staff->department_id ? 'selected' : '' }}>{{ $item->department_name }}</option>
+                                                    @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
+                                        <!--end col-->
+
+                                        {{-- <div class="col-lg-3">
+                                            <label for="gender" class="form-label">Designation Name</label>
+                                            <select class="js-example-basic-single mb-3" name="designation_id">
+                                                <option>Select Designation Name </option>
+                                                    @foreach ($designation as $item )
+                                                        <option value="{{ $item->id }}" {{ $item->id == $staffData->staff->designation_id ? 'selected' : '' }}>{{ $item->designation_name }}</option>
+                                                    @endforeach
+                                            </select>
+                                        </div> --}}
                                         <!--end col-->
                                         
                                         <div class="col-lg-3">
@@ -262,7 +267,7 @@
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label class="form-label"></label>
-                                                <img id="showImage" src="{{ (!empty($staffData->photo)) ? url('upload/staff_images/'.$staffData->photo) : url('upload/no_image.jpg') }}" alt="image" style="width:100px; height:100px;">
+                                                <img id="showImage" src="{{ (!empty($staffData->photo)) ? url($staffData->photo) : url('upload/no_image.jpg') }}" alt="image" style="width:100px; height:100px;">
                                                 
                                             </div>
                                         </div>
@@ -296,8 +301,9 @@
                                         <div class="col-lg-3">
                                             <label for="country" class="form-label">Country</label>
                                             <select class="js-example-basic-single mb-3" name="country">
-                                                <option selected="">Select Country</option>
-                                                <option value="1">India</option>
+                                                @foreach ($countries as $item )
+                                                    <option value="{{ $item->id }}" {{ $item->id == ($staffData->staff->country_id ?? '') ? 'selected' : '' }}>{{ $item->country_name }}</option>
+                                                 @endforeach
                                             </select>
                                         </div>
                                         <!--end col-->
@@ -305,7 +311,9 @@
                                             <label for="state" class="form-label">State</label>
                                             <select class="js-example-basic-single mb-3" name="state">
                                                 <option selected="">Select State</option>
-                                                <option value="1">Uttar Pradesh</option>
+                                                @foreach ($states as $item )
+                                                    <option value="{{ $item->id }}" {{ $item->id == ($staffData->staff->state_id ?? '') ? 'selected' : '' }}>{{ $item->state_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <!--end col-->
@@ -313,22 +321,16 @@
                                             <label for="city" class="form-label">City</label>
                                             <select class="js-example-basic-single mb-3" name="city">
                                                 <option selected="">Select City</option>
-                                                <option value="1">Unnao</option>
+                                                @foreach ($city as $item )
+                                                    <option value="{{ $item->id }}" {{ $item->id == ($staffData->staff->city_id ?? '') ? 'selected' : '' }}>{{ $item->city_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-3">
                                             <div class="mb-3">
                                                 <label for="nameInput" class="form-label">Location</label>
-                                                <input type="text" class="form-control" name="location" id="nameInput" placeholder="Enter Location" value="{{ $staffData->name  }}">
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-
-                                        <div class="col-lg-12">
-                                            <div class="mb-3 pb-2">
-                                                <label for="inputAddress3" class="form-label" data-sider-select-id="0a109c19-524f-46cb-a992-41bca8f6d441">Address</label>
-                                                <textarea class="form-control" id="inputAddress3" placeholder="Enter Address" rows="3" value="{{ $staffData->name }}"></textarea>
+                                                <input type="text" class="form-control" name="location" id="nameInput" placeholder="Enter Location" value="{{ $staffData->staff->locationname  }}">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -352,33 +354,31 @@
                                         <div class="col-lg-4">
                                             <label for="country" class="form-label">Bank Name</label>
                                             <select class="js-example-basic-single mb-3" name="bankname">
-                                                <option value="">Choose</option>
-                                                <option value="1">Punjab National Bank</option>
-                                                <option value="2">State Bank Of India</option>
-                                                <option value="3">Bank of India</option>
-                                                <option value="4">Bank of Baroda</option>
-                                                <option value="5">ICICI Bank</option>
+                                                <option>Choose</option>
+                                                @foreach ($banks as $item)
+                                                    <option value="{{ $item->id }}"{{ $item->id == $staffData->staff->bankname_id ? 'selected' : '' }}>{{ $item->bankname }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="nameInput" class="form-label">Branch Name</label>
-                                                <input type="text" class="form-control" name="branchname" id="nameInput" placeholder="Enter Branch Name" value="{{ $staffData->name  }}">
+                                                <input type="text" class="form-control" name="branchname" id="nameInput" placeholder="Enter Branch Name" value="{{ $staffData->staff->branchname  }}">
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="nameInput" class="form-label">IFSC Code</label>
-                                                <input type="text" class="form-control" name="ifsccode" id="nameInput" placeholder="Enter IFSC Code" value="{{ $staffData->name  }}">
+                                                <input type="text" class="form-control" name="ifsccode" id="nameInput" placeholder="Enter IFSC Code" value="{{ $staffData->staff->ifsccode  }}">
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="nameInput" class="form-label">Account Number</label>
-                                                <input type="text" class="form-control" name="accountnumber" id="nameInput" placeholder="Enter Account Number" value="{{ $staffData->name  }}">
+                                                <input type="text" class="form-control" name="accountnumber" id="nameInput" placeholder="Enter Account Number" value="{{ $staffData->staff->accountnumber  }}">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -386,7 +386,7 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="nameInput" class="form-label">Account Holder Name</label>
-                                                <input type="text" class="form-control" name="accountholdername" id="nameInput" placeholder="Enter Account Holder Name" value="{{ $staffData->name  }}">
+                                                <input type="text" class="form-control" name="accountholdername" id="nameInput" placeholder="Enter Account Holder Name" value="{{ $staffData->staff->accountholdername  }}">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -394,7 +394,15 @@
                                         <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <label for="nameInput" class="form-label">Salary</label>
-                                                <input type="text" class="form-control" name="salary" id="nameInput" placeholder="10,000/" value="{{ $staffData->name  }}">
+                                                <input type="text" class="form-control" name="salary" id="nameInput" placeholder="10,000/" value="{{  $staffData->staff->salary  }}">
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label for="nameInput" class="form-label">Commission</label>
+                                                <input type="text" name="commission" class="form-control" id="commissionInput" placeholder="50%" value="{{ $staffData->staff->commission }}">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -411,119 +419,7 @@
                                 </form>
                             </div>
                             <!--end tab-pane-->
-                            
-                            <div class="tab-pane" id="changePassword" role="tabpanel">
-                                <form action="javascript:void(0);">
-                                    <div class="row g-2">
-                                        <div class="col-lg-4">
-                                            <div>
-                                                <label for="oldpasswordInput" class="form-label">Old
-                                                    Password*</label>
-                                                <input type="password" class="form-control" id="oldpasswordInput" placeholder="Enter current password">
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-4">
-                                            <div>
-                                                <label for="newpasswordInput" class="form-label">New
-                                                    Password*</label>
-                                                <input type="password" class="form-control" id="newpasswordInput" placeholder="Enter new password">
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-4">
-                                            <div>
-                                                <label for="confirmpasswordInput" class="form-label">Confirm
-                                                    Password*</label>
-                                                <input type="password" class="form-control" id="confirmpasswordInput" placeholder="Confirm password">
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-12">
-                                            <div class="mb-3">
-                                                <a href="javascript:void(0);" class="link-primary text-decoration-underline">Forgot
-                                                    Password ?</a>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-12">
-                                            <div class="text-end">
-                                                <button type="submit" class="btn btn-success">Change
-                                                    Password</button>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                    </div>
-                                    <!--end row-->
-                                </form>
-                                <div class="mt-4 mb-3 border-bottom pb-2">
-                                    <div class="float-end">
-                                        <a href="javascript:void(0);" class="link-primary">All Logout</a>
-                                    </div>
-                                    <h5 class="card-title">Login History</h5>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="flex-shrink-0 avatar-sm">
-                                        <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                                            <i class="ri-smartphone-line"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h6>iPhone 12 Pro</h6>
-                                        <p class="text-muted mb-0">Los Angeles, United States - March 16 at
-                                            2:47PM</p>
-                                    </div>
-                                    <div>
-                                        <a href="javascript:void(0);">Logout</a>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="flex-shrink-0 avatar-sm">
-                                        <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                                            <i class="ri-tablet-line"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h6>Apple iPad Pro</h6>
-                                        <p class="text-muted mb-0">Washington, United States - November 06
-                                            at 10:43AM</p>
-                                    </div>
-                                    <div>
-                                        <a href="javascript:void(0);">Logout</a>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="flex-shrink-0 avatar-sm">
-                                        <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                                            <i class="ri-smartphone-line"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h6>Galaxy S21 Ultra 5G</h6>
-                                        <p class="text-muted mb-0">Conneticut, United States - June 12 at
-                                            3:24PM</p>
-                                    </div>
-                                    <div>
-                                        <a href="javascript:void(0);">Logout</a>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-shrink-0 avatar-sm">
-                                        <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                                            <i class="ri-macbook-line"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <h6>Dell Inspiron 14</h6>
-                                        <p class="text-muted mb-0">Phoenix, United States - July 26 at
-                                            8:10AM</p>
-                                    </div>
-                                    <div>
-                                        <a href="javascript:void(0);">Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--end tab-pane-->
+                        
                             <div class="tab-pane" id="experience" role="tabpanel">
                                 <form>
                                     <div id="newlink">
@@ -810,16 +706,6 @@
 
 
 @push('scripts')
-
-
-
-      <!-- JAVASCRIPT -->
-      {{-- <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-      <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-      <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
-      <script src="{{ asset('backend/assets/libs/feather-icons/feather.min.js') }}"></script>
-      <script src="{{ asset('backend/assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
-      <script src="{{ asset('backend/assets/js/plugins.js') }}"></script> --}}
     
         <!--jquery cdn-->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -827,20 +713,6 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
         <script src="{{ asset('backend/assets/js/pages/select2.init.js') }}"></script>    
-    
-        <!-- App js -->
-        {{-- <script src="{{ asset('backend/assets/js/app.js') }}"></script> --}}
-    
-         <!-- dropzone js -->
-         {{-- <script src="{{ asset('backend/assets/libs/dropzone/dropzone-min.js') }}"></script> --}}
-    
-             <!-- ckeditor -->
-        {{-- <script src="{{ asset('backend/assets/libs/%40ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script> --}}
-    
-        <!-- dropzone js -->
-        {{-- <script src="{{ asset('backend/assets/libs/dropzone/dropzone-min.js') }}"></script> --}}
-        <!-- project-create init -->
-        {{-- <script src="{{ asset('backend/assets/js/pages/project-create.init.js') }}"></script> --}}
 
       <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -854,6 +726,4 @@
         });
     </script>
 
-
-    
 @endpush

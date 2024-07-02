@@ -76,7 +76,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="flex-shrink-0"> 
                                                     @if ($item->photo != '')
-                                                        <img src="{{ asset('upload/doctor_images/'.$item->photo) }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                        <img src="{{ asset($item->photo) }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
                                                     @else
                                                         @if ($item->gender == '1') <!-- Assuming '1' for Male -->
                                                             <img src="{{ asset('backend/assets/images/users/male-dummy.png') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">

@@ -266,7 +266,7 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="phonenumberInput" class="form-label">Mobile Number</label>
-                                                    <input type="text" name="phonenumber" class="form-control" id="phonenumberInput" placeholder="Enter your phone number" value="">
+                                                    <input type="tel" name="phonenumber" class="form-control" id="phonenumberInput" pattern="[0-9]{10}" maxlength="10" placeholder="Enter 10-digit Mobile number" value="">
                                                 </div>
                                             </div>
                                             <!--end col-->
@@ -373,8 +373,8 @@
                                         <div class="row">
                                             <div class="col-md-4 mb-3">
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupFile01">Avatar</label>
-                                                    <input type="file" class="form-control" id="inputGroupFile01">
+                                                    <label class="input-group-text">Avatar</label>
+                                                    <input type="file" name="photo" class="form-control" id="image">
                                                 </div>
                                             </div>
                                             <!--end col-->
@@ -387,8 +387,8 @@
                                             <!--end col-->
                                             <div class="col-md-4 mb-3">
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupFile03">Sign</label>
-                                                    <input type="file" class="form-control" id="inputGroupFile03">
+                                                    <label class="input-group-text" for="inputGroupFile05">Sign</label>
+                                                    <input type="file" class="form-control" id="inputGroupFile05">
                                                 </div>
                                             </div>
                                             <!--end col-->
