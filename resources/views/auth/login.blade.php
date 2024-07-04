@@ -32,7 +32,7 @@
                                         <div class="bg-overlay"></div>
                                         <div class="position-relative h-100 d-flex flex-column">
                                             <div class="mb-4">
-                                                <a href="index.html" class="d-block">
+                                                <a href="" class="d-block">
                                                     <img src="{{ asset('backend/assets/images/logo/sjk-logo-header.svg') }}" alt="" height="50">
                                                 </a>
                                             </div>
@@ -70,7 +70,7 @@
                                     <div class="p-lg-5 p-4">
                                         <div>
                                             <h5 class="text-primary">Welcome Back !</h5>
-                                            <p class="text-muted">Sign in to continue to DigiOnWeb Pathology.</p>
+                                            <p class="text-muted">Sign in to continue to Pathology</p>
                                         </div>
                                         
                                         @include('_message')
@@ -101,7 +101,7 @@
                                                 </div>
 
                                                 <div class="mt-4">
-                                                    <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                                    <button class="btn btn-primary w-100 _42ft" type="submit">Sign In</button>
                                                 </div>
 
                                                 

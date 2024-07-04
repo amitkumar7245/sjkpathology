@@ -312,7 +312,7 @@
                     </div>
                 </div>
                 <div class="specialities-btn aos" data-aos="fade-up">
-                    <a href="lab-tests.html" class="btn">View All</a>
+                    <a href="" class="btn">View All</a>
                 </div>
             </div>
         </div>
