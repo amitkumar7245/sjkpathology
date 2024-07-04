@@ -112,6 +112,8 @@
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
+                                                        @if ($diagnostic_view)
+                                                       
                                                         <tr>
                                                             <th class="ps-0" scope="row">Name :</th>
                                                             <td class="text-muted">{{ $diagnostic_view->name ?? 'N/A' }}</td>
@@ -139,6 +141,11 @@
                                                             <th class="ps-0" scope="row">Aadhar Card Number</th>
                                                             <td class="text-muted">{{ $diagnostic_view->aadharnumber ?? 'N/A' }}</td>
                                                         </tr>
+                                                        @else
+                                                            <tr>
+                                                                <td class="text-muted text-bold" colspan="5" style="font-weight:600;text-align:center;">No basic details available</td>
+                                                            </tr>
+                                                        @endif
                                                         
                                                     </tbody>
                                                 </table>
@@ -164,6 +171,8 @@
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
+                                                        @if ($diagnostic_view->diagnostic)
+                                                        
                                                         <tr>
                                                             <th class="ps-0" scope="row">Country:</th>
                                                             <td class="text-muted">{{ $diagnostic_view->diagnostic->country->country_name ?? 'N/A' }}</td>
@@ -181,6 +190,11 @@
                                                             <td class="text-muted">{{ $diagnostic_view->diagnostic->locationname ?? 'N/A' }}</td>
                                                         </tr>
 
+                                                        @else
+                                                            <tr>
+                                                                <td class="text-muted text-bold" colspan="5" style="font-weight:600;text-align:center;">No details available</td>
+                                                            </tr>
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div>

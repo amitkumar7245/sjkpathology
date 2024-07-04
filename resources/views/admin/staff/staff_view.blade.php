@@ -126,6 +126,7 @@
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
+                                                                                                                    
                                                         <tr>
                                                             <th class="ps-0" scope="row">Name :</th>
                                                             <td class="text-muted">{{ $staff_view->name ?? 'N/A' }}</td>
@@ -163,6 +164,8 @@
                                                             <th class="ps-0" scope="row">Aadhar Card Number</th>
                                                             <td class="text-muted">{{ $staff_view->aadharnumber ?? 'N/A' }}</td>
                                                         </tr>
+                                                        
+
                                                         <tr>
                                                             <th class="ps-0" scope="row">Employee Type</th>
                                                             <td class="text-muted">{{ $staff_view->staff->employeetype->employee_type_name ?? 'N/A' }}</td>

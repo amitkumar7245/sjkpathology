@@ -53,7 +53,8 @@
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
                                                     <label for="phonenumberInput" class="form-label">Mobile Number</label>
-                                                    <input type="tel" name="phone" class="form-control" id="phonenumberInput" pattern="[0-9]{10}" maxlength="10" placeholder="Enter 10-digit Mobile number" value="{{ $usercollectionCenters->phone }}">
+                                                    <input type="tel" name="phone" class="form-control" id="phonenumberInput" maxlength="10" placeholder="Enter 10-digit Mobile number" value="{{ $usercollectionCenters->phone }}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+
                                                 </div>
                                             </div>
                                             <!--end col-->

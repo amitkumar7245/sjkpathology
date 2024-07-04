@@ -41,7 +41,7 @@
 
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="nameInput" class="form-label">Name</label>
+                                                    <label for="nameInput" class="form-label label-required">Name</label>
                                                     <input type="text" name="full_name" class="form-control"
                                                         id="nameInput" placeholder="Enter your Name" value="">
                                                 </div>
@@ -50,23 +50,22 @@
 
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="phonenumberInput" class="form-label">Mobile Number</label>
-                                                    <input type="tel" name="phone" class="form-control"
-                                                        id="phonenumberInput" pattern="[0-9]{10}" maxlength="10"
-                                                        placeholder="Enter 10-digit Mobile number" value="">
+                                                    <label for="phonenumberInput" class="form-label label-required">Mobile Number</label>
+                                                    <input type="tel" name="phone" class="form-control" id="phonenumberInput" maxlength="10" placeholder="Enter 10-digit Mobile number" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+
                                                 </div>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="emailInput" class="form-label">Email Id</label>
+                                                    <label for="emailInput" class="form-label label-required">Email Id</label>
                                                     <input type="email" name="email" class="form-control"
                                                         id="emailInput" placeholder="Enter your Email Id" value="">
                                                 </div>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
-                                                <label for="gender" class="form-label">Gender</label>
+                                                <label for="gender" class="form-label label-required">Gender</label>
                                                 <select class="js-example-basic-single mb-3 form-groups" name="gender"
                                                     id="gender">
                                                     <option>Select your Gender </option>
@@ -78,7 +77,7 @@
 
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="JoiningDate" class="form-label">Joining Date</label>
+                                                    <label for="JoiningDate" class="form-label label-required">Joining Date</label>
                                                     <input type="date" name="doj" class="form-control"
                                                         data-provider="flatpickr" id="JoiningDate" value="">
                                                 </div>
@@ -86,7 +85,7 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="dateofbirthdayInput" class="form-label">Date of
+                                                    <label for="dateofbirthdayInput" class="form-label label-required">Date of
                                                         Birthday</label>
                                                     <input type="date" name="dob" class="form-control"
                                                         data-provider="flatpickr" id="dateofbirthdayInput" value="">
@@ -95,7 +94,7 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="aadharcard" class="form-label">Aadhar Card Number</label>
+                                                    <label for="aadharcard" class="form-label label-required">Aadhar Card Number</label>
                                                     <input type="text" name="aadharcard" class="form-control"
                                                         id="aadharcard" minlength="12" maxlength="12"
                                                         placeholder="0000 0000 0000" value="">
@@ -103,7 +102,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
-                                                <label for="EmployeeType" class="form-label">Employee Type</label>
+                                                <label for="EmployeeType" class="form-label label-required">Employee Type</label>
                                                 <select class="js-example-basic-single mb-3 form-groups"
                                                     name="employeetype_id">
                                                     <option>Select Employee Type </option>
@@ -115,7 +114,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
-                                                <label for="gender" class="form-label">Department Name</label>
+                                                <label for="gender" class="form-label label-required">Department Name</label>
                                                 <select class="js-example-basic-single mb-3 form-groups"
                                                     name="department_id">
                                                     <option>Select Department Name </option>
@@ -127,7 +126,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
-                                                <label for="gender" class="form-label">Designation Name</label>
+                                                <label for="gender" class="form-label label-required">Designation Name</label>
                                                 <select class="js-example-basic-single mb-3 form-groups"
                                                     name="designation_id">
                                                     <option>Select Designation Name </option>
@@ -139,8 +138,8 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="passwordInput" class="form-label">Password</label>
+                                                <div class="mb-3 form-groups">
+                                                    <label for="passwordInput" class="form-label label-required">Password</label>
                                                     <input type="password" name="password" class="form-control"
                                                         id="passwordInput" placeholder="Enter Password" value="">
                                                 </div>
@@ -207,7 +206,7 @@
                                     <div class="around10">
                                         <div class="row">
                                             <div class="col-lg-3">
-                                                <label for="bankname" class="form-label">Bank Name</label>
+                                                <label for="bankname" class="form-label label-required">Bank Name</label>
                                                 <select class="js-example-basic-single mb-3" name="bankname_id">
                                                     <option>Select Bank Name</option>
                                                     @foreach ($bankdetails as $item)
@@ -221,7 +220,7 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
-                                                    <label for="branchnameInput" class="form-label">Branch Name</label>
+                                                    <label for="branchnameInput" class="form-label label-required">Branch Name</label>
                                                     <input type="text" name="branchname" class="form-control"
                                                         id="branchnameInput" placeholder="Enter Branch Name"
                                                         value="">
@@ -230,7 +229,7 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
-                                                    <label for="ifsccodeInput" class="form-label">IFSC Code</label>
+                                                    <label for="ifsccodeInput" class="form-label label-required">IFSC Code</label>
                                                     <input type="text" name="ifsccode" class="form-control"
                                                         id="ifsccodeInput" placeholder="IFSC Code" value="">
                                                 </div>
@@ -238,7 +237,7 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
-                                                    <label for="accountnoInput" class="form-label">Account Number</label>
+                                                    <label for="accountnoInput" class="form-label label-required">Account Number</label>
                                                     <input type="text" name="accountnumber" class="form-control"
                                                         id="accountnoInput" placeholder="Account Number" value="">
                                                 </div>
@@ -247,7 +246,7 @@
 
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
-                                                    <label for="accountholderInput" class="form-label">Account Holder
+                                                    <label for="accountholderInput" class="form-label label-required">Account Holder
                                                         Name</label>
                                                     <input type="text" name="accountholdername" class="form-control"
                                                         id="accountholderInput" placeholder="Account Holder Name"
@@ -257,7 +256,7 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
-                                                    <label for="salaryInput" class="form-label">Salary</label>
+                                                    <label for="salaryInput" class="form-label label-required">Salary</label>
                                                     <input type="text" name="salary" class="form-control"
                                                         id="salaryInput" placeholder="10,000/" value="">
                                                 </div>
@@ -265,7 +264,7 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
-                                                    <label for="commissionInput" class="form-label">Commission</label>
+                                                    <label for="commissionInput" class="form-label label-required">Commission</label>
                                                     <input type="text" name="commission" class="form-control"
                                                         id="commissionInput" placeholder="50%" value="">
                                                 </div>
@@ -311,14 +310,14 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
-                                                    <label for="locationInput" class="form-label">Location</label>
+                                                    <label for="locationInput" class="form-label label-required">Location</label>
                                                     <input type="text" name="location" class="form-control"
                                                         id="locationInput" placeholder="Enter Location" value="">
                                                 </div>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-12">
-                                                <label for="addressinput" class="form-label">Address</label>
+                                                <label for="addressinput" class="form-label label-required">Address</label>
                                                 <textarea name="address" class="form-control" id="addressinput" placeholder="Enter Address" rows="3"></textarea>
                                             </div>
                                             <!--end col-->

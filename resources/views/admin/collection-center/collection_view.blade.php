@@ -112,6 +112,9 @@
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
+                                                        @if ($collection_view)
+                                                            
+                                                        
                                                         <tr>
                                                             <th class="ps-0" scope="row">Name :</th>
                                                             <td class="text-muted">{{ $collection_view->name ?? 'N/A' }}</td>
@@ -140,6 +143,13 @@
                                                             <th class="ps-0" scope="row">Aadhar Card Number</th>
                                                             <td class="text-muted">{{ $collection_view->aadharnumber ?? 'N/A' }}</td>
                                                         </tr>
+                                                        @else
+                                                        <tr>
+                                                            <td class="text-muted text-bold" colspan="5" style="font-weight:600;text-align:center;">No details available</td>
+                                                        </tr>
+                                                            
+                                                        @endif
+                                                        
                                                         
                                                     </tbody>
                                                 </table>
@@ -165,6 +175,7 @@
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
+                                                        @if ($collection_view->collection)
                                                         <tr>
                                                             <th class="ps-0" scope="row">Country:</th>
                                                             <td class="text-muted">{{ $collection_view->collection->country->country_name ?? 'N/A' }}</td>
@@ -181,6 +192,13 @@
                                                             <th class="ps-0" scope="row">Location :</th>
                                                             <td class="text-muted">{{ $collection_view->collection->locationname ?? 'N/A' }}</td>
                                                         </tr>
+
+                                                        @else
+                                                            <tr>
+                                                                <td class="text-muted text-bold" colspan="5" style="font-weight:600;text-align:center;">No details available</td>
+                                                            </tr>
+                                                        @endif
+                                                        
 
                                                     </tbody>
                                                 </table>

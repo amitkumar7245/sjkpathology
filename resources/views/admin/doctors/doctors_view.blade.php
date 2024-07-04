@@ -147,10 +147,7 @@
                                                             <th class="ps-0" scope="row">E-mail :</th>
                                                             <td class="text-muted">{{ $doctors_view->email }}</td>
                                                         </tr>
-                                                        {{-- <tr>
-                                                            <th class="ps-0" scope="row">Password :</th>
-                                                            <td class="text-muted">{{ $doctors_view->password ? 'Password is set' : 'No password set' }}</td>
-                                                        </tr> --}}
+                                                        
                                                         <tr>
                                                             <th class="ps-0" scope="row">Gender</th>
                                                             <td class="text-muted">
@@ -216,41 +213,7 @@
                             </div>
                             <!--end row-->
                         </div>
-                        <!--end tab-pane-->
-                        {{-- <div class="tab-pane fade" id="team" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-3">Team Details</h5>
-                                            <hr>
-                                            <div class="table-responsive">
-                                                <table class="table table-borderless mb-0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Reporting :</th>
-                                                            <td class="text-muted">ASM</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Team Name :</th>
-                                                            <td class="text-muted">Amit Kumar</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Lab Name :</th>
-                                                            <td class="text-muted">SJK</td>
-                                                        </tr>
-                                                        
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-
-                                </div>
-                                <!--end col-->
-                            </div>
-                            <!--end row-->
-                        </div> --}}
+                        
                         <!--end tab-pane-->
 
                         <div class="tab-pane fade" id="location" role="tabpanel">
@@ -301,161 +264,6 @@
                         </div>
                         <!--end tab-pane-->
 
-                        {{-- <div class="tab-pane fade" id="clinicname" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-3">Clinic Details</h5>
-                                            <hr>
-                                            <div class="table-responsive">
-                                                <table class="table table-borderless mb-0">
-                                                    <tbody>
-                                                        @if($doctors_view->clinic)
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">Clinic Name:</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->clinic_name ?? 'N/A' }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">Clinic Owner Name :</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->clinicowner_name ?? 'N/A' }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">Clinic GST Number :</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->gst_number ?? 'N/A' }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">Clinic Phone Number :</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->phone_number ?? 'N/A' }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">Clinic Telephone Number :</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->telephonephone_number ?? 'N/A' }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">Clinic Email :</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->clinic_email ?? 'N/A' }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">State :</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->state->state_name ?? 'N/A' }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">City :</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->city->city_name ?? 'N/A' }}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="ps-0" scope="row">Clinic Address :</th>
-                                                                <td class="text-muted">{{ $doctors_view->clinic->clinic_address ?? 'N/A' }}</td>
-                                                            </tr>
-                                                        @else
-                                                            <tr>
-                                                                <td class="text-muted text-bold" colspan="5" style="font-weight:600;text-align:center;">No clinic details available</td>
-                                                            </tr>
-                                                        @endif
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-                                </div>
-                                <!--end col-->
-                            </div>
-                            <!--end row-->
-                        </div> --}}
-                        
-                        <!--end tab-pane-->
-
-                        {{-- <div class="tab-pane fade" id="bnak" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-3">Bank Details</h5>
-                                            <hr>
-                                            <div class="table-responsive">
-                                                <table class="table table-borderless mb-0">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Bank Name:</th>
-                                                            <td class="text-muted">{{ $doctors_view->doctor->bank->bankname ?? 'N/A' }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Branch Name :</th>
-                                                            <td class="text-muted">{{ $doctors_view->doctor->branchname ?? 'N/A' }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">IFSC Code :</th>
-                                                            <td class="text-muted">{{ $doctors_view->doctor->ifsccode ?? 'N/A' }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Account Number :</th>
-                                                            <td class="text-muted">{{ $doctors_view->doctor->accountnumber ?? 'N/A' }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Account Holder Name :</th>
-                                                            <td class="text-muted">{{ $doctors_view->doctor->accountholdername ?? 'N/A' }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Commission :</th>
-                                                            <td class="text-muted">{{ $doctors_view->doctor->commission ?? 'N/A' }}%</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-                                </div>
-                                <!--end col-->
-                            </div>
-                            <!--end row-->
-                        </div> --}}
-                        <!--end tab-pane-->
-                        {{-- <div class="tab-pane fade" id="social" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-4">Social Media</h5>
-                                            <hr>
-                                            <div class="d-flex flex-wrap gap-2">
-                                                <div>
-                                                    <a href="javascript:void(0);" class="avatar-xs d-block">
-                                                        <span class="avatar-title rounded-circle fs-16 bg-body text-body">
-                                                            <i class="ri-github-fill"></i>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="avatar-xs d-block">
-                                                        <span class="avatar-title rounded-circle fs-16 bg-primary">
-                                                            <i class="ri-global-fill"></i>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="avatar-xs d-block">
-                                                        <span class="avatar-title rounded-circle fs-16 bg-success">
-                                                            <i class="ri-dribbble-fill"></i>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="avatar-xs d-block">
-                                                        <span class="avatar-title rounded-circle fs-16 bg-danger">
-                                                            <i class="ri-pinterest-fill"></i>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div><!-- end card body -->
-                                    </div><!-- end card -->
-                                </div>
-                                <!--end col-->
-                            </div>
-                            <!--end row-->
-                        </div> --}}
-                        <!--end tab-pane-->
                         
                         <div class="tab-pane fade" id="documents" role="tabpanel">
                             <div class="card">

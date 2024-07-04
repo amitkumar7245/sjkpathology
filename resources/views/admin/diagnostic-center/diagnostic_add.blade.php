@@ -1,7 +1,8 @@
 @extends('layout.app')
 
 @section('dashboard')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
     <div class="page-content">
@@ -43,7 +44,7 @@
 
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="nameInput" class="form-label">Name</label>
+                                                    <label for="nameInput" class="form-label label-required">Name</label>
                                                     <input type="text" name="name" class="form-control" id="nameInput"
                                                         placeholder="Enter your Name" value="">
                                                 </div>
@@ -52,16 +53,20 @@
 
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="phonenumberInput" class="form-label">Mobile Number</label>
+                                                    <label for="phonenumberInput" class="form-label label-required">Mobile
+                                                        Number</label>
                                                     <input type="tel" name="phone" class="form-control"
-                                                        id="phonenumberInput" pattern="[0-9]{10}" maxlength="10"
-                                                        placeholder="Enter 10-digit Mobile number" value="">
+                                                        id="phonenumberInput" maxlength="10"
+                                                        placeholder="Enter 10-digit Mobile number" value=""
+                                                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+
                                                 </div>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="emailInput" class="form-label">Email Id</label>
+                                                    <label for="emailInput" class="form-label label-required">Email
+                                                        Id</label>
                                                     <input type="email" name="email" class="form-control"
                                                         id="emailInput" placeholder="Enter your Email Id" value="">
                                                 </div>
@@ -70,7 +75,8 @@
 
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="JoiningDate" class="form-label">Joining Date</label>
+                                                    <label for="JoiningDate" class="form-label label-required">Joining
+                                                        Date</label>
                                                     <input type="date" name="doj" class="form-control"
                                                         data-provider="flatpickr" id="JoiningDate" value="">
                                                 </div>
@@ -89,7 +95,8 @@
 
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="passwordInput" class="form-label">Password</label>
+                                                    <label for="passwordInput"
+                                                        class="form-label label-required">Password</label>
                                                     <input type="password" name="password" class="form-control"
                                                         id="passwordInput" placeholder="Enter your password" value="">
                                                 </div>
@@ -107,14 +114,26 @@
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6">
                                                 <div>
-                                                    @foreach ($collection as $item)
+                                                    @if ($collection)
+                                                        @foreach ($collection as $item)
+                                                            <div class="form-check mb-2">
+                                                                <input class="form-check-input" name="collection_id[]"
+                                                                    type="checkbox" id="formCheck{{ $item->id }}"
+                                                                    value="{{ $item->id }}">
+                                                                <label class="form-check-label"
+                                                                    for="formCheck{{ $item->id }}">
+                                                                    {{ $item->name }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    @else
                                                         <div class="form-check mb-2">
-                                                                <input class="form-check-input" name="collection_id[]" type="checkbox" id="formCheck{{ $item->id }}" value="{{ $item->id }}">
-                                                                <label class="form-check-label" for="formCheck{{ $item->id }}">
-                                                                {{ $item->name }}
-                                                            </label>
+                                                            <input class="form-check-input" name="collection_id[]"
+                                                                type="checkbox" id="formCheck" value="">
+                                                            <label class="form-check-label" for="formCheck">No Collection
+                                                                Center available</label>
                                                         </div>
-                                                    @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
                                             <!--end col-->
@@ -160,14 +179,16 @@
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="locationInput" class="form-label">Location</label>
+                                                    <label for="locationInput"
+                                                        class="form-label label-required">Location</label>
                                                     <input type="text" class="form-control" name="location_name"
                                                         id="locationInput" placeholder="Enter Location" value="">
                                                 </div>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-12">
-                                                <label for="inputAddress3" class="form-label">Address</label>
+                                                <label for="inputAddress3"
+                                                    class="form-label label-required">Address</label>
                                                 <textarea class="form-control" name="address" id="inputAddress3" placeholder="Enter Address" rows="3"></textarea>
                                             </div>
                                             <!--end col-->
@@ -177,23 +198,7 @@
 
                                     </div>
                                 </div>
-                                {{-- <div class="tshadow mb25 bozero">
-                                    <h4 class="pagetitleh2">Social Media</h4>
-                                    <div class="around10">
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="fbInput" class="form-label">Facebook Url</label>
-                                                    <input type="text" class="form-control" name="fb"
-                                                        id="fbInput" placeholder="Facebook Url" value="">
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                        <!--end row-->
-
-                                    </div>
-                                </div> --}}
+                               
                                 <div class="tshadow mb25 bozero">
                                     <h4 class="pagetitleh2">Gallery Images</h4>
                                     <div class="around10">
@@ -332,7 +337,7 @@
                         minlength: 12,
                         maxlength: 12,
                         digits: true,
-                    }
+                    },
                     password: {
                         required: true,
                     },
@@ -379,4 +384,5 @@
             });
         });
     </script>
+
 @endsection
