@@ -133,12 +133,12 @@
                                     Bank Details
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#experience" role="tab">
                                     <i class="far fa-envelope"></i>
                                     Experience
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#privacy" role="tab">
                                     <i class="far fa-envelope"></i>
@@ -151,48 +151,41 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="personalDetails" role="tabpanel">
                                 
-                                <form action="{{ route('staff.profile.store') }}" method="post" enctype="multipart/form-data">
+                                <form id="myForm" action="{{ route('staff.profile.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
-                                        
                                         <div class="col-lg-3">
-                                            <div class="mb-3">
-                                                <label for="firstnameInput" class="form-label">Staff Id</label>
-                                                <input type="text" name="path_number" class="form-control" id="firstnameInput" placeholder="Enter your staff id" value="{{ $staffData->reg_number }}" disabled>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                        <div class="col-lg-3">
-                                            <div class="mb-3">
-                                                <label for="firstnameInput" class="form-label">User Name</label>
+                                            <div class="mb-3 form-groups">
+                                                <label for="firstnameInput" class="form-label label-required">User Name</label>
                                                 <input type="text" name="username" class="form-control" id="firstnameInput" placeholder="Enter your username" value="{{ $staffData->username }}" disabled>
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-3">
-                                            <div class="mb-3">
-                                                <label for="firstnameInput" class="form-label">Name</label>
+                                            <div class="mb-3 form-groups">
+                                                <label for="firstnameInput" class="form-label label-required">Name</label>
                                                 <input type="text" name="name" class="form-control" id="firstnameInput" placeholder="Enter your name" value="{{ $staffData->name }}">
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-3">
-                                            <div class="mb-3">
-                                                <label for="phonenumberInput" class="form-label">Mobile Number </label>
-                                                <input type="tel" name="phone" class="form-control" id="phonenumberInput" pattern="[0-9]{10}" maxlength="10" placeholder="Enter your phone number" value="{{ $staffData->phone }}">
+                                            <div class="mb-3 form-groups">
+                                                <label for="phonenumberInput" class="form-label label-required">Mobile Number </label>
+                                                <input type="tel" name="phone" class="form-control" id="phonenumberInput" maxlength="10" placeholder="Enter your phone number" value="{{ $staffData->phone }}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                                <span id="phone-error" class="invalid-feedback"></span>
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-3">
-                                            <div class="mb-3">
-                                                <label for="emailInput" class="form-label">Email</label>
+                                            <div class="mb-3 form-groups">
+                                                <label for="emailInput" class="form-label label-required">Email</label>
                                                 <input type="email" name="email" class="form-control" id="emailInput" placeholder="Enter your email" value="{{ $staffData->email }}">
                                             </div>
                                         </div>
                                         <!--end col-->
 
-                                        <div class="col-lg-3">
-                                            <label for="gender" class="form-label">Gender</label>
+                                        <div class="col-lg-3 form-groups">
+                                            <label for="gender" class="form-label label-required">Gender</label>
                                             <select class="js-example-basic-single mb-3" name="gender" id="gender">
                                                 <option selected="">Choose </option>
                                                 <option value="1"{{ ($staffData->gender == 1) ? 'selected' : '' }}>Male</option>
@@ -202,8 +195,8 @@
                                         <!--end col-->
 
                                         <div class="col-lg-3">
-                                            <div class="mb-3">
-                                                <label for="JoiningdatInput" class="form-label">Joining  Date</label>
+                                            <div class="mb-3 form-groups">
+                                                <label for="JoiningdatInput" class="form-label label-required">Joining  Date</label>
                                                 <input type="date" name="doj" class="form-control" data-provider="flatpickr" id="JoiningDate" value="{{ $staffData->doj }}">
                                                     {{-- <input type="date" class="form-control" data-provider="flatpickr" id="StartleaveDate">  --}}
                                             </div>
@@ -211,14 +204,14 @@
                                         <!--end col-->
 
                                         <div class="col-lg-3">
-                                            <div class="mb-3">
-                                                <label for="JoiningdatInput" class="form-label">Date of Birthday</label>
+                                            <div class="mb-3 form-groups">
+                                                <label for="JoiningdatInput" class="form-label label-required">Date of Birthday</label>
                                                     <input type="date" name="dob" class="form-control" data-provider="flatpickr" id="StartleaveDate" value="{{ $staffData->dob }}"> 
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-3">
-                                            <div class="mb-3">
+                                            <div class="mb-3 form-groups">
                                                 <label for="aadharcard" class="form-label">Aadhar Card Number</label>
                                                 <input type="text" name="aadharcard" class="form-control" id="aadharcard" minlength="12" maxlength="12" placeholder="0000 0000 0000" value="{{ $staffData->aadharnumber }}">
                                             </div>
@@ -275,8 +268,8 @@
 
                                         
                                         <div class="col-lg-12">
-                                            <div class="mb-3 pb-2">
-                                                <label for="inputAddress3" class="form-label">Address</label>
+                                            <div class="mb-3 pb-2 form-groups">
+                                                <label for="inputAddress3" class="form-label label-required">Address</label>
                                                 <textarea class="form-control" name="address" id="inputAddress3" placeholder="Enter Address" rows="3">{{ $staffData->address }}</textarea>
                                             </div>
                                         </div>
@@ -296,11 +289,13 @@
                             </div>
                             <!--end tab-pane-->
                             <div class="tab-pane" id="locationDetails" role="tabpanel">
-                                <form action="javascript:void(0);">
+                                <form id="myForm" action="{{ route('staff.location.store') }}" method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-3">
                                             <label for="country" class="form-label">Country</label>
-                                            <select class="js-example-basic-single mb-3" name="country">
+                                            <select class="js-example-basic-single mb-3" name="country_id">
+                                                <option>Select Country</option>
                                                 @foreach ($countries as $item )
                                                     <option value="{{ $item->id }}" {{ $item->id == ($staffData->staff->country_id ?? '') ? 'selected' : '' }}>{{ $item->country_name }}</option>
                                                  @endforeach
@@ -309,8 +304,8 @@
                                         <!--end col-->
                                         <div class="col-lg-3">
                                             <label for="state" class="form-label">State</label>
-                                            <select class="js-example-basic-single mb-3" name="state">
-                                                <option selected="">Select State</option>
+                                            <select class="js-example-basic-single mb-3" name="state_id">
+                                                <option>Select State</option>
                                                 @foreach ($states as $item )
                                                     <option value="{{ $item->id }}" {{ $item->id == ($staffData->staff->state_id ?? '') ? 'selected' : '' }}>{{ $item->state_name }}</option>
                                                 @endforeach
@@ -319,18 +314,18 @@
                                         <!--end col-->
                                         <div class="col-lg-3">
                                             <label for="city" class="form-label">City</label>
-                                            <select class="js-example-basic-single mb-3" name="city">
-                                                <option selected="">Select City</option>
-                                                @foreach ($city as $item )
+                                            <select class="js-example-basic-single mb-3" name="city_id">
+                                                <option>Select City</option>
+                                                @foreach ($cities as $item )
                                                     <option value="{{ $item->id }}" {{ $item->id == ($staffData->staff->city_id ?? '') ? 'selected' : '' }}>{{ $item->city_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-3">
-                                            <div class="mb-3">
-                                                <label for="nameInput" class="form-label">Location</label>
-                                                <input type="text" class="form-control" name="location" id="nameInput" placeholder="Enter Location" value="{{ $staffData->staff->locationname  }}">
+                                            <div class="mb-3 form-groups">
+                                                <label for="nameInput" class="form-label label-required">Location</label>
+                                                <input type="text" class="form-control" name="locationname" id="nameInput" placeholder="Enter Location" value="{{ $staffData->staff->locationname  }}">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -349,10 +344,11 @@
                             </div>
                             <!--end tab-pane-->
                             <div class="tab-pane" id="bankDetails" role="tabpanel">
-                                <form action="" method="post" enctype="multipart/form-data">
+                                <form id="myForm" action="" method="post" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <label for="country" class="form-label">Bank Name</label>
+                                            <label for="country" class="form-label label-required">Bank Name</label>
                                             <select class="js-example-basic-single mb-3" name="bankname">
                                                 <option>Choose</option>
                                                 @foreach ($banks as $item)
@@ -363,21 +359,21 @@
                                         <!--end col-->
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="nameInput" class="form-label">Branch Name</label>
+                                                <label for="nameInput" class="form-label label-required">Branch Name</label>
                                                 <input type="text" class="form-control" name="branchname" id="nameInput" placeholder="Enter Branch Name" value="{{ $staffData->staff->branchname  }}">
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="nameInput" class="form-label">IFSC Code</label>
+                                                <label for="nameInput" class="form-label label-required">IFSC Code</label>
                                                 <input type="text" class="form-control" name="ifsccode" id="nameInput" placeholder="Enter IFSC Code" value="{{ $staffData->staff->ifsccode  }}">
                                             </div>
                                         </div>
                                         <!--end col-->
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="nameInput" class="form-label">Account Number</label>
+                                                <label for="nameInput" class="form-label label-required">Account Number</label>
                                                 <input type="text" class="form-control" name="accountnumber" id="nameInput" placeholder="Enter Account Number" value="{{ $staffData->staff->accountnumber  }}">
                                             </div>
                                         </div>
@@ -385,7 +381,7 @@
 
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="nameInput" class="form-label">Account Holder Name</label>
+                                                <label for="nameInput" class="form-label label-required">Account Holder Name</label>
                                                 <input type="text" class="form-control" name="accountholdername" id="nameInput" placeholder="Enter Account Holder Name" value="{{ $staffData->staff->accountholdername  }}">
                                             </div>
                                         </div>
@@ -393,16 +389,16 @@
 
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="nameInput" class="form-label">Salary</label>
-                                                <input type="text" class="form-control" name="salary" id="nameInput" placeholder="10,000/" value="{{  $staffData->staff->salary  }}">
+                                                <label for="nameInput" class="form-label label-required">Salary</label>
+                                                <input type="text" class="form-control" name="salary" id="nameInput" placeholder="10,000/" value="{{  $staffData->staff->salary  }}" disabled="">
                                             </div>
                                         </div>
                                         <!--end col-->
 
                                         <div class="col-lg-4">
                                             <div class="mb-3">
-                                                <label for="nameInput" class="form-label">Commission</label>
-                                                <input type="text" name="commission" class="form-control" id="commissionInput" placeholder="50%" value="{{ $staffData->staff->commission }}">
+                                                <label for="nameInput" class="form-label label-required">Commission</label>
+                                                <input type="text" name="commission" class="form-control" id="commissionInput" placeholder="50%" value="{{ $staffData->staff->commission }}" disabled="">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -416,128 +412,6 @@
                                         <!--end col-->
                                     </div>
                                     <!--end row-->
-                                </form>
-                            </div>
-                            <!--end tab-pane-->
-                        
-                            <div class="tab-pane" id="experience" role="tabpanel">
-                                <form>
-                                    <div id="newlink">
-                                        <div id="1">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label for="jobTitle" class="form-label">Job
-                                                            Title</label>
-                                                        <input type="text" class="form-control" id="jobTitle" placeholder="Job title" value="Lead Designer / Developer">
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-lg-6">
-                                                    <div class="mb-3">
-                                                        <label for="companyName" class="form-label">Company
-                                                            Name</label>
-                                                        <input type="text" class="form-control" id="companyName" placeholder="Company name" value="Themesbrand">
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-lg-6">
-                                                    <div class="mb-3">
-                                                        <label for="experienceYear" class="form-label">Experience Years</label>
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <select class="form-control" data-choices data-choices-search-false name="experienceYear" id="experienceYear">
-                                                                    <option value="">Select years</option>
-                                                                    <option value="Choice 1">2001</option>
-                                                                    <option value="Choice 2">2002</option>
-                                                                    <option value="Choice 3">2003</option>
-                                                                    <option value="Choice 4">2004</option>
-                                                                    <option value="Choice 5">2005</option>
-                                                                    <option value="Choice 6">2006</option>
-                                                                    <option value="Choice 7">2007</option>
-                                                                    <option value="Choice 8">2008</option>
-                                                                    <option value="Choice 9">2009</option>
-                                                                    <option value="Choice 10">2010</option>
-                                                                    <option value="Choice 11">2011</option>
-                                                                    <option value="Choice 12">2012</option>
-                                                                    <option value="Choice 13">2013</option>
-                                                                    <option value="Choice 14">2014</option>
-                                                                    <option value="Choice 15">2015</option>
-                                                                    <option value="Choice 16">2016</option>
-                                                                    <option value="Choice 17" selected>2017
-                                                                    </option>
-                                                                    <option value="Choice 18">2018</option>
-                                                                    <option value="Choice 19">2019</option>
-                                                                    <option value="Choice 20">2020</option>
-                                                                    <option value="Choice 21">2021</option>
-                                                                    <option value="Choice 22">2022</option>
-                                                                </select>
-                                                            </div>
-                                                            <!--end col-->
-                                                            <div class="col-auto align-self-center">
-                                                                to
-                                                            </div>
-                                                            <!--end col-->
-                                                            <div class="col-lg-5">
-                                                                <select class="form-control" data-choices data-choices-search-false name="choices-single-default2">
-                                                                    <option value="">Select years</option>
-                                                                    <option value="Choice 1">2001</option>
-                                                                    <option value="Choice 2">2002</option>
-                                                                    <option value="Choice 3">2003</option>
-                                                                    <option value="Choice 4">2004</option>
-                                                                    <option value="Choice 5">2005</option>
-                                                                    <option value="Choice 6">2006</option>
-                                                                    <option value="Choice 7">2007</option>
-                                                                    <option value="Choice 8">2008</option>
-                                                                    <option value="Choice 9">2009</option>
-                                                                    <option value="Choice 10">2010</option>
-                                                                    <option value="Choice 11">2011</option>
-                                                                    <option value="Choice 12">2012</option>
-                                                                    <option value="Choice 13">2013</option>
-                                                                    <option value="Choice 14">2014</option>
-                                                                    <option value="Choice 15">2015</option>
-                                                                    <option value="Choice 16">2016</option>
-                                                                    <option value="Choice 17">2017</option>
-                                                                    <option value="Choice 18">2018</option>
-                                                                    <option value="Choice 19">2019</option>
-                                                                    <option value="Choice 20" selected>2020
-                                                                    </option>
-                                                                    <option value="Choice 21">2021</option>
-                                                                    <option value="Choice 22">2022</option>
-                                                                </select>
-                                                            </div>
-                                                            <!--end col-->
-                                                        </div>
-                                                        <!--end row-->
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label for="jobDescription" class="form-label">Job
-                                                            Description</label>
-                                                        <textarea class="form-control" id="jobDescription" rows="3" placeholder="Enter description">You always want to make sure that your fonts work well together and try to limit the number of fonts you use to three or less. Experiment and play around with the fonts that you already have in the software you're working with reputable font websites. </textarea>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="hstack gap-2 justify-content-end">
-                                                    <a class="btn btn-success" href="javascript:deleteEl(1)">Delete</a>
-                                                </div>
-                                            </div>
-                                            <!--end row-->
-                                        </div>
-                                    </div>
-                                    <div id="newForm" style="display: none;">
-
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="hstack gap-2">
-                                            <button type="submit" class="btn btn-success">Update</button>
-                                            <a href="javascript:new_link()" class="btn btn-primary">Add
-                                                New</a>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
                                 </form>
                             </div>
                             <!--end tab-pane-->
@@ -700,6 +574,138 @@
 			reader.readAsDataURL(e.target.files['0']);
 		});
 	});
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function (){
+        $.validator.addMethod("uniquePhone", function (value, element) {
+        var result = false;
+        $.ajax({
+            type: "POST",
+            url: "{{ route('staffcheck.phone') }}", // Change this to the route that checks the phone number
+            data: {
+                phone: value,
+                _token: $('input[name="_token"]').val() // CSRF token
+            },
+            async: false,
+            success: function (response) {
+                result = (response === 'true') ? false : true;
+            }
+        });
+        return result;
+    }, 'Mobile number already exists.');
+
+        $('#myForm').validate({
+            rules: {
+                name: {
+                    required : true,
+                },
+                    phone: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    uniquePhone: true // Add the uniquePhone method
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                aadharcard: {
+                required: true,
+                minlength: 12,
+                maxlength: 12,
+                digits: true,
+                }, 
+            },
+            messages :{
+                name: {
+                    required : 'Please Enter Full Name',
+                },
+                phone: {
+                    required: 'Please Enter Mobile Number',
+                    digits: 'Please enter a valid 10-digit mobile number',
+                    minlength: 'Mobile number must be exactly 10 digits',
+                    maxlength: 'Mobile number must be exactly 10 digits',
+                    uniquePhone: 'Mobile number already exists.',
+                },
+                email: {
+                    required: 'Please Enter Email Id',
+                    email: 'Please enter a valid email address',
+                },
+                aadharcard: {
+                required: 'Please enter your Aadhar Card Number',
+                minlength: 'Aadhar Card Number must be 12 digits',
+                maxlength: 'Aadhar Card Number must be 12 digits',
+                digits: 'Please enter a valid Aadhar Card Number',
+                },
+            },
+            errorElement : 'span', 
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-groups').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+    
+</script>
+
+<script type="text/javascript">
+  		
+    $(document).ready(function(){
+        $('select[name="country_id"]').on('change', function(){
+            var country_id = $(this).val();
+            if (country_id) {
+                $.ajax({
+                    url: "{{ url('/staffprofilestate/ajax') }}/"+country_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="state_id"]').html('');
+                        var d =$('select[name="state_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="state_id"]').append('<option value="'+ value.id + '">' + value.state_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+  		
+    $(document).ready(function(){
+        $('select[name="state_id"]').on('change', function(){
+            var state_id = $(this).val();
+            if (state_id) {
+                $.ajax({
+                    url: "{{ url('/staffprofilecity/ajax') }}/"+state_id,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="city_id"]').html('');
+                        var d =$('select[name="city_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="city_id"]').append('<option value="'+ value.id + '">' + value.city_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
 </script>
 
 @endsection

@@ -1,31 +1,32 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\AreaController;
 use App\Http\Controllers\Backend\BankController;
-use App\Http\Controllers\Backend\EmployeeTypeController;
-use App\Http\Controllers\Backend\ProfileController;
-use App\Http\Controllers\Backend\ReportingtypeController;
-use App\Http\Controllers\Backend\DepartmentController;
-use App\Http\Controllers\Backend\DesignationController;
-use App\Http\Controllers\Backend\SocialMediaTypeController;
-use App\Http\Controllers\Backend\PaymentModeController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\StaffController;
-use App\Http\Controllers\Backend\DiagnosticController;
-use App\Http\Controllers\Backend\CollectionController;
-use App\Http\Controllers\Backend\DoctorController;
-use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\StremController;
-use App\Http\Controllers\Backend\SubstreamController;
-use App\Http\Controllers\Backend\SpecializationController;
-use App\Http\Controllers\Backend\PathologySourceController;
-use App\Http\Controllers\Backend\SampleTypeController;
+use App\Http\Controllers\Backend\CourseController;
+use App\Http\Controllers\Backend\DoctorController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\UnitTypeController;
+use App\Http\Controllers\Backend\SubstreamController;
 use App\Http\Controllers\Backend\TestBloodController;
+use App\Http\Controllers\Backend\CollectionController;
+use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\DiagnosticController;
+use App\Http\Controllers\Backend\PathdoctorController;
+use App\Http\Controllers\Backend\SampleTypeController;
+use App\Http\Controllers\Backend\DesignationController;
+use App\Http\Controllers\Backend\PaymentModeController;
+use App\Http\Controllers\Backend\EmployeeTypeController;
+use App\Http\Controllers\Backend\ReportingtypeController;
+use App\Http\Controllers\Backend\SpecializationController;
 use App\Http\Controllers\Backend\TestBloodGroupController;
+use App\Http\Controllers\Backend\PathologySourceController;
+use App\Http\Controllers\Backend\SocialMediaTypeController;
 
 
 /*
@@ -352,6 +353,25 @@ Route::group(['middleware' => 'admin'], function(){
         Route::get('/course/ajax/{course_id}','GetDoctorCourse');
     });
 
+    Route::controller(PathdoctorController::class)->group(function(){
+        Route::get('/doctors/list/','DoctorsIndex')->name('all.doctors');
+        Route::get('/doctors/add/','DoctorsAdd')->name('add.doctors');
+        Route::post('/doctors/store/','DoctorsStore')->name('store.doctors');
+        Route::get('/doctors/edit/{id}','DoctorsEdit')->name('edit.doctors');
+        Route::post('/doctors/update/','DoctorsUpdate')->name('update.doctors');
+        Route::get('/doctors/delete/{id}','DoctorsDestory')->name('delete.doctors');
+        Route::get('/doctors/view/{id}','DoctorsView')->name('view.doctors');
+        Route::get('/doctors/print/{id}','DoctorsPrint')->name('print.doctors');
+        Route::get('/doctors/inactive/{id}', 'DoctorsInactive')->name('inactive.doctors');
+        Route::get('/doctors/active/{id}', 'DoctorsActive')->name('active.doctors');
+        Route::post('/check-phone', 'checkPhone')->name('check.phone');
+
+        Route::get('/doctorsstate/ajax/{country_id}','GetDoctorsState');
+        Route::get('/doctorscity/ajax/{state_id}','GetDoctorsCity');
+    });
+
+
+
     Route::controller(DiagnosticController::class)->group(function(){
         Route::get('/diagnosticcenter/list/','DiagnosticCenterIndex')->name('all.diagnosticcenter');
         Route::get('/diagnostic-center/add/','DiagnosticCenterAdd')->name('add.diagnosticcenter');
@@ -414,6 +434,8 @@ Route::group(['middleware' => 'doctor'], function(){
         Route::get('/doctorprofilestate/ajax/{country_id}','GetDoctorProfileState');
         Route::get('/doctorprofilecity/ajax/{state_id}','GetDoctorProfileCity');
 
+        Route::post('/doctorcheck-phone', 'DoctorCheckPhone')->name('doctorcheck.phone');
+
 
     });// end doctor profile
 
@@ -438,6 +460,12 @@ Route::group(['middleware' => 'patient'], function(){
 
         Route::get('/patient/profile','PatientProfile')->name('patient.profile');
         Route::post('/patient/profile/store','PatientProfileStore')->name('patient.profile.store');
+        
+
+        Route::get('/patientprofilestate/ajax/{country_id}','GetPatientProfileState');
+        Route::get('/patientprofilecity/ajax/{state_id}','GetPatientProfileCity');
+
+        Route::post('/patientcheck-phone', 'PatientCheckPhone')->name('patientcheck.phone');
 
     });// end patient profile
 
@@ -462,6 +490,12 @@ Route::group(['middleware' => 'staff'], function(){
 
         Route::get('/staff/profile','StaffProfile')->name('staff.profile');
         Route::post('/staff/profile/store','StaffProfileStore')->name('staff.profile.store');
+        Route::post('/staff/location/store','StaffLocationStore')->name('staff.location.store');
+
+        Route::get('/staffprofilestate/ajax/{country_id}','GetStaffProfileState');
+        Route::get('/staffprofilecity/ajax/{state_id}','GetStaffProfileCity');
+
+        Route::post('/staffcheck-phone', 'staffcheckPhone')->name('staffcheck.phone');
 
     });// end staff profile
 
@@ -490,8 +524,10 @@ Route::group(['middleware' => 'diagnostic'], function(){
         Route::post('/diagnostic/profile/store','DiagnosticProfileStore')->name('diagnostic.profile.store');
         Route::post('/diagnostic/location/store','DiagnosticLocationStore')->name('diagnostic.location.store');
 
-        Route::get('/state/ajax/{country_id}','GetState');
-        Route::get('/city/ajax/{state_id}','GetCity');
+        Route::get('/diagnosticprofilestate/ajax/{country_id}','GetDiagnosticProfileState');
+        Route::get('/diagnosticprofilecity/ajax/{state_id}','GetDiagnosticProfileCity');
+
+        Route::post('/diagnosticcheck-phone', 'diagnosticcheckPhone')->name('diagnosticcheck.phone');
 
     });// end Diagnostic profile
 
@@ -519,9 +555,12 @@ Route::group(['middleware' => 'collection'], function(){
 
         Route::get('/collection/profile','CollectionProfile')->name('collection.profile');
         Route::post('/collection/profile/store','CollectionProfileStore')->name('collection.profile.store');
+        Route::post('/collection/location/store','CollectionLocationStore')->name('collection.location.store');
 
-        Route::get('/state/ajax/{country_id}','GetState');
-        Route::get('/city/ajax/{state_id}','GetCity');
+        Route::get('/collectionprofilestate/ajax/{country_id}','GetCollectionProfileState');
+        Route::get('/collectionprofilecity/ajax/{state_id}','GetCollectionProfileCity');
+
+        Route::post('/collectioncheck-phone', 'collectioncheckPhone')->name('collectioncheck.phone');
 
     });// end collection center profile
 

@@ -41,7 +41,6 @@
                                 </div>
                             </div>
                             <h5 class="fs-17 mb-1">{{ $adminData->name }}</h5>
-                            <p class="text-muted mb-0">{{ $adminData->username }}</p>
                             <p class="text-muted mb-0">Admin Id:- {{ $adminData->reg_number }}</p>
                         </div>
                     </div>

@@ -47,23 +47,18 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Employees</p>
+                                                Invoice</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-success fs-14 mb-0">
-                                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                +16.24 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="50">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View All Employees</a>
+                                            <a href="#" class="text-decoration-underline text-muted">Today Total</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-success-subtle rounded fs-3">
-                                                <i class="bx bx-dollar-circle text-success"></i>
+                                                <i class="fas fa-money-check text-success"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -78,20 +73,14 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Doctors</p>
+                                                Commission</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-danger fs-14 mb-0">
-                                                <i class="ri-arrow-right-down-line fs-13 align-middle"></i>
-                                                -3.57 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="110">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View all
-                                                Doctors</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4">₹<span class="counter-value" data-target="110"> 0</span></h4>
+                                            <a href="#" class="text-decoration-underline text-muted">Today Total</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info-subtle rounded fs-3">
@@ -110,23 +99,18 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Patients</p>
+                                                Income</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-success fs-14 mb-0">
-                                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                +29.08 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="2340">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View All Patients</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4">₹<span class="counter-value" data-target="2340"> 0</span></h4>
+                                            <a href="#" class="text-decoration-underline text-muted">Today Total</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                <i class="bx bx-user-circle text-warning"></i>
+                                                <i class="fas fa-money-bill-alt text-warning"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -141,22 +125,18 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Patients Appointment</p>
+                                                Due Income</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-muted fs-14 mb-0">
-                                                +0.00 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="110">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View Patients Appointment</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4">₹<span class="counter-value" data-target="110"> 0</span></h4>
+                                            <a href="#" class="text-decoration-underline text-muted">Today Total </a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-primary-subtle rounded fs-3">
-                                                <i class="bx bx-wallet text-primary"></i>
+                                                <i class="fas fa-wallet text-primary"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -165,233 +145,73 @@
                         </div><!-- end col -->
                     </div> <!-- end row-->
 
+                    
                     <div class="row">
-                        <div class="col-xl-6 col-md-6">
-                            <!-- card -->
-                            <div class="card card-animate">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Pathology</p>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-success fs-14 mb-0">
-                                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                +29.08 %
-                                            </h5>
-                                        </div>
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-header border-0 align-items-center d-flex">
+                                    <h4 class="card-title mb-0 flex-grow-1">Revenue</h4>
+                                    <div>
+                                        <button type="button" class="btn btn-soft-secondary btn-sm">
+                                            ALL
+                                        </button>
+                                        <button type="button" class="btn btn-soft-secondary btn-sm">
+                                            1M
+                                        </button>
+                                        <button type="button" class="btn btn-soft-secondary btn-sm">
+                                            6M
+                                        </button>
+                                        <button type="button" class="btn btn-soft-primary btn-sm">
+                                            1Y
+                                        </button>
                                     </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
-                                        <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="2340">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View All Pathology</a>
+                                </div><!-- end card header -->
+
+                                <div class="card-header p-0 border-0 bg-light-subtle">
+                                    <div class="row g-0 text-center">
+                                        <div class="col-6 col-sm-3">
+                                            <div class="p-3 border border-dashed border-start-0">
+                                                <h5 class="mb-1">₹<span class="counter-value" data-target="7585"> 0</span></h5>
+                                                <p class="text-muted mb-0">Commission</p>
+                                            </div>
                                         </div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                <i class="bx bx-user-circle text-warning"></i>
-                                            </span>
+                                        <!--end col-->
+                                        <div class="col-6 col-sm-3">
+                                            <div class="p-3 border border-dashed border-start-0">
+                                                <h5 class="mb-1">₹<span class="counter-value" data-target="1000"> 0</span>k</h5>
+                                                <p class="text-muted mb-0">Income</p>
+                                            </div>
                                         </div>
+                                        <!--end col-->
+                                        <div class="col-6 col-sm-3">
+                                            <div class="p-3 border border-dashed border-start-0">
+                                                <h5 class="mb-1">₹<span class="counter-value" data-target="367">0</span></h5>
+                                                <p class="text-muted mb-0">Due Income</p>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-6 col-sm-3">
+                                            <div class="p-3 border border-dashed border-start-0 border-end-0">
+                                                <h5 class="mb-1 text-success"><span class="counter-value" data-target="18.92">0</span>%</h5>
+                                                <p class="text-muted mb-0">Conversation Ratio</p>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                </div><!-- end card header -->
+
+                                <div class="card-body p-0 pb-2">
+                                    <div class="w-100">
+                                        <div id="customer_impression_charts" data-colors='["--vz-warning", "--vz-primary", "--vz-success"]' class="apex-charts" dir="ltr"></div>
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div><!-- end col -->
 
-                        <div class="col-xl-6 col-md-6">
-                            <!-- card -->
-                            <div class="card card-animate">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Collection Center</p>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-muted fs-14 mb-0">
-                                                +0.00 %
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
-                                        <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="110">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View All Collection Center</a>
-                                        </div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-primary-subtle rounded fs-3">
-                                                <i class="bx bx-wallet text-primary"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
-                    </div> <!-- end row-->
-
-                    <div class="row">
-                        <div class="col-xl-4 col-md-6">
-                            <div class="card card-animate overflow-hidden">
-                                <div class="position-absolute start-0" style="z-index: 0;">
-                                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
-                                        <style>
-                                            .s0 {
-                                                opacity: .05;
-                                                fill: var(--vz-primary)
-                                            }
-                                        </style>
-                                        <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
-                                    </svg>
-                                </div>
-                                <div class="card-body" style="z-index:1 ;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> Todays Collection(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="36894">0</span></h4>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="total_jobs" data-colors='["--vz-success"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!--end col-->
-                        <div class="col-xl-4 col-md-6">
-                            <!-- card -->
-                            <div class="card card-animate overflow-hidden">
-                                <div class="position-absolute start-0" style="z-index: 0;">
-                                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
-                                        <style>
-                                            .s0 {
-                                                opacity: .05;
-                                                fill: var(--vz-primary)
-                                            }
-                                        </style>
-                                        <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
-                                    </svg>
-                                </div>
-                                <div class="card-body" style="z-index:1 ;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-3">This Month's Collection(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="28410">0</span></h4>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="apply_jobs" data-colors='["--vz-success"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
-                        <div class="col-xl-4 col-md-6">
-                            <!-- card -->
-                            <div class="card card-animate overflow-hidden">
-                                <div class="position-absolute start-0" style="z-index: 0;">
-                                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
-                                        <style>
-                                            .s0 {
-                                                opacity: .05;
-                                                fill: var(--vz-primary)
-                                            }
-                                        </style>
-                                        <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
-                                    </svg>
-                                </div>
-                                <div class="card-body" style="z-index:1 ;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-3">This Year's Collection(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="4305">0</span></h4>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="new_jobs_chart" data-colors='["--vz-success"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
+                        
+                        <!-- end col -->
                     </div>
-                    <div class="row">
-                        <div class="col-xl-4 col-md-6">
-                            <!-- card -->
-                            <div class="card card-animate overflow-hidden">
-                                <div class="position-absolute start-0" style="z-index: 0;">
-                                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
-                                        <style>
-                                            .s0 {
-                                                opacity: .05;
-                                                fill: var(--vz-primary)
-                                            }
-                                        </style>
-                                        <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
-                                    </svg>
-                                </div>
-                                <div class="card-body" style="z-index:1 ;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> Todays Expense (INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="5021">0</span></h4>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="interview_chart" data-colors='["--vz-danger"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
-                        <div class="col-xl-4 col-md-6">
-                            <div class="card card-animate overflow-hidden">
-                                <div class="position-absolute start-0" style="z-index: 0;">
-                                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
-                                        <style>
-                                            .s0 {
-                                                opacity: .05;
-                                                fill: var(--vz-primary)
-                                            }
-                                        </style>
-                                        <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
-                                    </svg>
-                                </div>
-                                <div class="card-body" style="z-index:1 ;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> This Month's Expense(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="3948">0</span></h4>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="hired_chart" data-colors='["--vz-success"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!--end col-->
-                        <div class="col-xl-4 col-md-6">
-                            <!-- card -->
-                            <div class="card card-animate overflow-hidden">
-                                <div class="position-absolute start-0" style="z-index: 0;">
-                                    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
-                                        <style>
-                                            .s0 {
-                                                opacity: .05;
-                                                fill: var(--vz-primary)
-                                            }
-                                        </style>
-                                        <path id="Shape 8" class="s0" d="m189.5-25.8c0 0 20.1 46.2-26.7 71.4 0 0-60 15.4-62.3 65.3-2.2 49.8-50.6 59.3-57.8 61.5-7.2 2.3-60.8 0-60.8 0l-11.9-199.4z" />
-                                    </svg>
-                                </div>
-                                <div class="card-body" style="z-index:1 ;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-3">This Year's Expense(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="1340">0</span></h4>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="rejected_chart" data-colors='["--vz-danger"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
-                    </div>
+                    
                 </div> <!-- end .h-100-->
 
             </div> <!-- end col -->

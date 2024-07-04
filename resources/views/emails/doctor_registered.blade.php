@@ -13,29 +13,17 @@ Thank you for registering as a doctor on our platform.
 - **Date of Joining:** {{ $user->doj }}
 - **Aadhar Number:** {{ $user->aadharnumber }}
 
-@if($user->doctor)
+
+@if ($user->pathdoctor)
 ## Doctor Details
-- **Registration Number:** {{ $user->doctor->reg_number }}
-- **License Number:** {{ $user->doctor->license_number }}
-- **Bank Name:** {{ $user->doctor->bank->bankname }}
-- **Branch Name:** {{ $user->doctor->branchname }}
-- **IFSC Code:** {{ $user->doctor->ifsccode }}
-- **Account Number:** {{ $user->doctor->accountnumber }}
-- **Account Holder Name:** {{ $user->doctor->accountholdername }}
-- **Commission:** {{ $user->doctor->commission }} %
-- **Location Name:** {{ $user->doctor->locationname }}
+- **Registration Number:** {{ $user->pathdoctor->registration_number }}
+- **License Number:** {{ $user->pathdoctor->license_number }}
+- **Specialization:** {{ $user->pathdoctor->specialization }}
+- **Commission:** {{ $user->pathdoctor->commission }} %
+- **Location Name:** {{ $user->pathdoctor->locationname }}
 @endif
 
-@if($user->clinic)
-## Clinic Details
-- **Clinic Name:** {{ $user->clinic->clinic_name }}
-- **Clinic Owner Name:** {{ $user->clinic->clinicowner_name }}
-- **GST Number:** {{ $user->clinic->gst_number }}
-- **Phone Number:** {{ $user->clinic->phone_number }}
-- **Telephone Number:** {{ $user->clinic->telephonephone_number }}
-- **Clinic Email:** {{ $user->clinic->clinic_email }}
-- **Clinic Address:** {{ $user->clinic->clinic_address }}
-@endif
+
 
 @component('mail::button', ['url' => route('login')])
 Login to your account

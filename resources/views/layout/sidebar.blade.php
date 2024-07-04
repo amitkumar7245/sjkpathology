@@ -35,8 +35,14 @@
                     </a>
                 </li>    
 
-                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
+                {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
                     <a class="nav-link menu-link {{ ($route ==  'all.doctor')? 'active':  '' }}" href="{{ route('all.doctor') }}">
+                        <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Doctor</span>
+                    </a>
+                </li> --}}
+
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
+                    <a class="nav-link menu-link {{ ($route ==  'all.doctors')? 'active':  '' }}" href="{{ route('all.doctors') }}">
                         <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Doctor</span>
                     </a>
                 </li>  <!-- end Doctor Menu --> 

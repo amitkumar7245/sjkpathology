@@ -47,14 +47,11 @@
                                         <div>
                                             <p class="fw-medium text-muted mb-0">New Tests</p>
                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="28.05">0</span>k</h2>
-                                            <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0">
-                                                    <i class="ri-arrow-up-line align-middle"></i> 16.24 %
-                                                </span> Tests</p>
                                         </div>
                                         <div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                    <i data-feather="users" class="text-info"></i>
+                                                    <i class="nav-icon fas fa-flask text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -70,14 +67,11 @@
                                         <div>
                                             <p class="fw-medium text-muted mb-0">Complete Tests</p>
                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="97.66">0</span>k</h2>
-                                            <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0">
-                                                    <i class="ri-arrow-down-line align-middle"></i> 3.96 %
-                                                </span> Complete Tests</p>
                                         </div>
                                         <div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                    <i data-feather="activity" class="text-info"></i>
+                                                    <i class="nav-icon fas fa-flask text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -93,14 +87,11 @@
                                         <div>
                                             <p class="fw-medium text-muted mb-0">New Home Visits</p>
                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="97.66">0</span>k</h2>
-                                            <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0">
-                                                    <i class="ri-arrow-down-line align-middle"></i> 3.96 %
-                                                </span>Home Visits</p>
                                         </div>
                                         <div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                    <i data-feather="activity" class="text-info"></i>
+                                                    <i class="nav-icon fas fa-home text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -116,14 +107,12 @@
                                         <div>
                                             <p class="fw-medium text-muted mb-0">Complete Home Visits</p>
                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="33.48">0</span>%</h2>
-                                            <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0">
-                                                    <i class="ri-arrow-up-line align-middle"></i> 7.05 %
-                                                </span> Complete Home Visits</p>
+                                            
                                         </div>
                                         <div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                    <i data-feather="external-link" class="text-info"></i>
+                                                    <i class="nav-icon fas fa-home text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -331,8 +320,6 @@
                                 </div> <!-- .card-body-->
                             </div> <!-- .card-->
                         </div> --}}
-
-
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">

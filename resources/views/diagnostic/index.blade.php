@@ -40,30 +40,25 @@
                     <!--end row-->
 
                     <div class="row">
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-6">
                             <!-- card -->
                             <div class="card card-animate">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Employees</p>
+                                                Tests</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-success fs-14 mb-0">
-                                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                +16.24 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="50">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View All Employees</a>
+                                            <a href="#" class="text-decoration-underline text-muted">Total Tests</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-success-subtle rounded fs-3">
-                                                <i class="bx bx-dollar-circle text-success"></i>
+                                                <i class="nav-icon fas fa-flask text-success"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -71,31 +66,26 @@
                             </div><!-- end card -->
                         </div><!-- end col -->
 
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-6">
                             <!-- card -->
                             <div class="card card-animate">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Doctors</p>
+                                                Pending Tests</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-danger fs-14 mb-0">
-                                                <i class="ri-arrow-right-down-line fs-13 align-middle"></i>
-                                                -3.57 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="110">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View all
-                                                Doctors</a>
+                                            <a href="#" class="text-decoration-underline text-muted">Total Pending Tests </a>
+                                              
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info-subtle rounded fs-3">
-                                                <i class="bx bx-shopping-bag text-info"></i>
+                                                <i class="nav-icon fas fa-flask text-info"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -103,66 +93,34 @@
                             </div><!-- end card -->
                         </div><!-- end col -->
 
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-6">
                             <!-- card -->
                             <div class="card card-animate">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Patients</p>
+                                                Completed Tests</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-success fs-14 mb-0">
-                                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                +29.08 %
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
-                                        <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="2340">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View All Patients</a>
-                                        </div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                <i class="bx bx-user-circle text-warning"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
-
-                        <div class="col-xl-3 col-md-6">
-                            <!-- card -->
-                            <div class="card card-animate">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Patients Appointment</p>
-                                        </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-muted fs-14 mb-0">
-                                                +0.00 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="110">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View Patients Appointment</a>
+                                            <a href="#" class="text-decoration-underline text-muted">Total Completed Tests</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-primary-subtle rounded fs-3">
-                                                <i class="bx bx-wallet text-primary"></i>
+                                                <i class="nav-icon fas fa-flask text-primary"></i>
                                             </span>
                                         </div>
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
                         </div><!-- end col -->
+
+                       
+                        
                     </div> <!-- end row-->
 
                     <div class="row">
@@ -173,23 +131,18 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Pathology</p>
+                                                Patient Tests</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-success fs-14 mb-0">
-                                                <i class="ri-arrow-right-up-line fs-13 align-middle"></i>
-                                                +29.08 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="2340">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View All Pathology</a>
+                                            {{-- <a href="#" class="text-decoration-underline text-muted">View All Pathology</a> --}}
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                <i class="bx bx-user-circle text-warning"></i>
+                                                <i class="nav-icon fas fa-user-injured text-success"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -204,22 +157,18 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Collection Center</p>
+                                                Pending Patient Tests</p>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <h5 class="text-muted fs-14 mb-0">
-                                                +0.00 %
-                                            </h5>
-                                        </div>
+                                        
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-4">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="110">0</span></h4>
-                                            <a href="#" class="text-decoration-underline text-muted">View All Collection Center</a>
+                                            {{-- <a href="#" class="text-decoration-underline text-muted">View All Collection Center</a> --}}
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-primary-subtle rounded fs-3">
-                                                <i class="bx bx-wallet text-primary"></i>
+                                                <i class="nav-icon fas fa-user-injured text-primary"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -246,11 +195,9 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> Todays Collection(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="36894">0</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0">₹<span class="counter-value" data-target="36894">0</span></h4>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="total_jobs" data-colors='["--vz-success"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
+                                        
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -273,11 +220,9 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-3">This Month's Collection(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="28410">0</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0">₹<span class="counter-value" data-target="28410">0</span></h4>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="apply_jobs" data-colors='["--vz-success"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
+                                        
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -300,11 +245,9 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-3">This Year's Collection(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="4305">0</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0">₹<span class="counter-value" data-target="4305">0</span></h4>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="new_jobs_chart" data-colors='["--vz-success"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
+                                        
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -329,11 +272,9 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> Todays Expense (INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="5021">0</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0">₹<span class="counter-value" data-target="5021">0</span></h4>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="interview_chart" data-colors='["--vz-danger"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
+                                        
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -355,11 +296,9 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-3"> This Month's Expense(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="3948">0</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0">₹<span class="counter-value" data-target="3948">0</span></h4>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="hired_chart" data-colors='["--vz-success"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
+                                        
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -382,11 +321,9 @@
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
                                             <p class="text-uppercase fw-medium text-muted text-truncate mb-3">This Year's Expense(INR)</p>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0"><span class="counter-value" data-target="1340">0</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-0">₹<span class="counter-value" data-target="1340">0</span></h4>
                                         </div>
-                                        <div class="flex-shrink-0">
-                                            <div id="rejected_chart" data-colors='["--vz-danger"]' class="apex-charts" dir="ltr"></div>
-                                        </div>
+                                        
                                     </div>
                                 </div><!-- end card body -->
                             </div><!-- end card -->
@@ -401,14 +338,11 @@
                                         <div>
                                             <p class="fw-medium text-muted mb-0">New Tests</p>
                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="28.05">0</span>k</h2>
-                                            <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0">
-                                                    <i class="ri-arrow-up-line align-middle"></i> 16.24 %
-                                                </span> Tests</p>
                                         </div>
                                         <div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                    <i data-feather="users" class="text-info"></i>
+                                                    <i class="nav-icon fas fa-flask text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -424,14 +358,11 @@
                                         <div>
                                             <p class="fw-medium text-muted mb-0">Complete Tests</p>
                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="97.66">0</span>k</h2>
-                                            <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0">
-                                                    <i class="ri-arrow-down-line align-middle"></i> 3.96 %
-                                                </span> Complete Tests</p>
                                         </div>
                                         <div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                    <i data-feather="activity" class="text-info"></i>
+                                                    <i class="nav-icon fas fa-flask text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -447,14 +378,11 @@
                                         <div>
                                             <p class="fw-medium text-muted mb-0">New Home Visits</p>
                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="97.66">0</span>k</h2>
-                                            <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0">
-                                                    <i class="ri-arrow-down-line align-middle"></i> 3.96 %
-                                                </span>Home Visits</p>
                                         </div>
                                         <div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                    <i data-feather="activity" class="text-info"></i>
+                                                    <i class="nav-icon fas fa-home text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -470,14 +398,12 @@
                                         <div>
                                             <p class="fw-medium text-muted mb-0">Complete Home Visits</p>
                                             <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target="33.48">0</span>%</h2>
-                                            <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0">
-                                                    <i class="ri-arrow-up-line align-middle"></i> 7.05 %
-                                                </span> Complete Home Visits</p>
+                                            
                                         </div>
                                         <div>
                                             <div class="avatar-sm flex-shrink-0">
                                                 <span class="avatar-title bg-info-subtle rounded-circle fs-2">
-                                                    <i data-feather="external-link" class="text-info"></i>
+                                                    <i class="nav-icon fas fa-home text-info"></i>
                                                 </span>
                                             </div>
                                         </div>
@@ -486,6 +412,100 @@
                             </div> <!-- end card-->
                         </div> <!-- end col-->
                     </div> <!-- end row-->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Patient List</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table id="buttons-datatables" class="table table-bordered table-hover dt-responsive nowrap align-middle mdl-data-table dataTable no-footer" style="width:100%">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col" style="width: 10px;">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                                                    </div>
+                                                </th>
+                                                <th>SR No.</th>
+                                                <th>Reg. No.</th>
+                                                <th>Name</th>
+                                                <th>Mobile No.</th>
+                                                <th>Email</th>
+                                                <th>Created By</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{-- @foreach ($stafflist as $key => $item )
+                                                <tr>
+                                                    <th scope="row">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                                        </div>
+                                                    </th>
+                                                    <td>{{ $key+1 }}</td>
+                                                    <td>{{ $item->reg_number}}</td>
+                                                    <td> 
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0"> 
+                                                                @if ($item->photo != '')
+                                                                    <img src="{{ asset($item->photo) }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                                @else
+                                                                    @if ($item->gender == '1') <!-- Assuming '1' for Male -->
+                                                                        <img src="{{ asset('backend/assets/images/users/male-dummy.png') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                                    @elseif ($item->gender == '0') <!-- Assuming '0' for Female -->
+                                                                        <img src="{{ asset('backend/assets/images/users/female-dummy.png') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                                    @else
+                                                                        <img src="{{ asset('backend/assets/images/users/user-dummy-img.jpg') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
+                                                                    @endif
+                                                                @endif
+                                                                
+                                                            </div>
+                                                            <div class="flex-grow-1 ms-2 name">{{ $item->name }}</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $item->phone }}</td>
+                                                    <td>{{ $item->email }}</td>
+                                                    <td>{{ $item->staff && $item->staff->creator ? $item->staff->creator->name : $item->name }}</td>
+                                                    @if ($item->status == 'active')
+                                                    <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
+                                                    @else
+                                                    <td class="status"><span class="badge bg-danger-subtle text-danger text-uppercase">Deactive</span></td> 
+                                                    @endif 
+                                                    <td>
+                                                        <div class="dropdown d-inline-block">
+                                                            <button class="btn btn-soft-secondary btn-sm dropdown dropdown-toggle show" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                                                                <i class="ri-settings-3-line"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                                <li><a href="{{ route('print.staff', $item->id) }}" class="dropdown-item"><i class="ri-printer-fill align-bottom me-2 text-muted"></i>Print</a></li>
+                                                                <li><a href="{{ route('view.staff', $item->id) }}" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
+                                                                <li><a href="{{ route('edit.staff', $item->id) }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+                                                                <li><a href="{{ route('delete.staff', $item->id) }}" id="delete" class="dropdown-item remove-item-btn">
+                                                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
+                                                                </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        @if ($item->staff && $item->staff->status == 'active')
+                                                            <a href="{{ route('inactive.staff', $item->id) }}" class="btn btn-primary btn-sm" title="Inactive"> <i class="fa-solid fa-thumbs-up"></i></a>
+                                                        @else
+                                                            <a href="{{ route('active.staff', $item->id) }}" class="btn btn-danger btn-sm" title="Active"> <i class="fa-solid fa-thumbs-down"></i></a>
+                                                        @endif
+            
+                                                        <a href="{{ route('idcardprofile.staff', $item->id) }}" class="btn btn-primary btn-sm" title="Prnit"><i class="fas fa-print"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach --}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                    
 

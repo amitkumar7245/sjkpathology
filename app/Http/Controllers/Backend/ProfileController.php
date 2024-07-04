@@ -99,19 +99,18 @@ class ProfileController extends Controller
         $data['header_title'] = "Doctor Profile";
         $id = Auth::user()->id;
         $countries = Country::latest()->get();
-        $banks = Bank::latest()->get();
-        $doctorData = User::with('doctor', 'clinics')->find($id);
+        $doctorData = User::with('pathdoctor')->find($id);
         // $doctorData = User::with('doctor')->find($id);
 
         $states = [];
         $cities = [];
 
-        if ($doctorData && $doctorData->doctor) {
-            $states = State::where('country_id', $doctorData->doctor->country_id)->get();
-            $cities = City::where('state_id', $doctorData->doctor->state_id)->get();
+        if ($doctorData && $doctorData->pathdoctor) {
+            $states = State::where('country_id', $doctorData->pathdoctor->country_id)->get();
+            $cities = City::where('state_id', $doctorData->pathdoctor->state_id)->get();
         }
 
-        return view('doctor.doctor_profile_view', compact('doctorData', 'countries', 'states', 'cities', 'banks'), $data);
+        return view('doctor.doctor_profile_view', compact('doctorData', 'countries', 'states', 'cities'), $data);
     }
 
     public function DoctorProfileStore(Request $request)
@@ -131,11 +130,14 @@ class ProfileController extends Controller
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/doctor_images/' . $data->photo));
+            if (File::exists(public_path($data->photo))) {
+                File::delete(public_path($data->photo));
+            }
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/doctor_images'), $filename);
-            $data['photo'] = $filename;
+            $file->move(public_path('upload/doctors_images/'), $filename);
+            $data['photo'] = 'upload/doctors_images/' . $filename;
         }
+
 
         $data->save();
 
@@ -153,9 +155,9 @@ class ProfileController extends Controller
     {
         //  dd($request->all());
 
-        $doctor = Auth::user()->doctor;
-        if ($doctor) {
-            $doctor->update([
+        $pathdoctor = Auth::user()->pathdoctor;
+        if ($pathdoctor) {
+            $pathdoctor->update([
                 'country_id' => $request->country_id,
                 'state_id' => $request->state_id,
                 'city_id' => $request->city_id,
@@ -170,63 +172,6 @@ class ProfileController extends Controller
 
         return redirect()->back()->with($notification);
     }
-
-    public function DoctorBankStore(Request $request)
-    {
-        $doctor = Auth::user()->doctor;
-        if ($doctor) {
-            $doctor->update([
-                'bankname_id' => $request->bankname,
-                'branchname' => $request->branchname,
-                'ifsccode' => $request->ifsccode,
-                'accountnumber' => $request->accountnumber,
-                'accountholdername' => $request->accountholdername,
-                'commission' => $request->commission,
-            ]);
-        }
-        $notification = array(
-            'message' => "Bank details updated successfully",
-            'alert-type' => 'success'
-        );
-
-        return redirect()->back()->with($notification);
-    }
-
-
-    public function DoctorClinicStore(Request $request)
-    {
-        if ($request->filled('clinic_id')) {
-            $clinic = Clinic::findOrFail($request->input('clinic_id'));
-        } else {
-            $clinic = new Clinic();
-        }
-
-        $clinic->clinicuser_id = $request->clinicuser_id;
-        $clinic->clinic_name = $request->clinicname;
-        $clinic->clinicowner_name = $request->clinicownername;
-        $clinic->gst_number = $request->gstnumber;
-        $clinic->clinic_email = $request->clinic_email;
-        $clinic->phone_number = $request->phonenumber;
-        $clinic->telephonephone_number = $request->telephonenumber;
-        $clinic->state_id = $request->state_id;
-        $clinic->city_id = $request->city_id;
-        $clinic->latitude = $request->latitude;
-        $clinic->longitude = $request->longitude;
-        $clinic->clinic_address = $request->clinicaddress;
-        $clinic->created_by = Auth::user()->id;
-
-        $clinic->save();
-
-        $notification = array(
-            'message' => "Clinic details " . ($request->filled('clinic_id') ? 'updated' : 'saved') . " successfully",
-            'alert-type' => 'success'
-        );
-
-        return redirect()->back()->with($notification);
-    }
-
-
-
 
 
     public function GetDoctorProfileState($country_id)
@@ -243,6 +188,17 @@ class ProfileController extends Controller
     } // End Method
 
 
+    public function DoctorCheckPhone(Request $request)
+    {
+        $exists = User::where('phone', $request->phone)->exists();
+        return response()->json($exists ? 'true' : 'false');
+    }
+
+
+
+
+
+
 
 
     public function StaffProfile()
@@ -251,15 +207,18 @@ class ProfileController extends Controller
 
         $id = Auth::user()->id;
         $countries = Country::latest()->get();
-        $states = State::latest()->get();
-        $city = City::latest()->get();
-        $empType = EmployeeType::latest()->get();
-        $departmenties = Department::latest()->get();
-        $designation = Designation::latest()->get();
         $banks = Bank::latest()->get();
-        $staffData = User::find($id);
+        $staffData = User::with('staff')->find($id);
 
-        return view('staff.staff_profile_view', compact('staffData', 'countries', 'states', 'city', 'empType', 'departmenties', 'designation','banks'), $data);
+        $states = [];
+        $cities = [];
+
+        if ($staffData && $staffData->staff) {
+            $states = State::where('country_id', $staffData->staff->country_id)->get();
+            $cities = City::where('state_id', $staffData->staff->state_id)->get();
+        }
+
+        return view('staff.staff_profile_view', compact('staffData', 'countries', 'banks', 'states', 'cities'), $data);
     }
 
     public function StaffProfileStore(Request $request)
@@ -289,16 +248,52 @@ class ProfileController extends Controller
         $data->save();
 
         $notification = array(
-            'message' => "Staff Basic Profile Successfully",
+            'message' => "Staff Basic Profile Updated Successfully",
             'alert-type' => 'success'
         );
 
         return redirect()->back()->with($notification);
     } //end mehod
 
+    public function StaffLocationStore(Request $request)
+    {
+        $staff = Auth::user()->staff;
+        if ($staff) {
+            $staff->update([
+                'country_id' => $request->country_id,
+                'state_id' => $request->state_id,
+                'city_id' => $request->city_id,
+                'locationname' => $request->locationname,
+            ]);
+        }
+
+        $notification = array(
+            'message' => "Staff Location updated successfully",
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function staffcheckPhone(Request $request)
+    {
+        $exists = User::where('phone', $request->phone)->exists();
+        return response()->json($exists ? 'true' : 'false');
+    }
 
 
+    public function GetStaffProfileState($country_id)
+    {
+        $staties = State::where('country_id', $country_id)->orderBy('state_name', 'ASC')->get();
+        return json_encode($staties);
+    } // End Method
 
+
+    public function GetStaffProfileCity($state_id)
+    {
+        $cities = City::where('state_id', $state_id)->orderBy('city_name', 'ASC')->get();
+        return json_encode($cities);
+    } // End Method
 
 
 
@@ -332,10 +327,12 @@ class ProfileController extends Controller
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/patient_images/' . $data->photo));
+            if (File::exists(public_path($data->photo))) {
+                File::delete(public_path($data->photo));
+            }
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/patient_images'), $filename);
-            $data['photo'] = $filename;
+            $file->move(public_path('upload/patient_images/'), $filename);
+            $data['photo'] = 'upload/patient_images/' . $filename;
         }
 
         $data->save();
@@ -349,7 +346,25 @@ class ProfileController extends Controller
     } //end mehod 
 
 
+    public function GetPatientProfileState($country_id)
+    {
+        $staties = State::where('country_id', $country_id)->orderBy('state_name', 'ASC')->get();
+        return json_encode($staties);
+    } // End Method
 
+
+    public function GetPatientProfileCity($state_id)
+    {
+        $cities = City::where('state_id', $state_id)->orderBy('city_name', 'ASC')->get();
+        return json_encode($cities);
+    } // End Method
+
+
+    public function PatientCheckPhone(Request $request)
+    {
+        $exists = User::where('phone', $request->phone)->exists();
+        return response()->json($exists ? 'true' : 'false');
+    }
 
 
 
@@ -362,9 +377,20 @@ class ProfileController extends Controller
         $data['header_title'] = "Diagnostic Center Profile";
 
         $id = Auth::user()->id;
-        $diagnosticData = User::find($id);
+        $countries = Country::latest()->get();
+        $diagnosticData = User::with('diagnostic')->find($id);
 
-        return view('diagnostic.diagnostic_profile_view', compact('diagnosticData'), $data);
+
+
+        $states = [];
+        $cities = [];
+
+        if ($diagnosticData && $diagnosticData->diagnostic) {
+            $states = State::where('country_id', $diagnosticData->diagnostic->country_id)->get();
+            $cities = City::where('state_id', $diagnosticData->diagnostic->state_id)->get();
+        }
+
+        return view('diagnostic.diagnostic_profile_view', compact('diagnosticData', 'countries', 'states', 'cities'), $data);
     }
 
     public function DiagnosticProfileStore(Request $request)
@@ -382,11 +408,14 @@ class ProfileController extends Controller
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/diagnostic_images/' . $data->photo));
+            if (File::exists(public_path($data->photo))) {
+                File::delete(public_path($data->photo));
+            }
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/diagnostic_images'), $filename);
-            $data['photo'] = $filename;
+            $file->move(public_path('upload/diagnostic_images/'), $filename);
+            $data['photo'] = 'upload/diagnostic_images/' . $filename;
         }
+
         $data->save();
 
         $notification = array(
@@ -397,10 +426,46 @@ class ProfileController extends Controller
         return redirect()->back()->with($notification);
     } //end mehod
 
+    public function DiagnosticLocationStore(Request $request)
+    {
+
+        $diagnostic = Auth::user()->diagnostic;
+        if ($diagnostic) {
+            $diagnostic->update([
+                'country_id' => $request->country_id,
+                'state_id' => $request->state_id,
+                'city_id' => $request->city_id,
+                'locationname' => $request->locationname,
+            ]);
+        }
+
+        $notification = array(
+            'message' => "Diagnostic Center Location updated successfully",
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function diagnosticcheckPhone(Request $request)
+    {
+        $exists = User::where('phone', $request->phone)->exists();
+        return response()->json($exists ? 'true' : 'false');
+    }
 
 
+    public function GetDiagnosticProfileState($country_id)
+    {
+        $staties = State::where('country_id', $country_id)->orderBy('state_name', 'ASC')->get();
+        return json_encode($staties);
+    } // End Method
 
 
+    public function GetDiagnosticProfileCity($state_id)
+    {
+        $cities = City::where('state_id', $state_id)->orderBy('city_name', 'ASC')->get();
+        return json_encode($cities);
+    } // End Method
 
 
 
@@ -411,9 +476,18 @@ class ProfileController extends Controller
         $data['header_title'] = "Collection Center Profile";
 
         $id = Auth::user()->id;
-        $collectionData = User::find($id);
+        $countries = Country::latest()->get();
+        $collectionData = User::with('collection')->find($id);
 
-        return view('collection.collection_profile_view', compact('collectionData'), $data);
+        $states = [];
+        $cities = [];
+
+        if ($collectionData && $collectionData->collection) {
+            $states = State::where('country_id', $collectionData->collection->country_id)->get();
+            $cities = City::where('state_id', $collectionData->collection->state_id)->get();
+        }
+
+        return view('collection.collection_profile_view', compact('collectionData', 'countries', 'states', 'cities'), $data);
     }
 
     public function CollectionProfileStore(Request $request)
@@ -431,11 +505,14 @@ class ProfileController extends Controller
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/collection_images/' . $data->photo));
+            if (File::exists(public_path($data->photo))) {
+                File::delete(public_path($data->photo));
+            }
             $filename = date('YmdHi') . $file->getClientOriginalName();
-            $file->move(public_path('upload/collection_images'), $filename);
-            $data['photo'] = $filename;
+            $file->move(public_path('upload/collection_images/'), $filename);
+            $data['photo'] = 'upload/collection_images/' . $filename;
         }
+
 
         $data->save();
 
@@ -447,6 +524,44 @@ class ProfileController extends Controller
         return redirect()->back()->with($notification);
     } //end mehod
 
+    public function CollectionLocationStore(Request $request)
+    {
+        $collection = Auth::user()->collection;
+        if ($collection) {
+            $collection->update([
+                'country_id' => $request->country_id,
+                'state_id' => $request->state_id,
+                'city_id' => $request->city_id,
+                'locationname' => $request->locationname,
+            ]);
+        }
+
+        $notification = array(
+            'message' => "Collection Center Location updated successfully",
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function collectioncheckPhone(Request $request)
+    {
+        $exists = User::where('phone', $request->phone)->exists();
+        return response()->json($exists ? 'true' : 'false');
+    }
+
+    public function GetCollectionProfileState($country_id)
+    {
+        $staties = State::where('country_id', $country_id)->orderBy('state_name', 'ASC')->get();
+        return json_encode($staties);
+    } // End Method
+
+
+    public function GetCollectionProfileCity($state_id)
+    {
+        $cities = City::where('state_id', $state_id)->orderBy('city_name', 'ASC')->get();
+        return json_encode($cities);
+    } // End Method
 
 
     //  public function Profile()
