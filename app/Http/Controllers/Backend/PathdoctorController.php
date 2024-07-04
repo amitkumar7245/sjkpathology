@@ -27,7 +27,7 @@ class PathdoctorController extends Controller
     {
         $data['header_title'] = "Doctor List";
 
-        $doctorslist = User::where('role', 'doctor')->with('doctor.creator')->latest()->get();
+        $doctorslist = User::where('role', 'doctor')->with('pathdoctor.creator')->latest()->get();
         return view('admin.doctors.doctors_list', compact('doctorslist'), $data);
     }
     public function DoctorsAdd()

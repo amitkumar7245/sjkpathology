@@ -67,7 +67,7 @@
                                     <tr>
                                         <th scope="row">
                                             <div class="form-check">
-                                                <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
+                                                <input class="form-check-input fs-15" type="checkbox" name="checkAll[]" value="{{ $item->id }}">
                                             </div>
                                         </th>
                                         <td>{{ $key+1 }}</td>
@@ -93,7 +93,7 @@
                                         </td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>{{ $item->doctor && $item->doctor->creator ? $item->doctor->creator->name : $item->name }}</td>
+                                        <td>{{ $item->pathdoctor && $item->pathdoctor->creator ? $item->pathdoctor->creator->name : $item->name }}</td>
                                         {{-- <td class="text-capitalize">{{ $item['getuser']['created_by'] }}</td> --}}
                                         @if ($item->status == 'active')
                                         <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
