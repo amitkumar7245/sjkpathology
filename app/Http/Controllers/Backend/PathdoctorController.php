@@ -45,22 +45,18 @@ class PathdoctorController extends Controller
     {
         // dd($request->all());
 
-        $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+                // if (!empty($request->photo)) {
+        //     $doctorsProfile = $request->photo;
+        //     $name_gen = date('YmdHi') . $doctorsProfile->getClientOriginalName();
+        //     $doctorsProfile->move(public_path('upload/doctors_images'),$name_gen);
+        //     $save_url = 'upload/doctors_images/'.$name_gen;
 
-        if (!empty($request->photo)) {
-            $doctorsProfile = $request->photo;
-            $name_gen = date('YmdHi') . $doctorsProfile->getClientOriginalName();
-            $doctorsProfile->move(public_path('upload/doctors_images'),$name_gen);
-            $doctorsProfile->photo = 'upload/doctors_images/'.$name_gen;
-
-            $manager = new ImageManager(new Driver());
-            $img = $manager->read(public_path('upload/doctors_images/'.$name_gen));
+        //     $manager = new ImageManager(new Driver());
+        //     $img = $manager->read(public_path('upload/doctors_images/'.$name_gen));
         
-            $img->resize(100,100);
-            $img->save(public_path('upload/doctors_images/'.$name_gen));
-        }
+        //     $img->resize(100,100);
+        //     $img->save(public_path('upload/doctors_images/'.$name_gen));
+        // }
 
         $token = TokenHelper::token();
         $user = User::create([
@@ -75,7 +71,7 @@ class PathdoctorController extends Controller
             'aadharnumber' => $request->aadharcard,
             'gender' => $request->gender,
             'password' => Hash::make($request->password),
-            'photo' => $doctorsProfile->photo,
+            // 'photo' => $save_url,
             'role' => 'doctor',
             'created_by' => Auth::user()->id,
             'status' => 'active',
