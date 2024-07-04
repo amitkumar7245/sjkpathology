@@ -114,28 +114,26 @@
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6">
                                                 <div>
-                                                    @if ($collection)
-                                                        @foreach ($collection as $item)
-                                                            <div class="form-check mb-2">
-                                                                <input class="form-check-input" name="collection_id[]"
-                                                                    type="checkbox" id="formCheck{{ $item->id }}"
-                                                                    value="{{ $item->id }}">
-                                                                <label class="form-check-label"
-                                                                    for="formCheck{{ $item->id }}">
-                                                                    {{ $item->name }}
-                                                                </label>
-                                                            </div>
-                                                        @endforeach
-                                                    @else
+                                                    @forelse ($collection as $item)
                                                         <div class="form-check mb-2">
                                                             <input class="form-check-input" name="collection_id[]"
-                                                                type="checkbox" id="formCheck" value="">
+                                                                type="checkbox" id="formCheck{{ $item->id }}"
+                                                                value="{{ $item->id }}">
+                                                            <label class="form-check-label" for="formCheck{{ $item->id }}">
+                                                                {{ $item->name }}
+                                                            </label>
+                                                        </div>
+                                                    @empty
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input" name="collection_id[]"
+                                                                type="checkbox" id="formCheck" value="" disabled>
                                                             <label class="form-check-label" for="formCheck">No Collection
                                                                 Center available</label>
                                                         </div>
-                                                    @endif
+                                                    @endforelse
                                                 </div>
                                             </div>
+                                            
                                             <!--end col-->
 
                                         </div>
