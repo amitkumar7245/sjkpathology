@@ -40,7 +40,7 @@
                                     <div class="around10">
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <label for="testblood" class="form-label">Test Blood</label>
+                                                <label for="testblood" class="form-label label-required">Test Blood</label>
                                                 <select class="js-example-basic-single mb-3 form-groups" name="testblood_id">
                                                     <option>Select Test Blood </option>
                                                         @foreach ($testBlood as $item )
@@ -51,7 +51,7 @@
                                             <!--end col-->
                                             <div class="col-lg-4">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="testbloodgroupnameInput" class="form-label">Test Blood Group Name</label>
+                                                    <label for="testbloodgroupnameInput" class="form-label label-required">Test Blood Group Name</label>
                                                     <input type="text" name="testbloodgroup_name" class="form-control" id="testbloodgroupnameInput" placeholder="Enter your Test Blood Group Name" value="{{ $testbloodgroup_id->testbloodgroup_name }}">
                                                 </div>
                                             </div>
@@ -59,14 +59,14 @@
 
                                             <div class="col-lg-4">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="testbloodgroupnameInput" class="form-label">Short Cut</label>
+                                                    <label for="testbloodgroupnameInput" class="form-label label-required">Short Cut</label>
                                                     <input type="text" name="testbloodgroup_code" class="form-control" id="testbloodgroupnameInput" placeholder="Enter your Short Cut Name" value="{{ $testbloodgroup_id->testbloodgroup_code }}">
                                                 </div>
                                             </div>
                                             <!--end col-->
 
                                             <div class="col-lg-4">
-                                                <label for="testblood" class="form-label">Sample Type</label>
+                                                <label for="testblood" class="form-label label-required">Sample Type</label>
                                                 <select class="js-example-basic-single mb-3 form-groups" name="sampletype_id">
                                                     <option>Select Sample Type </option>
                                                         @foreach ($testsampletype as $item )
@@ -76,7 +76,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-4">
-                                                <label for="testbloodgrouppriceInput" class="form-label">Price</label>
+                                                <label for="testbloodgrouppriceInput" class="form-label label-required">Price</label>
                                                 <div class="input-group mb-3">
                                                     <input type="text" name="testbloodgroup_price" class="form-control" id="testbloodgrouppriceInput" placeholder="Enter price" aria-label="Price" aria-describedby="basic-addon2" value="{{ $testbloodgroup_id->testbloodgroup_price }}">
                                                     <span class="input-group-text" id="basic-addon2">INR</span>

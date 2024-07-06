@@ -52,8 +52,8 @@
                                         </div>
                                     </th>
                                     <th>SR No.</th>
-                                    <th>Test Blood</th>
                                     <th>Test Blood Group</th>
+                                    <th>Test Blood</th>
                                     <th>Short Cut</th>
                                     <th>Simaple Type</th>
                                     <th>Price</th>
@@ -71,8 +71,8 @@
                                         </div>
                                     </th>
                                     <td>{{ $key+1 }}</td>
+                                    <td><a href="#">{{ $item->testbloodgroup_name }}</a></td>
                                     <td>{{ $item['testBlood']['testblood_name'] }}</td>
-                                    <td>{{ $item->testbloodgroup_name }}</td>
                                     <td>{{ $item->testbloodgroup_code }}</td>
                                     <td>{{ $item['testsampletype']['sampletype_name'] }}</td>
                                     <td>{{ $item->testbloodgroup_price }}</td>

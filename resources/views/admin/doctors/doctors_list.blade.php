@@ -49,17 +49,21 @@
                                 <tr>
                                     <th scope="col" style="width: 10px;">
                                         <div class="form-check">
-                                            <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                                            <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="">
                                         </div>
                                     </th>
-                                    <th>SR No.</th>
+                                    <th width="10px">#</th>
                                     <th>Reg. No.</th>
                                     <th>Name</th>
-                                    <th>Mobile No.</th>
+                                    <th>Phone</th>
                                     <th>Email</th>
+                                    {{-- <th>Commission</th> --}}
+                                    {{-- <th>Total</th> --}}
+                                    {{-- <th>Paid</th> --}}
+                                    {{-- <th>Due</th> --}}
                                     <th>Created By</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th width="80px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

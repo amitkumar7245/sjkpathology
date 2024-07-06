@@ -189,7 +189,7 @@ class PathdoctorController extends Controller
     public function DoctorsView($id)
     {
         $data['header_title'] = "Doctor View";
-        $doctors_view = User::with(['doctor.country', 'doctor.state', 'doctor.city'])->findOrFail($id);
+        $doctors_view = User::with(['pathdoctor.country', 'pathdoctor.state', 'pathdoctor.city'])->findOrFail($id);
         return view('admin.doctors.doctors_view', compact('doctors_view'), $data);
     }
     public function DoctorsPrint($id)

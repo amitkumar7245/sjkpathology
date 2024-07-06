@@ -42,7 +42,7 @@
                                             
                                             <div class="col-lg-4">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="testbloodnameInput" class="form-label">Test Blood Name</label>
+                                                    <label for="testbloodnameInput" class="form-label label-required">Test Blood Name</label>
                                                     <input type="text" name="testblood_name" class="form-control" id="testbloodnameInput" placeholder="Enter your Test Blood Name">
                                                 </div>
                                             </div>

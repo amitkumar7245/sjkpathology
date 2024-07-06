@@ -37,7 +37,7 @@
                                     <div class="around10">
                                         <div class="row">
                                             <div class="col-lg-4">
-                                                <label for="testblood" class="form-label">Test Blood</label>
+                                                <label for="testblood" class="form-label label-required">Test Blood</label>
                                                 <select class="js-example-basic-single mb-3 form-groups"
                                                     name="testblood_id">
                                                     <option>Select Test Blood </option>
@@ -50,7 +50,7 @@
                                             <!--end col-->
                                             <div class="col-lg-4">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="testbloodgroupnameInput" class="form-label">Test Blood Group
+                                                    <label for="testbloodgroupnameInput" class="form-label label-required">Test Blood Group
                                                         Name</label>
                                                     <input type="text" name="testbloodgroup_name" class="form-control"
                                                         id="testbloodgroupnameInput"
@@ -61,7 +61,7 @@
 
                                             <div class="col-lg-4">
                                                 <div class="mb-3 form-groups">
-                                                    <label for="testbloodgroupnameInput" class="form-label">Short
+                                                    <label for="testbloodgroupnameInput" class="form-label label-required">Short
                                                         Cut</label>
                                                     <input type="text" name="testbloodgroup_code" class="form-control"
                                                         id="testbloodgroupnameInput"
@@ -71,7 +71,7 @@
                                             <!--end col-->
 
                                             <div class="col-lg-4">
-                                                <label for="testblood" class="form-label">Sample Type</label>
+                                                <label for="testblood" class="form-label label-required">Sample Type</label>
                                                 <select class="js-example-basic-single mb-3 form-groups"
                                                     name="sampletype_id">
                                                     <option>Select Sample Type </option>
@@ -83,7 +83,7 @@
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-4">
-                                                <label for="testbloodgrouppriceInput" class="form-label">Price</label>
+                                                <label for="testbloodgrouppriceInput" class="form-label label-required">Price</label>
                                                 <div class="input-group mb-3">
                                                     <input type="text" name="testbloodgroup_price" class="form-control"
                                                         id="testbloodgrouppriceInput" placeholder="Enter price"
