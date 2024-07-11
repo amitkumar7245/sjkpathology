@@ -6,6 +6,9 @@
     $totalStaff = App\Models\User::where('status','active')->where('role','staff')->get();
     $totalDoctor = App\Models\User::where('status','active')->where('role','doctor')->get();
     $totalPatient = App\Models\User::where('status','active')->where('role','patient')->get();
+    $totalHospital = App\Models\User::where('status','active')->where('role','hospital')->get();
+    $totalDiagnostic = App\Models\User::where('status','active')->where('role','diagnostic')->get();
+    $totalCollection = App\Models\User::where('status','active')->where('role','collection')->get();
 @endphp
 
 <div class="page-content">
@@ -136,7 +139,7 @@
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalPatient) }}">{{ count($totalPatient) }}</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalHospital) }}">{{ count($totalHospital) }}</span></h4>
                                             <a href="#" class="fw-semibold ff-secondary text-white">View Hospital</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
@@ -162,7 +165,7 @@
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalPatient) }}">{{ count($totalPatient) }}</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalDiagnostic) }}">{{ count($totalDiagnostic) }}</span></h4>
                                             <a href="#" class="fw-semibold ff-secondary text-white">View Pathology</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
@@ -188,7 +191,7 @@
                                     </div>
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="110">0</span></h4>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalCollection) }}">{{ count($totalCollection) }}</span></h4>
                                             <a href="#" class="fw-semibold ff-secondary text-white">Collection Cent.</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
