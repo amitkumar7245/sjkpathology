@@ -65,13 +65,11 @@
                     </a>
                 </li>  <!-- end Staff Menu --> 
 
-                {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Patients">
-                    <a class="nav-link menu-link" href="#">
-                        <i class="fas fa-user-injured"></i> <span data-key="t-dashboard">Patients</span>
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Home Visits">
+                    <a class="nav-link menu-link {{ ($route == 'home.visits')? 'active': '' }}" href="{{ route('home.visits') }}">
+                        <i class="fas fa-home"></i><span data-key="t-dashboard">Home Visits</span>
                     </a>
-                </li>  <!-- end Patients Menu --> --}}
-
-                
+                </li>  <!-- end Home Visits Menu -->
 
                 {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Team">
                     <a class="nav-link menu-link" href="#team" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="team">
@@ -89,21 +87,15 @@
                     </div>
                 </li> <!-- end Team Menu --> --}}
 
-                {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Staff">
-                    <a class="nav-link menu-link {{ ($route ==  'all.staff')? 'active':  '' }}" href="{{ route('all.staff') }}">
-                        <i class="fas fa-users"></i> <span data-key="t-dashboard">Staff</span>
-                    </a>
-                </li> --}}
-
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Zone Name">
                     <a class="nav-link menu-link {{ ($route ==  'all.zone')? 'active':  '' }}" href="{{ route('all.zone') }}">
                         <i class="fas fa-map-marker-alt"></i><span data-key="t-dashboard">Zone Name</span>
                     </a>
                 </li>
 
-                <li class="nav-item active" data-bs-toggle="tooltip" data-bs-placement="right" title="Location">
+                <li class="nav-item active" data-bs-toggle="tooltip" data-bs-placement="right" title="Lab Test">
                     <a class="nav-link menu-link" href="#bloodtest" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="bloodtest">
-                        <i class="fa fa-flask" aria-hidden="true"></i><span data-key="t-dashboards">Test</span>
+                        <i class="fa fa-flask" aria-hidden="true"></i><span data-key="t-dashboards">Lab Test</span>
                     </a>
                     <div class="collapse menu-dropdown" id="bloodtest">
                         <ul class="nav nav-sm flex-column">
@@ -114,7 +106,24 @@
                             
                         </ul>
                     </div>
-                </li> <!-- end Master Field Menu -->
+                </li> <!-- end Test Menu -->
+
+                <li class="nav-item active" data-bs-toggle="tooltip" data-bs-placement="right" title="Reports">
+                    <a class="nav-link menu-link" href="#reports" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="reports">
+                        <i class="far fa-chart-bar"></i><span data-key="t-dashboards">Reports</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="reports">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('doctorwise.report') }}" class="nav-link menu-link {{ ($route == 'doctorwise.report')? 'active': '' }}" data-key="t-alladmin">Doctor's Report</a>
+                                <a href="{{ route('hospitalwise.report') }}" class="nav-link menu-link {{ ($route == 'hospitalwise.report')? 'active': '' }}" data-key="t-alladmin">Hospital's Report</a>
+                                <a href="{{ route('pathologywise.report') }}" class="nav-link menu-link {{ ($route == 'pathologywise.report')? 'active': ''  }}" data-key="t-alladmin">Pathology's Report</a>
+                                <a href="{{ route('collectionwise.report') }}" class="nav-link menu-link {{ ($route == 'collectionwise.report')? 'active': '' }}" data-key="t-alladmin">Collection's Report</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li> <!-- end Reports Menu -->
 
                 <li class="nav-item active" data-bs-toggle="tooltip" data-bs-placement="right" title="Education">
                     <a class="nav-link menu-link" href="#educationmanage" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="education">

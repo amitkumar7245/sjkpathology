@@ -61,12 +61,11 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalStaff) }}">{{ count($totalStaff) }}</span></h4>
-                                            <a href="{{ route('all.staff') }}" class="fw-semibold ff-secondary text-white">View Staff</a>
+                                            <a href="{{ route('all.staff') }}" class="fw-semibold ff-secondary text-white">List Staff</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-success-subtle rounded fs-3">
-                                                {{-- <i class="bx bx-dollar-circle text-success"></i> --}}
-                                                 <i class="fas fa-users text-success"></i>
+                                            <span class="avatar-title rounded fs-3">
+                                                 <i class="fas fa-users text-white"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -88,11 +87,11 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalDoctor) }}">{{ count($totalDoctor) }}</span></h4>
-                                            <a href="{{ route('all.doctors') }}" class="fw-semibold ff-secondary text-white">View Doctors</a>
+                                            <a href="{{ route('all.doctors') }}" class="fw-semibold ff-secondary text-white">List Doctors</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-info-subtle rounded fs-3">
-                                                <i class="fas fa-user-md text-info"></i>
+                                            <span class="avatar-title rounded fs-3">
+                                                <i class="fas fa-user-md text-white"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -114,11 +113,11 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalPatient) }}">{{ count($totalPatient) }}</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary text-white">View Patients</a>
+                                            <a href="#" class="fw-semibold ff-secondary text-white">List Patients</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                <i class="fas fa-user-injured text-warning"></i>
+                                            <span class="avatar-title rounded fs-3">
+                                                <i class="fas fa-user-injured text-white"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -140,11 +139,11 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalHospital) }}">{{ count($totalHospital) }}</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary text-white">View Hospital</a>
+                                            <a href="#" class="fw-semibold ff-secondary text-white">List Hospital</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                <i class="fas fa-hospital text-info"></i>
+                                            <span class="avatar-title rounded fs-3">
+                                                <i class="fas fa-hospital text-white"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -166,11 +165,11 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalDiagnostic) }}">{{ count($totalDiagnostic) }}</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary text-white">View Pathology</a>
+                                            <a href="#" class="fw-semibold ff-secondary text-white">List Pathology</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                <i class="fas fa-diagnoses text-primary"></i>
+                                            <span class="avatar-title rounded fs-3">
+                                                <i class="fas fa-diagnoses text-white"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -195,8 +194,8 @@
                                             <a href="#" class="fw-semibold ff-secondary text-white">Collection Cent.</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-primary-subtle rounded fs-3">
-                                                <i class="bx bx-wallet text-primary"></i>
+                                            <span class="avatar-title rounded fs-3">
+                                                <i class="bx bx-wallet text-white"></i>
                                             </span>
                                         </div>
                                     </div>

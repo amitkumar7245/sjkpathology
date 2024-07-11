@@ -29,6 +29,7 @@ use App\Http\Controllers\Backend\PathologySourceController;
 use App\Http\Controllers\Backend\SocialMediaTypeController;
 use App\Http\Controllers\Backend\ZoneController;
 use App\Http\Controllers\Backend\HospitalController;
+use App\Http\Controllers\Backend\PenddingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,16 @@ Route::group(['middleware' => 'admin'], function(){
 
     });//end admin profile
 
+
+    ///////Pendding Work //////////////////////
+
+    Route::controller(PenddingController::class)->group(function(){
+        Route::get('/homevisits','HomeVisits')->name('home.visits');
+        Route::get('/doctorwise/reports','DoctorwiseReport')->name('doctorwise.report');
+        Route::get('/hospitalwise/reports','HospitalwiseReport')->name('hospitalwise.report');
+        Route::get('/pathologywise/reports','PathologywiseReport')->name('pathologywise.report');
+        Route::get('/collectionwise/reports','CollectionwiseReport')->name('collectionwise.report');
+    });
 
     Route::controller(ZoneController::class)->group(function(){
         Route::get('/zone/list','ZoneIndex')->name('all.zone');
