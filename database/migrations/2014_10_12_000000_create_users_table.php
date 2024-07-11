@@ -26,7 +26,7 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->date('doj')->nullable();
             $table->string('aadharnumber')->nullable();
-            $table->enum('role',['admin','doctor','patient','diagnostic','collection','staff'])->default('staff');
+            $table->enum('role',['admin','doctor','patient','diagnostic','collection','staff','hospital'])->default('staff');
             $table->enum('status',['active','inactive'])->default('active');
             $table->enum('is_delete',['not delete','delete'])->default('not delete');
             $table->string('created_by');

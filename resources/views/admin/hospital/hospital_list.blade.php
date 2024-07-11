@@ -11,12 +11,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Doctor List</h4>
+                    <h4 class="mb-sm-0">Hospital List</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                            <li class="breadcrumb-item active">Doctor List</li>
+                            <li class="breadcrumb-item active">Hospital List</li>
                         </ol>
                     </div>
 
@@ -31,7 +31,7 @@
                         <div class="d-flex align-items-center flex-wrap gap-2">
                             <div class="flex-grow-1">
                                 
-                                <a href="{{ route('add.doctor') }}" class="btn btn-primary"><i class="ri-add-fill me-1 align-bottom"></i>Create</a>
+                                <a href="{{ route('add.hospital') }}" class="btn btn-primary"><i class="ri-add-fill me-1 align-bottom"></i>Create</a>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">Doctor List</h5>
+                        <h5 class="card-title mb-0">Hospital List</h5>
                     </div>
                     <div class="card-body">
                         <table id="buttons-datatables" class="table table-bordered table-hover dt-responsive nowrap align-middle mdl-data-table dataTable no-footer" style="width:100%">
@@ -63,7 +63,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($doctorlist as $key => $item )
+                                @foreach ($hospitalList as $key => $item )
                                     <tr>
                                         <th scope="row">
                                             <div class="form-check">
@@ -93,7 +93,7 @@
                                         </td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>{{ $item->doctor && $item->doctor->creator ? $item->doctor->creator->name : $item->name }}</td>
+                                        <td>{{ $item->hospital && $item->hospital->creator ? $item->hospital->creator->name : $item->name }}</td>
                                         {{-- <td class="text-capitalize">{{ $item['getuser']['created_by'] }}</td> --}}
                                         @if ($item->status == 'active')
                                         <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
@@ -106,19 +106,18 @@
                                                     <i class="ri-settings-3-line"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="{{ route('print.doctor',$item->id) }}" class="dropdown-item"><i class="ri-printer-fill align-bottom me-2 text-muted"></i> Download</a></li>
-                                                    <li><a href="{{ route('view.doctor',$item->id) }}" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                                    <li><a href="{{ route('edit.doctor',$item->id) }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
-                                                    <li><a href="{{ route('delete.doctor', $item->id) }}" id="delete" class="dropdown-item remove-item-btn">
+                                                    <li><a href="{{ route('view.hospital',$item->id) }}" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
+                                                    <li><a href="{{ route('edit.hospital',$item->id) }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+                                                    <li><a href="{{ route('delete.hospital', $item->id) }}" id="delete" class="dropdown-item remove-item-btn">
                                                         <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                                     </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                             @if ($item->status == 'active')
-                                                <a href="{{ route('inactive.doctor', $item->id) }}" class="btn btn-primary btn-sm" title="Inactive"> <i class="fa-solid fa-thumbs-up"></i></a>
+                                                <a href="{{ route('inactive.hospital', $item->id) }}" class="btn btn-primary btn-sm" title="Inactive"> <i class="fa-solid fa-thumbs-up"></i></a>
                                             @else
-                                                <a href="{{ route('active.doctor', $item->id) }}" class="btn btn-danger btn-sm" title="Active"> <i class="fa-solid fa-thumbs-down"></i></a>
+                                                <a href="{{ route('active.hospital', $item->id) }}" class="btn btn-danger btn-sm" title="Active"> <i class="fa-solid fa-thumbs-down"></i></a>
                                             @endif
                                         </td>
                                         

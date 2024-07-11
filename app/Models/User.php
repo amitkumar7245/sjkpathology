@@ -60,7 +60,7 @@ class User extends Authenticatable
     {
         return self::find($id);
     }
-    
+
     static public function getEmailSingle($email)
     {
         return User::where('email', '=', $email)->first();
@@ -85,7 +85,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Collection::class, 'collectionuser_id');
     }
-    
+
     public function createdStaff()
     {
         return $this->hasMany(Staff::class, 'created_by');
@@ -100,14 +100,20 @@ class User extends Authenticatable
     // {
     //     return $this->belongsTo(Bank::class, 'bankname_id');
     // }
-    
+
     public function doctor()
     {
         return $this->hasOne(Doctor::class, 'doctoruser_id');
     }
+
+    public function hospital()
+    {
+        return $this->hasOne(Hospital::class, 'hospitaluser_id');
+    }
+
     public function pathdoctor()
     {
-        return $this->hasOne(Pathdoctor::class, 'doctoruser_id');
+        return $this->hasOne(Pathdoctor::class, 'doctoruser_id', 'id');
     }
 
     public function clinics()
@@ -123,5 +129,4 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Bank::class, 'staffuser_id');
     }
-
 }

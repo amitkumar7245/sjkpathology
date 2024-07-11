@@ -16,7 +16,6 @@
     <p><strong>Gender:</strong> {{ $doctorAgreement->gender == 1 ? 'Male' : 'Female' }}</p>
     <p><strong>Date of Birth:</strong> {{ $doctorAgreement->dob }}</p>
     <p><strong>Date of Joining:</strong> {{ $doctorAgreement->doj }}</p>
-    <p><strong>Aadhar Number:</strong> {{ $doctorAgreement->aadharnumber }}</p>
     
   </body>
 </html>

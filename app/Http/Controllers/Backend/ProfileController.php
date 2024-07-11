@@ -97,20 +97,22 @@ class ProfileController extends Controller
     public function DoctorProfile()
     {
         $data['header_title'] = "Doctor Profile";
+
         $id = Auth::user()->id;
-        $countries = Country::latest()->get();
-        $doctorData = User::with('pathdoctor')->find($id);
+        // $countries = Country::latest()->get();
+        $states = State::latest()->get();
+        $doctorData = User::with('doctor')->find($id);
         // $doctorData = User::with('doctor')->find($id);
 
-        $states = [];
+        // $states = [];
         $cities = [];
 
-        if ($doctorData && $doctorData->pathdoctor) {
-            $states = State::where('country_id', $doctorData->pathdoctor->country_id)->get();
-            $cities = City::where('state_id', $doctorData->pathdoctor->state_id)->get();
+        if ($doctorData && $doctorData->doctor) {
+            // $states = State::where('country_id', $doctorData->doctor->country_id)->get();
+            $cities = City::where('state_id', $doctorData->doctor->state_id)->get();
         }
 
-        return view('doctor.doctor_profile_view', compact('doctorData', 'countries', 'states', 'cities'), $data);
+        return view('doctor.doctor_profile_view', compact('doctorData', 'states', 'cities'), $data);
     }
 
     public function DoctorProfileStore(Request $request)
@@ -155,9 +157,9 @@ class ProfileController extends Controller
     {
         //  dd($request->all());
 
-        $pathdoctor = Auth::user()->pathdoctor;
-        if ($pathdoctor) {
-            $pathdoctor->update([
+        $doctor = Auth::user()->doctor;
+        if ($doctor) {
+            $doctor->update([
                 'country_id' => $request->country_id,
                 'state_id' => $request->state_id,
                 'city_id' => $request->city_id,

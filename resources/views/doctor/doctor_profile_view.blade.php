@@ -240,22 +240,22 @@
                                 <form id="myForm" action="{{ route('doctor.location.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-lg-3">
+                                        {{-- <div class="col-lg-3">
                                             <label for="country" class="form-label">Country</label>
                                             <select class="js-example-basic-single mb-3" name="country_id">
                                                 <option>Select Country</option>
                                                     @foreach ($countries as $item)
-                                                    <option value="{{ $item->id }}"{{ $item->id == $doctorData->pathdoctor->country_id ? 'selected' : '' }}>{{ $item->country_name }}</option>
+                                                    <option value="{{ $item->id }}"{{ $item->id == $doctorData->doctor->country_id ? 'selected' : '' }}>{{ $item->country_name }}</option>
                                                     @endforeach
                                             </select>
                                         </div>
-                                        <!--end col-->
+                                        <!--end col--> --}}
                                         <div class="col-lg-3">
                                             <label for="state" class="form-label">State</label>
                                             <select class="js-example-basic-single mb-3" name="state_id">
                                                 <option>Select State</option>
                                                     @foreach ($states as $state)
-                                                        <option value="{{ $state->id }}" {{ $state->id == $doctorData->pathdoctor->state_id ? 'selected' : '' }}>{{ $state->state_name }}</option>
+                                                        <option value="{{ $state->id }}" {{ $state->id == $doctorData->doctor->state_id ? 'selected' : '' }}>{{ $state->state_name }}</option>
                                                     @endforeach
                                             </select>
                                         </div>
@@ -265,7 +265,7 @@
                                             <select class="js-example-basic-single mb-3" name="city_id">
                                                 <option>Select City</option>
                                                     @foreach ($cities as $city)
-                                                        <option value="{{ $city->id }}" {{ $city->id == $doctorData->pathdoctor->city_id ? 'selected' : '' }}>{{ $city->city_name }}</option>
+                                                        <option value="{{ $city->id }}" {{ $city->id == $doctorData->doctor->city_id ? 'selected' : '' }}>{{ $city->city_name }}</option>
                                                     @endforeach
                                             </select>
                                         </div>
@@ -273,7 +273,7 @@
                                         <div class="col-lg-3">
                                             <div class="mb-3 form-groups">
                                                 <label for="nameInput" class="form-label label-required">Location</label>
-                                                <input type="text" class="form-control" name="location" id="nameInput" placeholder="Enter Location" value="{{ $doctorData->pathdoctor->locationname }}">
+                                                <input type="text" class="form-control" name="location" id="nameInput" placeholder="Enter Location" value="{{ $doctorData->doctor->locationname }}">
                                             </div>
                                         </div>
                                         <!--end col-->
@@ -292,127 +292,6 @@
                             </div>
                             <!--end tab-pane-->
 
-                            {{-- <div class="tab-pane" id="experience" role="tabpanel">
-                                <form>
-                                    <div id="newlink">
-                                        <div id="1">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label for="jobTitle" class="form-label">Job
-                                                            Title</label>
-                                                        <input type="text" class="form-control" id="jobTitle" placeholder="Job title" value="Lead Designer / Developer">
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-lg-6">
-                                                    <div class="mb-3">
-                                                        <label for="companyName" class="form-label">Company
-                                                            Name</label>
-                                                        <input type="text" class="form-control" id="companyName" placeholder="Company name" value="Themesbrand">
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-lg-6">
-                                                    <div class="mb-3">
-                                                        <label for="experienceYear" class="form-label">Experience Years</label>
-                                                        <div class="row">
-                                                            <div class="col-lg-5">
-                                                                <select class="form-control" data-choices data-choices-search-false name="experienceYear" id="experienceYear">
-                                                                    <option value="">Select years</option>
-                                                                    <option value="Choice 1">2001</option>
-                                                                    <option value="Choice 2">2002</option>
-                                                                    <option value="Choice 3">2003</option>
-                                                                    <option value="Choice 4">2004</option>
-                                                                    <option value="Choice 5">2005</option>
-                                                                    <option value="Choice 6">2006</option>
-                                                                    <option value="Choice 7">2007</option>
-                                                                    <option value="Choice 8">2008</option>
-                                                                    <option value="Choice 9">2009</option>
-                                                                    <option value="Choice 10">2010</option>
-                                                                    <option value="Choice 11">2011</option>
-                                                                    <option value="Choice 12">2012</option>
-                                                                    <option value="Choice 13">2013</option>
-                                                                    <option value="Choice 14">2014</option>
-                                                                    <option value="Choice 15">2015</option>
-                                                                    <option value="Choice 16">2016</option>
-                                                                    <option value="Choice 17" selected>2017
-                                                                    </option>
-                                                                    <option value="Choice 18">2018</option>
-                                                                    <option value="Choice 19">2019</option>
-                                                                    <option value="Choice 20">2020</option>
-                                                                    <option value="Choice 21">2021</option>
-                                                                    <option value="Choice 22">2022</option>
-                                                                </select>
-                                                            </div>
-                                                            <!--end col-->
-                                                            <div class="col-auto align-self-center">
-                                                                to
-                                                            </div>
-                                                            <!--end col-->
-                                                            <div class="col-lg-5">
-                                                                <select class="form-control" data-choices data-choices-search-false name="choices-single-default2">
-                                                                    <option value="">Select years</option>
-                                                                    <option value="Choice 1">2001</option>
-                                                                    <option value="Choice 2">2002</option>
-                                                                    <option value="Choice 3">2003</option>
-                                                                    <option value="Choice 4">2004</option>
-                                                                    <option value="Choice 5">2005</option>
-                                                                    <option value="Choice 6">2006</option>
-                                                                    <option value="Choice 7">2007</option>
-                                                                    <option value="Choice 8">2008</option>
-                                                                    <option value="Choice 9">2009</option>
-                                                                    <option value="Choice 10">2010</option>
-                                                                    <option value="Choice 11">2011</option>
-                                                                    <option value="Choice 12">2012</option>
-                                                                    <option value="Choice 13">2013</option>
-                                                                    <option value="Choice 14">2014</option>
-                                                                    <option value="Choice 15">2015</option>
-                                                                    <option value="Choice 16">2016</option>
-                                                                    <option value="Choice 17">2017</option>
-                                                                    <option value="Choice 18">2018</option>
-                                                                    <option value="Choice 19">2019</option>
-                                                                    <option value="Choice 20" selected>2020
-                                                                    </option>
-                                                                    <option value="Choice 21">2021</option>
-                                                                    <option value="Choice 22">2022</option>
-                                                                </select>
-                                                            </div>
-                                                            <!--end col-->
-                                                        </div>
-                                                        <!--end row-->
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-lg-12">
-                                                    <div class="mb-3">
-                                                        <label for="jobDescription" class="form-label">Job
-                                                            Description</label>
-                                                        <textarea class="form-control" id="jobDescription" rows="3" placeholder="Enter description">You always want to make sure that your fonts work well together and try to limit the number of fonts you use to three or less. Experiment and play around with the fonts that you already have in the software you're working with reputable font websites. </textarea>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="hstack gap-2 justify-content-end">
-                                                    <a class="btn btn-success" href="javascript:deleteEl(1)">Delete</a>
-                                                </div>
-                                            </div>
-                                            <!--end row-->
-                                        </div>
-                                    </div>
-                                    <div id="newForm" style="display: none;">
-
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="hstack gap-2">
-                                            <button type="submit" class="btn btn-success">Update</button>
-                                            <a href="javascript:new_link()" class="btn btn-primary">Add
-                                                New</a>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                </form>
-                            </div> --}}
-                            <!--end tab-pane-->
                             <div class="tab-pane" id="privacy" role="tabpanel">
                                 <div class="mb-4 pb-2">
                                     <h5 class="card-title text-decoration-underline mb-3">Security:</h5>
@@ -577,31 +456,6 @@
 			reader.readAsDataURL(e.target.files['0']);
 		});
 	});
-</script>
-
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('select[name="country_id"]').on('change', function(){
-            var country_id = $(this).val();
-            if (country_id) {
-                $.ajax({
-                    url: "{{ url('/doctorprofilestate/ajax') }}/"+country_id,
-                    type: "GET",
-                    dataType:"json",
-                    success:function(data){
-                        $('select[name="state_id"]').html('');
-                        var d =$('select[name="state_id"]').empty();
-                        $.each(data, function(key, value){
-                            $('select[name="state_id"]').append('<option value="'+ value.id + '">' + value.state_name + '</option>');
-                        });
-                    },
-                });
-            } else {
-                alert('danger');
-            }
-        });
-    });
 </script>
 
 

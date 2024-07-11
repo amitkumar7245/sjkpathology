@@ -35,15 +35,17 @@
                     </a>
                 </li>    
 
-                {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
+                
+
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
                     <a class="nav-link menu-link {{ ($route ==  'all.doctor')? 'active':  '' }}" href="{{ route('all.doctor') }}">
                         <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Doctor</span>
                     </a>
-                </li> --}}
+                </li>  <!-- end Doctor Menu --> 
 
-                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
-                    <a class="nav-link menu-link {{ ($route ==  'all.doctors')? 'active':  '' }}" href="{{ route('all.doctors') }}">
-                        <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Doctor</span>
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Hospital">
+                    <a class="nav-link menu-link {{ ($route ==  'all.hospital')? 'active':  '' }}" href="{{ route('all.hospital') }}">
+                        <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Hospital</span>
                     </a>
                 </li>  <!-- end Doctor Menu --> 
 
@@ -94,6 +96,12 @@
                         <i class="fas fa-users"></i> <span data-key="t-dashboard">Staff</span>
                     </a>
                 </li> --}}
+
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Zone Name">
+                    <a class="nav-link menu-link {{ ($route ==  'all.zone')? 'active':  '' }}" href="{{ route('all.zone') }}">
+                        <i class="fas fa-map-marker-alt"></i><span data-key="t-dashboard">Zone Name</span>
+                    </a>
+                </li>
 
                 <li class="nav-item active" data-bs-toggle="tooltip" data-bs-placement="right" title="Location">
                     <a class="nav-link menu-link" href="#bloodtest" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="bloodtest">

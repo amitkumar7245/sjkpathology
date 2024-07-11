@@ -15,12 +15,12 @@
             <div class="row g-4">
                 <div class="col-auto">
                     <div class="avatar-lg">
-                        @if ($doctor_view->photo != '')
-                            <img src="{{ asset('upload/doctor_images/'.$doctor_view->photo) }}" alt="" class="img-thumbnail rounded-circle">
+                        @if ($hospital_view->photo != '')
+                            <img src="{{ asset($hospital_view->photo) }}" alt="" class="img-thumbnail rounded-circle">
                         @else
-                            @if ($doctor_view->gender == '1') <!-- Assuming '1' for Male -->
+                            @if ($hospital_view->gender == '1') <!-- Assuming '1' for Male -->
                                 <img src="{{ asset('backend/assets/images/users/male-dummy.png') }}" alt="" class="img-thumbnail rounded-circle">
-                            @elseif ($doctor_view->gender == '0') <!-- Assuming '0' for Female -->
+                            @elseif ($hospital_view->gender == '0') <!-- Assuming '0' for Female -->
                                 <img src="{{ asset('backend/assets/images/users/female-dummy.png') }}" alt="" class="img-thumbnail rounded-circle">
                             @else
                                 <img src="{{ asset('backend/assets/images/users/user-dummy-img.jpg') }}" alt="" class="img-thumbnail rounded-circle">
@@ -32,11 +32,11 @@
                 <!--end col-->
                 <div class="col">
                     <div class="p-2">
-                        <h3 class="text-white mb-1">{{ $doctor_view->name }}</h3>
-                        <p class="text-white text-opacity-75">Reg.ID:- {{ $doctor_view->reg_number ?? 'N/A' }}</p>
+                        <h3 class="text-white mb-1">{{ $hospital_view->name }}</h3>
+                        <p class="text-white text-opacity-75">Reg.ID:- {{ $hospital_view->reg_number ?? 'N/A' }}</p>
                         <div class="hstack text-white-50 gap-1">
-                            <div class="me-2"><i class="ri-map-pin-user-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>{{ $doctor_view->address ?? 'N/A' }} </div>
-                            {{-- <div><i class="ri-building-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>{{ $doctor_view->clinic->clinic_name ?? 'N/A' }}
+                            <div class="me-2"><i class="ri-map-pin-user-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>{{ $hospital_view->address ?? 'N/A' }} </div>
+                            {{-- <div><i class="ri-building-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>{{ $hospital_view->clinic->clinic_name ?? 'N/A' }}
                             </div> --}}
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                             </li>
                         </ul>
                         <div class="flex-shrink-0">
-                            <a href="{{ route('edit.doctor',$doctor_view->id) }}" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
+                            <a href="{{ route('edit.hospital',$hospital_view->id) }}" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
                         </div>
                     </div>
                     <!-- Tab panes -->
@@ -124,44 +124,38 @@
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
-                                                        @if ($doctor_view)
+                                                        @if ($hospital_view)
                                                         <tr>
                                                             <th class="ps-0" scope="row">Name :</th>
-                                                            <td class="text-muted">{{ $doctor_view->name }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->name }}</td>
                                                         </tr>
                                                         
                                                         <tr>
                                                             <th class="ps-0" scope="row">Mobile :</th>
-                                                            <td class="text-muted">{{ $doctor_view->phone }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->phone }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">E-mail :</th>
-                                                            <td class="text-muted">{{ $doctor_view->email }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->email }}</td>
                                                         </tr>
                                                         {{-- <tr>
                                                             <th class="ps-0" scope="row">Password :</th>
-                                                            <td class="text-muted">{{ $doctor_view->password ? 'Password is set' : 'No password set' }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->password ? 'Password is set' : 'No password set' }}</td>
                                                         </tr> --}}
-                                                        <tr>
-                                                            <th class="ps-0" scope="row">Gender</th>
-                                                            <td class="text-muted">
-                                                                {{ $doctor_view->gender == 1 ? 'Male' : ($doctor_view->gender == 0 ? 'Female' : 'Not specified') }}
-                                                            </td>
-                                                            
-                                                        </tr>
+                                                        
                                                         <tr>
                                                             <th class="ps-0" scope="row">Location :</th>
-                                                            <td class="text-muted">{{ $doctor_view->doctor->locationname }}
+                                                            <td class="text-muted">{{ $hospital_view->hospital->locationname }}
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Joining Date</th>
-                                                            <td class="text-muted">{{ $doctor_view->doj }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->doj }}</td>
                                                         </tr>
                                                         
                                                         <tr>
                                                             <th class="ps-0" scope="row">Date of Birthday</th>
-                                                            <td class="text-muted">{{ $doctor_view->dob }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->dob }}</td>
                                                         </tr>
                                                         
                                                         
@@ -228,23 +222,23 @@
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
                                                     <tbody>
-                                                        @if($doctor_view->doctor)
+                                                        @if($hospital_view->hospital)
                                                         
                                                         <tr>
                                                             <th class="ps-0" scope="row">State :</th>
-                                                            <td class="text-muted">{{ $doctor_view->doctor->state->state_name }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->hospital->state->state_name }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">City :</th>
-                                                            <td class="text-muted">{{ $doctor_view->doctor->city->city_name }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->hospital->city->city_name }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Location :</th>
-                                                            <td class="text-muted">{{ $doctor_view->doctor->locationname }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->hospital->locationname }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Address :</th>
-                                                            <td class="text-muted">{{ $doctor_view->address }}</td>
+                                                            <td class="text-muted">{{ $hospital_view->address }}</td>
                                                         </tr> 
                                                         @else
                                                             <tr>
@@ -341,176 +335,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-primary-subtle text-primary rounded fs-20">
-                                                                            <i class="ri-file-zip-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a href="javascript:void(0)">Artboard-documents.zip</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Zip File</td>
-                                                            <td>4.57 MB</td>
-                                                            <td>12 Dec 2021</td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <a href="javascript:void(0);" class="btn btn-light btn-icon" id="dropdownMenuLink15" data-bs-toggle="dropdown" aria-expanded="true">
-                                                                        <i class="ri-equalizer-fill"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink15">
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                        </li>
-                                                                        <li class="dropdown-divider"></li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-danger-subtle text-danger rounded fs-20">
-                                                                            <i class="ri-file-pdf-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a href="javascript:void(0);">Bank
-                                                                                Management System</a></h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>PDF File</td>
-                                                            <td>8.89 MB</td>
-                                                            <td>24 Nov 2021</td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <a href="javascript:void(0);" class="btn btn-light btn-icon" id="dropdownMenuLink3" data-bs-toggle="dropdown" aria-expanded="true">
-                                                                        <i class="ri-equalizer-fill"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink3">
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                        </li>
-                                                                        <li class="dropdown-divider"></li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-secondary-subtle text-secondary rounded fs-20">
-                                                                            <i class="ri-video-line"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a href="javascript:void(0);">Tour-video.mp4</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>MP4 File</td>
-                                                            <td>14.62 MB</td>
-                                                            <td>19 Nov 2021</td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <a href="javascript:void(0);" class="btn btn-light btn-icon" id="dropdownMenuLink4" data-bs-toggle="dropdown" aria-expanded="true">
-                                                                        <i class="ri-equalizer-fill"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink4">
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                        </li>
-                                                                        <li class="dropdown-divider"></li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-success-subtle text-success rounded fs-20">
-                                                                            <i class="ri-file-excel-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a href="javascript:void(0);">Account-statement.xsl</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>XSL File</td>
-                                                            <td>2.38 KB</td>
-                                                            <td>14 Nov 2021</td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <a href="javascript:void(0);" class="btn btn-light btn-icon" id="dropdownMenuLink5" data-bs-toggle="dropdown" aria-expanded="true">
-                                                                        <i class="ri-equalizer-fill"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink5">
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-eye-fill me-2 align-middle text-muted"></i>View</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-download-2-fill me-2 align-middle text-muted"></i>Download</a>
-                                                                        </li>
-                                                                        <li class="dropdown-divider"></li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-delete-bin-5-line me-2 align-middle text-muted"></i>Delete</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-info-subtle text-info rounded fs-20">
-                                                                            <i class="ri-folder-line"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a href="javascript:void(0);">Project
-                                                                                Screenshots Collection</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Floder File</td>
-                                                            <td>87.24 MB</td>
-                                                            <td>08 Nov 2021</td>
-                                                            <td>
-                                                                <div class="dropdown">
-                                                                    <a href="javascript:void(0);" class="btn btn-light btn-icon" id="dropdownMenuLink6" data-bs-toggle="dropdown" aria-expanded="true">
-                                                                        <i class="ri-equalizer-fill"></i>
-                                                                    </a>
-                                                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink6">
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-eye-fill me-2 align-middle"></i>View</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-download-2-fill me-2 align-middle"></i>Download</a>
-                                                                        </li>
-                                                                        <li><a class="dropdown-item" href="javascript:void(0);"><i class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+
                                                         <tr>
                                                             <td>
                                                                 <div class="d-flex align-items-center">

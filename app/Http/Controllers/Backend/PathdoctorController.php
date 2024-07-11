@@ -4,22 +4,23 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\City;
 use App\Models\User;
+use App\Models\Zone;
 use App\Models\State;
 use App\Models\Country;
 use App\Models\Pathdoctor;
 use App\Helpers\TokenHelper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use App\Mail\DoctorRegistered;
+use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class PathdoctorController extends Controller
 {
@@ -34,18 +35,19 @@ class PathdoctorController extends Controller
     {
         $data['header_title'] = "Doctor Add";
 
-        $countries = Country::latest()->get();
-        $states = State::latest()->get();
+        $states = State::where('status', 'active')->latest()->get();
         $city = City::latest()->get();
+        $zone = Zone::where('status', 'active')->latest()->get();
+        $pathologyCenter = User::where('role', 'diagnostic')->where('status', 'active')->latest()->get();
 
-        return view('admin.doctors.doctors_add', compact('countries', 'states', 'city'), $data);
+        return view('admin.doctors.doctors_add', compact('states', 'city', 'zone', 'pathologyCenter'), $data);
     }
 
     public function DoctorsStore(Request $request)
     {
         // dd($request->all());
 
-                // if (!empty($request->photo)) {
+        // if (!empty($request->photo)) {
         //     $doctorsProfile = $request->photo;
         //     $name_gen = date('YmdHi') . $doctorsProfile->getClientOriginalName();
         //     $doctorsProfile->move(public_path('upload/doctors_images'),$name_gen);
@@ -53,7 +55,7 @@ class PathdoctorController extends Controller
 
         //     $manager = new ImageManager(new Driver());
         //     $img = $manager->read(public_path('upload/doctors_images/'.$name_gen));
-        
+
         //     $img->resize(100,100);
         //     $img->save(public_path('upload/doctors_images/'.$name_gen));
         // }
@@ -61,17 +63,15 @@ class PathdoctorController extends Controller
         $token = TokenHelper::token();
         $user = User::create([
             'reg_number' => 'D-' . $token,
-            'name' => $request->full_name,
+            'name' => ucfirst(trim($request->full_name)),
             'username' => strtolower(str_replace(' ', '_', $request->full_name)),
             'phone' => $request->phone,
             'email' => $request->email,
             'address' => $request->address,
             'doj' => $request->doj,
             'dob' => $request->dob,
-            'aadharnumber' => $request->aadharcard,
             'gender' => $request->gender,
             'password' => Hash::make($request->password),
-            // 'photo' => $save_url,
             'role' => 'doctor',
             'created_by' => Auth::user()->id,
             'status' => 'active',
@@ -79,14 +79,16 @@ class PathdoctorController extends Controller
         ]);
         Pathdoctor::create([
             'doctoruser_id' => $user->id,
-            'country_id' => $request->country_id,
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
             'specialization' => $request->specialization,
             'locationname' => $request->location,
-            'commission' => $request->commission,
-            'registration_number' => $request->regnumber,
-            'license_number' => $request->licensenumber,
+            'diagnostic_id' => $request->diagnostic_id, 	
+            'zonename_id' => $request->zonename_id,
+            'specialtest' => $request->specialtest,
+            'routetest' => $request->routetest,
+            'diagnosspecialtest' => $request->diagnosspecialtest,
+            'diagnosroutetest' => $request->diagnosroutetest,
             'created_by' => Auth::user()->id,
             'status' => 'active',
             'created_at' => Carbon::now(),
@@ -106,12 +108,13 @@ class PathdoctorController extends Controller
     {
         $data['header_title'] = "Doctor Edit";
 
-        $countries = Country::latest()->get();
-        $states = State::latest()->get();
+        $states = State::where('status', 'active')->latest()->get();
         $city = City::latest()->get();
-        $doctors_id = User::with('doctor')->findOrFail($id);
+        $zone = Zone::where('status', 'active')->latest()->get();
+        $pathologyCenter = User::where('role', 'diagnostic')->where('status', 'active')->latest()->get();
+        $doctors_id = User::with('pathdoctor')->findOrFail($id);
 
-        return view('admin.doctors.doctors_edit', compact('doctors_id', 'countries', 'states', 'city'), $data);
+        return view('admin.doctors.doctors_edit', compact('doctors_id', 'states', 'city', 'zone', 'pathologyCenter'), $data);
     }
 
     public function DoctorsUpdate(Request $request)
@@ -136,14 +139,13 @@ class PathdoctorController extends Controller
         }
 
         $user->update([
-            'name' => $request->full_name,
+            'name' => ucfirst(trim($request->full_name)),
             'username' => strtolower(str_replace(' ', '-', $request->full_name)),
             'email' => $request->email,
             'phone' => $request->phone,
             'gender' => $request->gender,
             'dob' => Carbon::parse($request->dob),
             'doj' => Carbon::parse($request->doj),
-            'aadharnumber' => $request->aadharcard,
             'address' => $request->address,
             'photo' => $user->photo,
             'status' => 'active',
@@ -153,14 +155,16 @@ class PathdoctorController extends Controller
 
         $pathdoctor = Pathdoctor::where('doctoruser_id', $doctors_id)->firstOrFail();
         $pathdoctor->update([
-            'country_id' => $request->country_id,
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
             'specialization' => $request->specialization,
             'locationname' => $request->location,
-            'commission' => $request->commission,
-            'registration_number' => $request->regnumber,
-            'license_number' => $request->licensenumber,
+            'diagnostic_id' => $request->diagnostic_id,
+            'zonename' => $request->zonename,
+            'specialtest' => $request->specialtest,
+            'routetest' => $request->routetest,
+            'diagnosspecialtest' => $request->diagnosspecialtest,
+            'diagnosroutetest' => $request->diagnosroutetest,
             'created_by' => Auth::user()->id,
             'status' => 'active',
             'updated_at' => Carbon::now()
@@ -244,7 +248,7 @@ class PathdoctorController extends Controller
 
     public function GetDoctorsCity($state_id)
     {
-        $cities = City::where('state_id', $state_id)->orderBy('city_name', 'ASC')->get();
+        $cities = City::where('state_id', $state_id)->where('status', 'active')->orderBy('city_name', 'ASC')->get();
         return json_encode($cities);
     } // End Method
 }

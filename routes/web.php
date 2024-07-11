@@ -27,7 +27,8 @@ use App\Http\Controllers\Backend\SpecializationController;
 use App\Http\Controllers\Backend\TestBloodGroupController;
 use App\Http\Controllers\Backend\PathologySourceController;
 use App\Http\Controllers\Backend\SocialMediaTypeController;
-
+use App\Http\Controllers\Backend\ZoneController;
+use App\Http\Controllers\Backend\HospitalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,19 @@ Route::group(['middleware' => 'admin'], function(){
 
     });//end admin profile
 
+
+    Route::controller(ZoneController::class)->group(function(){
+        Route::get('/zone/list','ZoneIndex')->name('all.zone');
+        Route::get('/zone/add','ZoneAdd')->name('add.zone');
+        Route::post('/zone/store','ZoneStore')->name('store.zone');
+        Route::get('/zone/edit/{id}', 'ZoneEdit')->name('edit.zone');
+        Route::post('/zone/update','ZoneUpdate')->name('update.zone');
+        Route::get('/zone/delete/{id}','ZoneDestory')->name('delete.zone');
+        Route::get('/zone/view/{id}','ZoneView')->name('view.zone');
+        Route::get('/zone/inactive/{id}','ZoneInactive')->name('inactive.zone');
+        Route::get('/zone/active/{id}','ZoneActive')->name('active.zone');
+
+    }); //end method
 
     Route::controller(AreaController::class)->group(function(){
         Route::get('/country/list','CountryIndex')->name('all.country');
@@ -345,12 +359,27 @@ Route::group(['middleware' => 'admin'], function(){
         Route::get('/doctor/inactive/{id}', 'DoctorInactive')->name('inactive.doctor');
         Route::get('/doctor/active/{id}', 'DoctorActive')->name('active.doctor');
 
+        Route::post('/check-phone', 'checkPhone')->name('check.phone');
+        
         Route::get('/doctorstate/ajax/{country_id}','GetDoctorState');
         Route::get('/doctorcity/ajax/{state_id}','GetDoctorCity');
 
-        Route::get('/strem/ajax/{strem_id}','GetDoctorStrem');
-        Route::get('/substrem/ajax/{substrem_id}','GetDoctorSubstrem');
-        Route::get('/course/ajax/{course_id}','GetDoctorCourse');
+    });
+
+    Route::controller(HospitalController::class)->group(function(){
+        Route::get('/hospital/list/','HospitalIndex')->name('all.hospital');
+        Route::get('/hospital/add/','HospitalAdd')->name('add.hospital');
+        Route::post('/hospital/store/','HospitalStore')->name('store.hospital');
+        Route::get('/hospital/edit/{id}','HospitalEdit')->name('edit.hospital');
+        Route::post('/hospital/update/','HospitalUpdate')->name('update.hospital');
+        Route::get('/hospital/delete/{id}','HospitalDestory')->name('delete.hospital');
+        Route::get('/hospital/view/{id}','HospitalView')->name('view.hospital');
+        Route::get('/hospital/inactive/{id}', 'HospitalInactive')->name('inactive.hospital');
+        Route::get('/hospital/active/{id}', 'HospitalActive')->name('active.hospital');
+        Route::post('/hospitalcheck-phone', 'HospitalcheckPhone')->name('hospitalcheck.phone');
+
+        Route::get('/hospitalcity/ajax/{state_id}','GetHospitalCity');
+
     });
 
     Route::controller(PathdoctorController::class)->group(function(){
@@ -431,7 +460,7 @@ Route::group(['middleware' => 'doctor'], function(){
         Route::post('/doctor/bank/store', 'DoctorBankStore')->name('doctor.bank.store');
         Route::post('/doctor/clinic/store', 'DoctorClinicStore')->name('doctor.clinic.store');
 
-        Route::get('/doctorprofilestate/ajax/{country_id}','GetDoctorProfileState');
+        // Route::get('/doctorprofilestate/ajax/{country_id}','GetDoctorProfileState');
         Route::get('/doctorprofilecity/ajax/{state_id}','GetDoctorProfileCity');
 
         Route::post('/doctorcheck-phone', 'DoctorCheckPhone')->name('doctorcheck.phone');

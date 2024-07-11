@@ -7,50 +7,40 @@ use App\Models\City;
 use App\Models\User;
 use App\Models\Zone;
 use App\Models\State;
-use App\Models\Doctor;
+use App\Models\Hospital;
 use App\Helpers\TokenHelper;
 use Illuminate\Http\Request;
-use App\Mail\DoctorRegistered;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\Drivers\Gd\Driver;
 
-
-class DoctorController extends Controller
+class HospitalController extends Controller
 {
-    public function DoctorIndex()
+    public function HospitalIndex()
     {
-        $data['header_title'] = "Doctor List";
+        $data['header_title'] = "Hospital List";
 
-        $doctorlist = User::where('role', 'doctor')->with('doctor.creator')->latest()->get();
-        return view('admin.doctor.doctor_list', compact('doctorlist'), $data);
+        $hospitalList = User::where('role', 'hospital')->latest()->get();
+        return view('admin.hospital.hospital_list', compact('hospitalList'), $data);
     }
 
-    public function DoctorAdd()
+    public function HospitalAdd()
     {
-        $data['header_title'] = "Doctor Add";
+        $data['header_title'] = "Hospital Add";
 
         $states = State::where('status', 'active')->latest()->get();
         $city = City::latest()->get();
         $zone = Zone::where('status', 'active')->latest()->get();
         $diagnostic = User::where('role', 'diagnostic')->where('status', 'active')->latest()->get();
 
-        return view('admin.doctor.doctor_add', compact('states', 'city', 'zone', 'diagnostic'), $data);
+        return view('admin.hospital.hospital_add', compact('states', 'city', 'zone', 'diagnostic'), $data);   
     }
 
-
-    public function DoctorStore(Request $request)
+    public function HospitalStore(Request $request)
     {
-        // dd($request->all());
-
         $validator = Validator::make($request->all(), [
             'full_name' => 'required|string|max:255',
             'phone' => 'required|numeric|digits:10',
@@ -61,8 +51,9 @@ class DoctorController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         $token = TokenHelper::token();
+
         $user = User::create([
-            'reg_number' => 'D-' . $token,
+            'reg_number' => 'H-' . $token,
             'name' => ucfirst(trim($request->full_name)),
             'username' => strtolower(str_replace(' ', '_', $request->full_name)),
             'phone' => $request->phone,
@@ -70,19 +61,17 @@ class DoctorController extends Controller
             'address' => $request->address,
             'doj' => $request->doj,
             'dob' => $request->dob,
-            'gender' => $request->gender,
             'password' => Hash::make($request->password),
-            'role' => 'doctor',
+            'role' => 'hospital',
             'created_by' => Auth::user()->id,
             'status' => 'active',
             'created_at' => Carbon::now(),
         ]);
 
-        Doctor::create([
-            'doctoruser_id' => $user->id,
+        Hospital::create([
+            'hospitaluser_id' => $user->id,
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
-            'specialization' => $request->specialization,
             'locationname' => $request->location,
             'diagnostic_id' => $request->diagnostic_id,
             'zonename_id' => $request->zonename_id,
@@ -95,31 +84,31 @@ class DoctorController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        Mail::to($user->email)->send(new DoctorRegistered($user));
-
         $notification = array(
-            'message' => 'Doctor registered successfully and email sent',
+            'message' => 'Hospital registered successfully',
             'alert-type' => 'success'
         );
 
-        return redirect()->route('all.doctor')->with($notification);
+        return redirect()->route('all.hospital')->with($notification);
     }
 
-    public function DoctorEdit($id)
+
+    public function HospitalEdit($id)
     {
-        $data['header_title'] = "Doctor Edit";
+        $data['header_title'] = "Hospital Edit";
 
         $states = State::where('status', 'active')->latest()->get();
         $city = City::latest()->get();
         $zone = Zone::where('status', 'active')->latest()->get();
         $diagnostic = User::where('role', 'diagnostic')->where('status', 'active')->latest()->get();
-        $doctor_id = User::with('doctor')->findOrFail($id);
 
-        return view('admin.doctor.doctor_edit', compact('doctor_id', 'states', 'city', 'zone', 'diagnostic'), $data);
+        $hospital_id = User::with('hospital')->findOrFail($id);
+
+        return view('admin.hospital.hospital_edit',compact('states', 'city', 'zone', 'diagnostic', 'hospital_id'), $data);
     }
 
 
-    public function DoctorUpdate(Request $request)
+    public function HospitalUpdate(Request $request)
     {
         // Log the request data for debugging
         Log::info('Received Request Data:', $request->all());
@@ -127,8 +116,8 @@ class DoctorController extends Controller
         $user = User::findOrFail($request->id);
 
         if ($request->hasFile('photo')) {
-            $doctorsImage = $request->file('photo');
-            $name_gen = date('YmdHi') . $doctorsImage->getClientOriginalName();
+            $hospitalImage = $request->file('photo');
+            $name_gen = date('YmdHi') . $hospitalImage->getClientOriginalName();
 
             // Delete old image
             if ($user->photo && file_exists(public_path($user->photo))) {
@@ -136,8 +125,8 @@ class DoctorController extends Controller
             }
 
             // Save new image
-            $doctorsImage->move(public_path('upload/doctor_images/'), $name_gen);
-            $user->photo = 'upload/doctor_images/' . $name_gen;
+            $hospitalImage->move(public_path('upload/hospital_images/'), $name_gen);
+            $user->photo = 'upload/hospital_images/' . $name_gen;
         }
 
         // Find and update the user
@@ -146,7 +135,6 @@ class DoctorController extends Controller
             'username' => strtolower(str_replace(' ', '_', $request->full_name)),
             'email' => $request->email,
             'phone' => $request->phone,
-            'gender' => $request->gender,
             'dob' => Carbon::parse($request->dob),
             'doj' => Carbon::parse($request->doj),
             'address' => $request->address,
@@ -157,11 +145,10 @@ class DoctorController extends Controller
         ]);
 
         // Find and update the doctor details
-        $doctor = Doctor::where('doctoruser_id', $request->id)->firstOrFail();
-        $doctor->update([
+        $hospital = Hospital::where('hospitaluser_id', $request->id)->firstOrFail();
+        $hospital->update([
             'state_id' => $request->state_id,
             'city_id' => $request->city_id,
-            'specialization' => $request->specialization,
             'locationname' => $request->location,
             'diagnostic_id' => $request->diagnostic_id,
             'zonename_id' => $request->zonename_id,
@@ -175,83 +162,76 @@ class DoctorController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Doctor updated successfully',
+            'message' => 'Hospital updated successfully',
             'alert-type' => 'success'
         );
 
-        return redirect()->route('all.doctor')->with($notification);
+        return redirect()->route('all.hospital')->with($notification);
     }
 
-    public function DoctorDestory($id)
+    public function HospitalDestory($id)
     {
-        $doctor = User::findOrFail($id);
-        $doctor->delete();
+        $hospital = User::findOrFail($id);
+        $hospital->delete();
 
         $notification = array(
-            'message' => 'Doctor Deleted successfully',
+            'message' => 'Hospital Deleted successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('all.doctor')->with($notification);
+        return redirect()->route('all.hospital')->with($notification);
     }
 
-    public function DoctorView($id)
+    public function HospitalView($id)
     {
-        $data['header_title'] = "Doctor View";
-        $doctor_view = User::with(['doctor.state', 'doctor.city', 'doctor.zone'])->findOrFail($id);
-        return view('admin.doctor.doctor_view', compact('doctor_view'), $data);
+        $data['header_title'] = "Hospital View";
+        
+        $hospital_view = User::with(['hospital.state', 'hospital.city', 'hospital.zone'])->findOrFail($id);
+        
+        return view('admin.hospital.hospital_view', compact('hospital_view'), $data);
     }
 
-    public function DoctorPrint($id)
+    public function HospitalInactive($id)
     {
-        $doctorAgreement = User::find($id);
-        $pdf = Pdf::loadView('admin.pdf.doctorinvoice', compact('doctorAgreement'));
-        return $pdf->download('doctorinvoice.pdf');
-    }
-
-    public function DoctorInactive($id)
-    {
-        $doctor = Doctor::where('doctoruser_id', $id)->firstOrFail();
-        $doctor->update(['status' => 'inactive']);
+        $hospital = Hospital::where('hospitaluser_id', $id)->firstOrFail();
+        $hospital->update(['status' => 'inactive']);
 
         $user = User::findOrFail($id);
         $user->update(['status' => 'inactive']);
 
         $notification = array(
-            'message' => 'Doctor Inactivated Successfully',
+            'message' => 'Hospital Inactivated Successfully',
             'alert-type' => 'success'
         );
 
         return redirect()->back()->with($notification);
     }
 
-    public function DoctorActive($id)
+    public function HospitalActive($id)
     {
-        $doctor = Doctor::where('doctoruser_id', $id)->firstOrFail();
-        $doctor->update(['status' => 'active']);
+        $hospital = Hospital::where('hospitaluser_id', $id)->firstOrFail();
+        $hospital->update(['status' => 'active']);
 
         $user = User::findOrFail($id);
         $user->update(['status' => 'active']);
 
         $notification = array(
-            'message' => 'Doctor Activated Successfully',
+            'message' => 'Hospital Activated Successfully',
             'alert-type' => 'success'
         );
 
         return redirect()->back()->with($notification);
     }
 
-    
-    public function GetDoctorState($country_id)
+
+    public function HospitalcheckPhone(Request $request)
     {
-        $staties = State::where('country_id', $country_id)->orderBy('state_name', 'ASC')->get();
-        return json_encode($staties);
-    } // End Method
+        $exists = User::where('phone', $request->phone)->exists();
+        return response()->json($exists ? 'true' : 'false');
+    }
 
-
-    public function GetDoctorCity($state_id)
+    public function GetHospitalCity($state_id)
     {
         $cities = City::where('state_id', $state_id)->where('status', 'active')->orderBy('city_name', 'ASC')->get();
         return json_encode($cities);
     } // End Method
-
 }

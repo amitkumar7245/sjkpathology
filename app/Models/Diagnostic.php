@@ -42,6 +42,11 @@ class Diagnostic extends Model
     {
         return $this->belongsToMany(Collection::class, 'diagnostics');
     }
+
+    public function doctor()
+    {
+        return $this->hasMany(Doctor::class, 'diagnostic_id', 'id');
+    }
     
 
 }

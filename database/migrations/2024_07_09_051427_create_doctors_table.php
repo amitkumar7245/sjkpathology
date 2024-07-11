@@ -11,17 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pathdoctors', function (Blueprint $table) {
+        Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('doctoruser_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('country_id')->nullable()->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('state_id')->nullable()->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('city_id')->nullable()->references('id')->on('cities')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('zonename_id')->nullable()->references('id')->on('zones')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('diagnostic_id')->nullable();
             $table->string('locationname')->nullable();
             $table->string('specialization')->nullable();
+            $table->string('specialtest')->nullable();
+            $table->string('routetest')->nullable();
+            $table->string('diagnosspecialtest')->nullable();
+            $table->string('diagnosroutetest')->nullable();
             $table->string('registration_number')->nullable();
             $table->string('license_number')->nullable();
-            $table->string('hospital_name')->nullable();
             $table->string('doctor_sign')->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->string('created_by');
@@ -35,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pathdoctors');
+        Schema::dropIfExists('doctors');
     }
 };

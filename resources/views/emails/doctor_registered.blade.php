@@ -14,15 +14,10 @@ Thank you for registering as a doctor on our platform.
 - **Aadhar Number:** {{ $user->aadharnumber }}
 
 
-@if ($user->pathdoctor)
+@if ($user->doctor)
 ## Doctor Details
-- **Registration Number:** {{ $user->pathdoctor->registration_number }}
-- **License Number:** {{ $user->pathdoctor->license_number }}
-- **Specialization:** {{ $user->pathdoctor->specialization }}
-- **Commission:** {{ $user->pathdoctor->commission }} %
-- **Location Name:** {{ $user->pathdoctor->locationname }}
+- **Location Name:** {{ $user->doctor->locationname }}
 @endif
-
 
 
 @component('mail::button', ['url' => route('login')])

@@ -81,7 +81,7 @@
 
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Email</label>
-                                                    <input type="text" class="form-control" name="email" id="username" placeholder="Enter username">
+                                                    <input type="text" class="form-control" name="email" id="username" placeholder="Enter Email">
                                                 </div>
 
                                                 <div class="mb-3">

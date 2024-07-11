@@ -86,40 +86,14 @@
                                                 </div>
                                             </div>
                                             <!--end col-->
-                                            <div class="col-lg-3">
-                                                <div class="mb-3 form-groups">
-                                                    <label for="aadharcard" class="form-label">Aadhar Card Number</label>
-                                                    <input type="text" name="aadharcard" class="form-control" id="aadharcard" minlength="12" maxlength="12" placeholder="0000 0000 0000" value="">
-                                                </div>
-                                            </div>
-                                            <!--end col-->
+                                        
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
-                                                    <label for="regnumberInput" class="form-label">Reg. Number</label>
-                                                    <input type="text" class="form-control" name="regnumber" id="regnumberInput" placeholder="Enter Reg. Number" value="">
+                                                    <label for="specializationumberInput" class="form-label">Degree</label>
+                                                    <input type="text" class="form-control" name="specialization" id="specializationumberInput" placeholder="Enter Degree" value="">
                                                 </div>
                                             </div>
-                                            <!--end col-->
-                                            <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="licensenumberInput" class="form-label">License Number</label>
-                                                    <input type="text" class="form-control" name="licensenumber" id="licensenumberInput" placeholder="Enter License Number" value="">
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="specializationumberInput" class="form-label label-required">Specialization</label>
-                                                    <input type="text" class="form-control" name="specialization" id="specializationumberInput" placeholder="Enter Specialization Number" value="">
-                                                </div>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-lg-3">
-                                                <div class="mb-3">
-                                                    <label for="commissionInput" class="form-label label-required">Commission</label>
-                                                    <input type="text" name="commission" class="form-control" id="commissionInput" placeholder="50%" value="">
-                                                </div>
-                                            </div>
+                                            
                                             <!--end col-->
                                             <div class="col-lg-3">
                                                 <div class="mb-3 form-groups">
@@ -133,33 +107,97 @@
                                         
                                     </div>
                                 </div>
+                                <div class="tshadow mb25 bozero">
+                                    <h4 class="pagetitleh2"> Pathology Center Details</h4>
+                                    <div class="around10">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label for="diagnostic_id" class="form-label label-required">Pathology Center Name</label>
+                                                <select class="js-example-basic-single mb-3" name="diagnostic_id">
+                                                    <option>Select Pathology Center</option>
+                                                        @foreach ($pathologyCenter as $item )
+                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        @endforeach
+                                                </select>
+                                            </div>
+                                            <!--end col-->
 
-                                
+                                            <div class="col-lg-4">
+                                                <label for="zonename" class="form-label label-required">Zone Name</label>
+                                                <select class="js-example-basic-single mb-3" name="zonename_id">
+                                                    <option>Select Zone</option>
+                                                        @foreach ($zone as $item )
+                                                            <option value="{{ $item->id }}">{{ $item->zone_name }}</option>
+                                                        @endforeach 
+                                                </select>
+                                            </div>
+                                            <!--end col-->
+
+
+
+                                        </div>
+                                        <!--end row-->
+
+                                    </div>
+                                </div>
+
+                                <div class="tshadow mb25 bozero">
+                                    <h4 class="pagetitleh2">Percentage Test</h4>
+                                    <div class="around10">
+                                        <div class="row">
+                                            
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label for="specialtestInput" class="form-label">Percentage (ST)</label>
+                                                    <input type="text" class="form-control" name="specialtest" id="specialtestInput" placeholder="Enter Percentage" value="">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label for="routetestInput" class="form-label">Percentage Test (RT)</label>
+                                                    <input type="text" class="form-control" name="routetest" id="routetestInput" placeholder="Enter Percentage" value="">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label for="diagnosspecialtestInput" class="form-label">Percentage Diagnos (ST)</label>
+                                                    <input type="text" class="form-control" name="diagnosspecialtest" id="routetestInput" placeholder="Enter Percentage" value="">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-3">
+                                                <div class="mb-3">
+                                                    <label for="locationInput" class="form-label">Percentage Diagnos (RT)</label>
+                                                    <input type="text" class="form-control" name="diagnosroutetest" id="diagnosroutetestInput" placeholder="Enter Percentage" value="">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+
+                                        </div>
+                                        <!--end row-->
+                                        
+                                    </div>
+                                </div>
                                 
                                 <div class="tshadow mb25 bozero">
                                     <h4 class="pagetitleh2">Location Details</h4>
                                     <div class="around10">
                                         <div class="row">
-                                            <div class="col-lg-3">
-                                                <label for="country" class="form-label">Country</label>
-                                                <select class="js-example-basic-single mb-3" name="country_id">
-                                                    <option>Select Country</option>
-                                                        @foreach ($countries as $item )
-                                                            <option value="{{ $item->id }}">{{ $item->country_name }}</option>
+                                        
+                                            <div class="col-lg-4">
+                                                <label for="state" class="form-label">State</label>
+                                                <select class="js-example-basic-single mb-3" name="state_id">
+                                                    <option>Select State</option>
+                                                        @foreach ($states as $item )
+                                                            <option value="{{ $item->id }}">{{ $item->state_name }}</option>
                                                         @endforeach
                                                     
                                                 </select>
                                             </div>
                                             <!--end col-->
-                                            <div class="col-lg-3">
-                                                <label for="state" class="form-label">State</label>
-                                                <select class="js-example-basic-single mb-3" name="state_id">
-                                                    <option>Select State</option>
-                                                    
-                                                </select>
-                                            </div>
-                                            <!--end col-->
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-4">
                                                 <label for="city" class="form-label">City</label>
                                                 <select class="js-example-basic-single mb-3" name="city_id">
                                                     <option>Select City</option>
@@ -167,7 +205,7 @@
                                                 </select>
                                             </div>
                                             <!--end col-->
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="locationInput" class="form-label label-required">Location</label>
                                                     <input type="text" name="location" class="form-control" id="locationInput" placeholder="Enter Location" value="">
@@ -190,21 +228,23 @@
                                     <h4 class="pagetitleh2">Gallery Images</h4>
                                     <div class="around10">
                                         <div class="row">
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-6 mb-3">
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text">Avatar</label>
                                                     <input type="file" name="photo" class="form-control" id="image" accept=".jpg,.jpeg,.png">
                                                 </div>
                                             </div>
                                             <!--end col-->
-                                            <div class="col-md-4 mb-3">
+
+                                            <div class="col-md-6 mb-3">
                                                 <div class="input-group mb-3">
-                                                    <label class="input-group-text" for="inputGroupFile03">Aadhar Card</label>
-                                                    <input type="file" class="form-control" id="inputGroupFile02">
+                                                    {{-- <label class="input-group-text"></label> --}}
+                                                    <img id="showImage" src="{{ url('upload/no_image.jpg') }}" style="width:100px; height:100px;">
                                                 </div>
                                             </div>
                                             <!--end col-->
-                                            <div class="col-md-4 mb-3">
+                                           
+                                            <div class="col-md-6 mb-3">
                                                 <div class="input-group mb-3">
                                                     <label class="input-group-text" for="inputGroupFile05">Sign</label>
                                                     <input type="file" class="form-control" id="inputGroupFile05">
@@ -238,29 +278,16 @@
 <!-- End Page-content -->
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('select[name="country_id"]').on('change', function(){
-            var country_id = $(this).val();
-            if (country_id) {
-                $.ajax({
-                    url: "{{ url('/doctorsstate/ajax') }}/"+country_id,
-                    type: "GET",
-                    dataType:"json",
-                    success:function(data){
-                        $('select[name="state_id"]').html('');
-                        var d =$('select[name="state_id"]').empty();
-                        $.each(data, function(key, value){
-                            $('select[name="state_id"]').append('<option value="'+ value.id + '">' + value.state_name + '</option>');
-                        });
-                    },
-                });
-            } else {
-                alert('danger');
-            }
-        });
-    });
+	$(document).ready(function(){
+		$('#image').change(function(e){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#showImage').attr('src',e.target.result);
+			}
+			reader.readAsDataURL(e.target.files['0']);
+		});
+	});
 </script>
-
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -407,7 +434,7 @@
     });
 });
 
-    
+
 </script>
 
 

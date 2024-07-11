@@ -23,7 +23,7 @@ class City extends Model
     }
     public function getState()
     {
-        return $this->belongsTo(State::class,'country_id','id');
+        return $this->belongsTo(State::class,'state_id','id');
     }
 
     public function diagnostics()

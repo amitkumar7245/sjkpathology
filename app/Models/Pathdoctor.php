@@ -10,7 +10,7 @@ class Pathdoctor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['doctoruser_id', 'country_id', 'state_id', 'city_id', 'locationname', 'specialization', 'commission', 'registration_number', 'license_number', 'hospital_name', 'doctor_sign', 'status', 'created_by', 'created_at'];
+    protected $fillable = ['doctoruser_id', 'country_id', 'state_id', 'city_id', 'diagnostic_id', 'zonename_id', 'locationname', 'specialization', 'specialtest', 'routetest', 'diagnosspecialtest', 'diagnosroutetest', 'registration_number', 'license_number', 'doctor_sign', 'status', 'created_by', 'created_at'];
 
     public function creator()
     {
