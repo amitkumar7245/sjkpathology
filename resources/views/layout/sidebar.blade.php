@@ -31,19 +31,19 @@
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Patient">
                     <a class="nav-link menu-link {{ ($route ==  'all.patient')? 'active':  '' }}" href="">
-                        <i class="fas fa-user-injured"></i><span data-key="t-dashboard">Patient</span>
+                        <i class="fas fa-user-injured"></i><span data-key="t-dashboard">Patients</span>
                     </a>
                 </li><!-- end Patient Menu -->  
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
                     <a class="nav-link menu-link {{ ($route ==  'all.doctor')? 'active':  '' }}" href="{{ route('all.doctor') }}">
-                        <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Doctor</span>
+                        <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Doctors</span>
                     </a>
                 </li>  <!-- end Doctor Menu --> 
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Hospital">
                     <a class="nav-link menu-link {{ ($route ==  'all.hospital')? 'active':  '' }}" href="{{ route('all.hospital') }}">
-                        <i class="fas fa-hospital"></i> <span data-key="t-dashboard">Hospital</span>
+                        <i class="fas fa-hospital"></i> <span data-key="t-dashboard">Hospitals</span>
                     </a>
                 </li>  <!-- end Hospital Menu --> 
 
@@ -55,13 +55,13 @@
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Collection Center">
                     <a class="nav-link menu-link {{ ($route ==  'all.collectioncenter')? 'active':  '' }}" href="{{ route('all.collectioncenter') }}">
-                        <i class="fas fa-map-marked-alt"></i> <span data-key="t-dashboard">Collection Center</span>
+                        <i class="fas fa-map-marked-alt"></i> <span data-key="t-dashboard">Collection Centers</span>
                     </a>
                 </li>  <!-- end Collection Center Menu -->
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Staff">
                     <a class="nav-link menu-link {{ ($route ==  'all.staff')? 'active':  '' }}" href="{{ route('all.staff') }}">
-                        <i class="fas fa-users"></i> <span data-key="t-dashboard">Staff</span>
+                        <i class="fas fa-users"></i> <span data-key="t-dashboard">Staffs</span>
                     </a>
                 </li>  <!-- end Staff Menu --> 
 
