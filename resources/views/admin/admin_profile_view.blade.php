@@ -30,7 +30,7 @@
                     <div class="card-body p-4">
                         <div class="text-center">   
                             <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                <img src="{{ (!empty($adminData->photo)) ? url('upload/admin_images/profile/'.$adminData->photo): url('upload/no_image.jpg') }}" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
+                                <img src="{{ (!empty($adminData->photo)) ? url($adminData->photo): url('upload/no_image.jpg') }}" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
                                 <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                     {{-- <input id="profile-img-file-input" type="file" class="profile-img-file-input"> --}}
                                     <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">

@@ -44,21 +44,21 @@
                     <!--end row-->
 
                     <div class="row">
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-2 col-md-6">
                             <!-- card -->
-                            <div class="card card-animate">
+                            <div class="card card-animate bg-gradient-deepblue">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                            <p class="text-uppercase fw-medium text-white text-truncate mb-0">
                                                 Total Staff</p>
                                         </div>
                                         
                                     </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
+                                    <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="{{ count($totalStaff) }}">{{ count($totalStaff) }}</span></h4>
-                                            <a href="{{ route('all.staff') }}" class="fw-semibold ff-secondary">View Staff</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalStaff) }}">{{ count($totalStaff) }}</span></h4>
+                                            <a href="{{ route('all.staff') }}" class="fw-semibold ff-secondary text-white">View Staff</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-success-subtle rounded fs-3">
@@ -71,21 +71,21 @@
                             </div><!-- end card -->
                         </div><!-- end col -->
 
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-2 col-md-6">
                             <!-- card -->
-                            <div class="card card-animate">
+                            <div class="card card-animate bg-gradient-orange">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                            <p class="text-uppercase fw-medium text-white text-truncate mb-0">
                                                 Total Doctors</p>
                                         </div>
                                         
                                     </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
+                                    <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="{{ count($totalDoctor) }}">{{ count($totalDoctor) }}</span></h4>
-                                            <a href="{{ route('all.doctors') }}" class="fw-semibold ff-secondary">View Doctors</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalDoctor) }}">{{ count($totalDoctor) }}</span></h4>
+                                            <a href="{{ route('all.doctors') }}" class="fw-semibold ff-secondary text-white">View Doctors</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-info-subtle rounded fs-3">
@@ -97,21 +97,21 @@
                             </div><!-- end card -->
                         </div><!-- end col -->
 
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-2 col-md-6">
                             <!-- card -->
-                            <div class="card card-animate">
+                            <div class="card card-animate bg-gradient-ohhappiness">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                            <p class="text-uppercase fw-medium text-white text-truncate mb-0">
                                                Total Patients</p>
                                         </div>
                                         
                                     </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
+                                    <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="{{ count($totalPatient) }}">{{ count($totalPatient) }}</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary">View Patients</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalPatient) }}">{{ count($totalPatient) }}</span></h4>
+                                            <a href="#" class="fw-semibold ff-secondary text-white">View Patients</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-warning-subtle rounded fs-3">
@@ -123,53 +123,25 @@
                             </div><!-- end card -->
                         </div><!-- end col -->
 
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-2 col-md-6">
                             <!-- card -->
-                            <div class="card card-animate">
+                            <div class="card card-animate bg-gradient-red">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Patients Appointment</p>
+                                            <p class="text-uppercase fw-medium text-white text-truncate mb-0">
+                                               Total Hospital</p>
                                         </div>
                                         
                                     </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
+                                    <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="110">0</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary">View Patients Appointment</a>
-                                        </div>
-                                        <div class="avatar-sm flex-shrink-0">
-                                            <span class="avatar-title bg-primary-subtle rounded fs-3">
-                                                <i class="bx bx-wallet text-primary"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div><!-- end card body -->
-                            </div><!-- end card -->
-                        </div><!-- end col -->
-                    </div> <!-- end row-->
-
-                    <div class="row">
-                        <div class="col-xl-6 col-md-6">
-                            <!-- card -->
-                            <div class="card card-animate">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                                Total Pathology</p>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
-                                        <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="2340">0</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary">View Pathology</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalPatient) }}">{{ count($totalPatient) }}</span></h4>
+                                            <a href="#" class="fw-semibold ff-secondary text-white">View Hospital</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-warning-subtle rounded fs-3">
-                                                <i class="bx bx-user-circle text-warning"></i>
+                                                <i class="fas fa-hospital text-info"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -177,21 +149,47 @@
                             </div><!-- end card -->
                         </div><!-- end col -->
 
-                        <div class="col-xl-6 col-md-6">
+                        <div class="col-xl-2 col-md-6">
                             <!-- card -->
-                            <div class="card card-animate">
+                            <div class="card card-animate bg-gradient-coral">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-grow-1 overflow-hidden">
-                                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
+                                            <p class="text-uppercase fw-medium text-white text-truncate mb-0">
+                                               Total Pathology</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="d-flex align-items-end justify-content-between mt-1">
+                                        <div>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalPatient) }}">{{ count($totalPatient) }}</span></h4>
+                                            <a href="#" class="fw-semibold ff-secondary text-white">View Pathology</a>
+                                        </div>
+                                        <div class="avatar-sm flex-shrink-0">
+                                            <span class="avatar-title bg-warning-subtle rounded fs-3">
+                                                <i class="fas fa-diagnoses text-primary"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div><!-- end card body -->
+                            </div><!-- end card -->
+                        </div><!-- end col -->
+
+                        <div class="col-xl-2 col-md-6">
+                            <!-- card -->
+                            <div class="card card-animate bg-gradient-ibiza">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-grow-1 overflow-hidden">
+                                            <p class="text-uppercase fw-medium text-white text-truncate mb-0">
                                                 Total Collection Center</p>
                                         </div>
                                         
                                     </div>
-                                    <div class="d-flex align-items-end justify-content-between mt-4">
+                                    <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
-                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="110">0</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary">View Collection Center</a>
+                                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="110">0</span></h4>
+                                            <a href="#" class="fw-semibold ff-secondary text-white">Collection Cent.</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title bg-primary-subtle rounded fs-3">
@@ -203,6 +201,8 @@
                             </div><!-- end card -->
                         </div><!-- end col -->
                     </div> <!-- end row-->
+
+                    
 
                     <div class="row">
                         <div class="col-xl-4 col-md-6">
@@ -447,7 +447,7 @@
                     
 
                     <div class="row">
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header border-0 align-items-center d-flex">
                                     <h4 class="card-title mb-0 flex-grow-1">Revenue</h4>
@@ -508,79 +508,13 @@
                             </div><!-- end card -->
                         </div><!-- end col -->
 
-                        <div class="col-xl-4">
-                            <!-- card -->
-                            <div class="card card-height-100">
-                                <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Sales by Locations</h4>
-                                    <div class="flex-shrink-0">
-                                        <button type="button" class="btn btn-soft-primary btn-sm">
-                                            Export Report
-                                        </button>
-                                    </div>
-                                </div><!-- end card header -->
-
-                                <!-- card body -->
-                                <div class="card-body">
-
-                                    <div id="sales-by-locations" data-colors='["--vz-light", "--vz-warning", "--vz-primary"]' style="height: 269px" dir="ltr"></div>
-
-                                    <div class="px-2 py-2 mt-1">
-                                        <p class="mb-1">Canada <span class="float-end">75%</span></p>
-                                        <div class="progress mt-2" style="height: 6px;">
-                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="75">
-                                            </div>
-                                        </div>
-
-                                        <p class="mt-3 mb-1">Greenland <span class="float-end">47%</span>
-                                        </p>
-                                        <div class="progress mt-2" style="height: 6px;">
-                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 47%" aria-valuenow="47" aria-valuemin="0" aria-valuemax="47">
-                                            </div>
-                                        </div>
-
-                                        <p class="mt-3 mb-1">Russia <span class="float-end">82%</span></p>
-                                        <div class="progress mt-2" style="height: 6px;">
-                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="82">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end card body -->
-                            </div>
-                            <!-- end card -->
-                        </div>
-                        <!-- end col -->
+                        
                     </div>
 
                     
 
                     <div class="row">
-                        <div class="col-xl-4">
-                            <div class="card card-height-100">
-                                <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Store Visits by Source</h4>
-                                    <div class="flex-shrink-0">
-                                        <div class="dropdown card-header-dropdown">
-                                            <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="text-muted">Report<i class="mdi mdi-chevron-down ms-1"></i></span>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="#">Download Report</a>
-                                                <a class="dropdown-item" href="#">Export</a>
-                                                <a class="dropdown-item" href="#">Import</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- end card header -->
-
-                                <div class="card-body">
-                                    <div id="store-visits-source" data-colors='["--vz-primary", "--vz-success", "--vz-warning", "--vz-danger", "--vz-info"]' class="apex-charts" dir="ltr"></div>
-                                </div>
-                            </div> <!-- .card-->
-                        </div> <!-- .col-->
-
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="card-title mb-0">Patients Appointment List</h5>

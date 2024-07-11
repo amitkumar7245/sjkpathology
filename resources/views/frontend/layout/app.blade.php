@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 
 <body class="home-pg-twelve">
@@ -72,6 +73,31 @@
     <script src="{{ asset('frontend/assets/js/script.js') }}" type="ffcdb64f2700b2d04c0c39a5-text/javascript"></script>
     <script src="{{ asset('frontend/assets/js/rocket-loader.min.js') }}" data-cf-settings="ffcdb64f2700b2d04c0c39a5-|49"
         defer></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+     @if(Session::has('message'))
+     var type = "{{ Session::get('alert-type','info') }}"
+     switch(type){
+        case 'info':
+        toastr.info(" {{ Session::get('message') }} ");
+        break;
+    
+        case 'success':
+        toastr.success(" {{ Session::get('message') }} ");
+        break;
+    
+        case 'warning':
+        toastr.warning(" {{ Session::get('message') }} ");
+        break;
+    
+        case 'error':
+        toastr.error(" {{ Session::get('message') }} ");
+        break; 
+     }
+     @endif 
+    </script>    
 </body>
 
 </html>

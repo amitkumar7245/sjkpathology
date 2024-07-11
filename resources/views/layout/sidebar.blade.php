@@ -33,9 +33,7 @@
                     <a class="nav-link menu-link {{ ($route ==  'all.patient')? 'active':  '' }}" href="">
                         <i class="fas fa-user-injured"></i><span data-key="t-dashboard">Patient</span>
                     </a>
-                </li>    
-
-                
+                </li><!-- end Patient Menu -->  
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
                     <a class="nav-link menu-link {{ ($route ==  'all.doctor')? 'active':  '' }}" href="{{ route('all.doctor') }}">
@@ -45,15 +43,15 @@
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Hospital">
                     <a class="nav-link menu-link {{ ($route ==  'all.hospital')? 'active':  '' }}" href="{{ route('all.hospital') }}">
-                        <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Hospital</span>
+                        <i class="fas fa-hospital"></i> <span data-key="t-dashboard">Hospital</span>
                     </a>
-                </li>  <!-- end Doctor Menu --> 
+                </li>  <!-- end Hospital Menu --> 
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Diagnostic Centres">
                     <a class="nav-link menu-link {{ ($route ==  'all.diagnosticcenter')? 'active':  '' }}" href="{{ route('all.diagnosticcenter') }}">
                         <i class="fas fa-map-marked-alt"></i><span data-key="t-dashboard">Diagnostic Centres</span>
                     </a>
-                </li>
+                </li><!-- end Diagnostic Centres Menu --> 
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Collection Center">
                     <a class="nav-link menu-link {{ ($route ==  'all.collectioncenter')? 'active':  '' }}" href="{{ route('all.collectioncenter') }}">

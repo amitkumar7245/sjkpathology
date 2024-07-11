@@ -42,7 +42,8 @@ class AuthController extends Controller
             return redirect('collection/dashboard');
         }
     }
-      return view('auth.login');
+
+    return view('auth.login');
 
    }//end method
 
@@ -50,33 +51,37 @@ class AuthController extends Controller
     public function AuthLogin(Request $request)
    {
     // dd($request->all());
+    $notification = array(
+        'message' => 'Login Successfully',
+        'alert-type' => 'success'
+    );
     $remember = !empty($request->remember) ? true : false;
 
     if(Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember))
     {
         if(Auth::user()->role == "admin")
         {
-            return redirect('admin/dashboard');
+            return redirect('admin/dashboard')->with($notification);
         }
         else if(Auth::user()->role == "doctor")
         {
-            return redirect('doctor/dashboard');
+            return redirect('doctor/dashboard')->with($notification);
         }
         else if(Auth::user()->role == "staff")
         {
-            return redirect('staff/dashboard');
+            return redirect('staff/dashboard')->with($notification);
         }
        else if(Auth::user()->role == "patient")
         {
-            return redirect('patient/dashboard');
+            return redirect('patient/dashboard')->with($notification);
         }
         else if(Auth::user()->role == "diagnostic")
         {
-            return redirect('diagnostic/dashboard');
+            return redirect('diagnostic/dashboard')->with($notification);
         }
         else if(Auth::user()->role == "collection")
         {
-            return redirect('collection/dashboard');
+            return redirect('collection/dashboard')->with($notification);
         }
     }
     else
@@ -144,7 +149,12 @@ class AuthController extends Controller
    public function AuthLogout()
    {
       Auth::logout();
-      return redirect(url(''));
+
+    $notification = array(
+        'message' => 'Logout Successfully',
+        'alert-type' => 'success'
+    );
+      return redirect(url(''))->with($notification);
    }
 
 }
