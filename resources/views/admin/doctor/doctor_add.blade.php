@@ -113,7 +113,7 @@
                                     <h4 class="pagetitleh2"> Pathology Center Details</h4>
                                     <div class="around10">
                                         <div class="row">
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label for="diagnostic_id" class="form-label label-required">Pathology Center Name</label>
                                                 <select class="js-example-basic-single mb-3" name="diagnostic_id">
                                                     <option>Select Pathology Center</option>
@@ -124,7 +124,7 @@
                                             </div>
                                             <!--end col-->
 
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <label for="zonename" class="form-label label-required">Zone Name</label>
                                                 <select class="js-example-basic-single mb-3" name="zonename_id">
                                                     <option>Select Zone</option>
