@@ -2,9 +2,9 @@
 <html lang="en" data-layout="vertical">
 <head>
     <meta charset="utf-8" />
-    <title>{{ !empty($header_title) ? $header_title : '' }} | SJK</title>
+    <title>{{ !empty($header_title) ? $header_title : '' }} | SJK Pathology</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta name="description" content="" />
     <!-- App favicon -->
     {{-- <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">   --}}
 
@@ -193,8 +193,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('backend/assets/js/code.js') }}"></script>
     <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
-
-
-    
 </body>
 </html>

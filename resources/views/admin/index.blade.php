@@ -20,7 +20,7 @@
                         <div class="col-12">
                             <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                                 <div class="flex-grow-1">
-                                    <h4 class="fs-16 mb-1">Welcome, Admin!</h4>
+                                    <h4 class="fs-16 mb-1">Welcome, {{ Auth::user()->name }}!</h4>
                                     <p class="text-muted mb-0">Here's what's happening with your Pathology today.</p>
                                 </div>
                                 <div class="mt-3 mt-lg-0">
@@ -87,7 +87,7 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalDoctor) }}">{{ count($totalDoctor) }}</span></h4>
-                                            <a href="{{ route('all.doctors') }}" class="fw-semibold ff-secondary text-white">List Doctors</a>
+                                            <a href="{{ route('all.doctor') }}" class="fw-semibold ff-secondary text-white">List Doctors</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title rounded fs-3">
@@ -139,7 +139,7 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalHospital) }}">{{ count($totalHospital) }}</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary text-white">List Hospital</a>
+                                            <a href="{{ route('all.hospital') }}" class="fw-semibold ff-secondary text-white">List Hospital</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title rounded fs-3">
@@ -165,7 +165,7 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalDiagnostic) }}">{{ count($totalDiagnostic) }}</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary text-white">List Pathology</a>
+                                            <a href="{{ route('all.diagnosticcenter') }}" class="fw-semibold ff-secondary text-white">List Pathology</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title rounded fs-3">
@@ -191,7 +191,7 @@
                                     <div class="d-flex align-items-end justify-content-between mt-1">
                                         <div>
                                             <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{ count($totalCollection) }}">{{ count($totalCollection) }}</span></h4>
-                                            <a href="#" class="fw-semibold ff-secondary text-white">Collection Cent.</a>
+                                            <a href="{{ route('all.collectioncenter') }}" class="fw-semibold ff-secondary text-white">Collection Cent.</a>
                                         </div>
                                         <div class="avatar-sm flex-shrink-0">
                                             <span class="avatar-title rounded fs-3">

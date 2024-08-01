@@ -1,20 +1,21 @@
 .pagetitleh2 {
     background: #f2f2f2;
     margin: 0;
-    font-size: 18px;
-    padding: 10px 10px;
+    font-size: 17px;
+    padding: 18px 10px;
     color: #444;
     border-bottom: 1px solid #d7dfe3;
+    font-weight: 500;
 }
 .tshadow {
     border: 1px solid #e7ebf0;
-    padding: 10px;
+    /* padding: 10px; */
 }
 .bozero {
     border-top: 0 !important;
 }
 .mb25 {
-    margin-bottom: 5px;
+    margin-bottom: 25px;
 }
 .around10 {
     padding: 10px;

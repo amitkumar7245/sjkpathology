@@ -52,6 +52,7 @@ body{background-color:var(--vz-boxed-body-bg)}[data-layout-width=boxed] #layout-
 a.btn.btn-primary {
    box-shadow: 3px 5px 6px #aaa;
    -webkit-box-shadow: 3px 5px 6px #403e3e;
+   background-color: #0e82fd;
 }
 .label-required::after {
    content: " *";

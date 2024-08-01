@@ -151,7 +151,7 @@
                                             <div class="col-lg-3">
                                                 <div class="mb-3">
                                                     <label for="specialtestInput" class="form-label">Percentage (ST)</label>
-                                                    <input type="text" class="form-control" name="specialtest" id="specialtestInput" placeholder="Enter Percentage" value="">
+                                                    <input type="text" class="form-control" name="specialtest" id="specialtestInput" placeholder="Enter Percentage" min="0" max="100" value="">
                                                 </div>
                                             </div>
                                             <!--end col-->
