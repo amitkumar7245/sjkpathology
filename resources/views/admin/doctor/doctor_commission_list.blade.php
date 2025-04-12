@@ -2,7 +2,6 @@
 
 @section('dashboard')
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div class="page-content">
@@ -12,12 +11,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0">Staff List</h4>
+                    <h4 class="mb-sm-0">Doctor Commission </h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                            <li class="breadcrumb-item active">Staff List</li>
+                            <li class="breadcrumb-item active">Doctor Commission List</li>
                         </ol>
                     </div>
 
@@ -32,7 +31,7 @@
                         <div class="d-flex align-items-center flex-wrap gap-2">
                             <div class="flex-grow-1">
                                 
-                                <a href="{{ route('add.staff') }}" class="btn btn-primary"><i class="ri-add-fill me-1 align-bottom"></i>Create</a>
+                                {{-- <a href="{{ route('add.doctor') }}" class="btn btn-primary"><i class="ri-add-fill me-1 align-bottom"></i>Create</a> --}}
                             </div>
                         </div>
                     </div>
@@ -42,7 +41,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">Staff List</h5>
+                        <h5 class="card-title mb-0">Doctor Commission List</h5>
                     </div>
                     <div class="card-body">
                         <table id="buttons-datatables" class="table table-bordered table-hover dt-responsive nowrap align-middle mdl-data-table dataTable no-footer" style="width:100%">
@@ -53,18 +52,21 @@
                                             <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
                                         </div>
                                     </th>
-                                    <th>SR No.</th>
+                                    <th width="10px">SR No.</th>
                                     <th>Reg. No.</th>
                                     <th>Name</th>
                                     <th>Mobile No.</th>
-                                    <th>Email</th>
-                                    <th>Created By</th>
+                                    <th>Test(ST)%</th>
+                                    <th>Test(RT)%</th>
+                                    <th>Diagnos(ST)%</th>
+                                    <th>Diagnos(RT)%</th>
+                                    <th>Zone</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($stafflist as $key => $item )
+                                @foreach ($doctorcommission as $key => $item )
                                     <tr>
                                         <th scope="row">
                                             <div class="form-check">
@@ -73,28 +75,14 @@
                                         </th>
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ $item->reg_number}}</td>
-                                        <td> 
-                                            <div class="d-flex align-items-center">
-                                                <div class="flex-shrink-0"> 
-                                                    @if ($item->photo != '')
-                                                        <img src="{{ asset($item->photo) }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
-                                                    @else
-                                                        @if ($item->gender == '1') <!-- Assuming '1' for Male -->
-                                                            <img src="{{ asset('backend/assets/images/users/male-dummy.png') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
-                                                        @elseif ($item->gender == '0') <!-- Assuming '0' for Female -->
-                                                            <img src="{{ asset('backend/assets/images/users/female-dummy.png') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
-                                                        @else
-                                                            <img src="{{ asset('backend/assets/images/users/user-dummy-img.jpg') }}" alt="" class="avatar-xxs rounded-circle image_src object-fit-cover">
-                                                        @endif
-                                                    @endif
-                                                    
-                                                </div>
-                                                <div class="flex-grow-1 ms-2 name">{{ $item->name }}</div>
-                                            </div>
-                                        </td>
-                                        <td>{{ $item->phone }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->staff && $item->staff->creator ? $item->staff->creator->name : $item->name }}</td>
+                                        <td>{{ $item->name}}</td>
+                                        <td>{{ $item->phone }}</td>  
+                                        <td>{{ $item->doctor->specialtest ?? '-' }}</td>
+                                        <td>{{ $item->doctor->routetest ?? '-' }}</td>
+                                        <td>{{ $item->doctor->diagnosspecialtest ?? '-' }}</td>
+                                        <td>{{ $item->doctor->diagnosroutetest ?? '-' }}</td>
+                                        <td>{{ $item->doctor->locationname ?? '-' }}</td>
+                                        {{-- <td>{{ $item->doctor->zone->zone_name ?? '-' }}</td> --}}
                                         @if ($item->status == 'active')
                                         <td class="status"><span class="badge bg-success-subtle text-success text-uppercase">Active</span></td>
                                         @else
@@ -106,23 +94,21 @@
                                                     <i class="ri-settings-3-line"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
-                                                    <li><a href="{{ route('print.staff', $item->id) }}" class="dropdown-item"><i class="ri-printer-fill align-bottom me-2 text-muted"></i>Print</a></li>
-                                                    <li><a href="{{ route('view.staff', $item->id) }}" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                                    <li><a href="{{ route('edit.staff', $item->id) }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
-                                                    <li><a href="{{ route('delete.staff', $item->id) }}" id="delete" class="dropdown-item remove-item-btn">
+                                                    
+                                                    <li><a href="{{ route('edit.doctor',$item->id) }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+                                                    <li><a href="{{ route('delete.doctor', $item->id) }}" id="delete" class="dropdown-item remove-item-btn">
                                                         <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                                     </a>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            @if ($item->staff && $item->staff->status == 'active')
-                                                <a href="{{ route('inactive.staff', $item->id) }}" class="btn btn-primary btn-sm" title="Inactive"> <i class="fa-solid fa-thumbs-up"></i></a>
+                                            @if ($item->status == 'active')
+                                                <a href="{{ route('inactive.doctor', $item->id) }}" class="btn btn-primary btn-sm" title="Inactive"> <i class="fa-solid fa-thumbs-up"></i></a>
                                             @else
-                                                <a href="{{ route('active.staff', $item->id) }}" class="btn btn-danger btn-sm" title="Active"> <i class="fa-solid fa-thumbs-down"></i></a>
+                                                <a href="{{ route('active.doctor', $item->id) }}" class="btn btn-danger btn-sm" title="Active"> <i class="fa-solid fa-thumbs-down"></i></a>
                                             @endif
-
-                                            <a href="{{ route('idcardprofile.staff', $item->id) }}" class="btn btn-primary btn-sm" title="Prnit"><i class="fas fa-print"></i></a>
                                         </td>
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>

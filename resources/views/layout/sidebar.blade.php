@@ -33,13 +33,31 @@
                     <a class="nav-link menu-link {{ ($route ==  'all.patient')? 'active':  '' }}" href="">
                         <i class="fas fa-user-injured"></i><span data-key="t-dashboard">Patients</span>
                     </a>
-                </li><!-- end Patient Menu -->  
-
-                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctor">
-                    <a class="nav-link menu-link {{ ($route ==  'all.doctor')? 'active':  '' }}" href="{{ route('all.doctor') }}">
-                        <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Doctors</span>
+                </li><!-- end Patient Menu --> 
+                
+                
+                <li class="nav-item active" data-bs-toggle="tooltip" data-bs-placement="right" title="Doctors">
+                    <a class="nav-link menu-link" href="#doctors" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="doctors">
+                        <i class="fas fa-user-md"></i><span data-key="t-dashboards">Doctors</span>
                     </a>
-                </li>  <!-- end Doctor Menu --> 
+                    <div class="collapse menu-dropdown" id="doctors">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('all.doctor') }}" class="nav-link menu-link {{ ($route ==  'all.doctor')? 'active':  '' }}" data-key="t-alladmin">All Doctor</a>
+                                <a href="{{ route('Doctor.Commission') }}" class="nav-link menu-link {{ ($route ==  'Doctor.Commission')? 'active':  '' }}" data-key="t-alladmin">Doctor Commission</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </li> <!-- end Doctor Menu --> 
+
+
+
+                <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Appointments">
+                    <a class="nav-link menu-link {{ ($route ==  'all.appointments')? 'active':  '' }}" href="{{ route('all.appointments') }}">
+                        <i class="fas fa-user-md"></i> <span data-key="t-dashboard">Appointments</span>
+                    </a>
+                </li>   
 
                 <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Hospital">
                     <a class="nav-link menu-link {{ ($route ==  'all.hospital')? 'active':  '' }}" href="{{ route('all.hospital') }}">

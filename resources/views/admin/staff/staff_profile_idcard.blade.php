@@ -5,6 +5,12 @@
 @endsection
 
 @section('dashboard')
+@php
+    $photoPath = public_path($staffIdCard->photo ?? 'upload/no_image.jpg');
+    $photoData = base64_encode(file_get_contents($photoPath));
+    $photoType = pathinfo($photoPath, PATHINFO_EXTENSION);
+@endphp
+
     <div class="page-content">
         <div class="container-fluid">
 
@@ -51,9 +57,13 @@
                                 <img src="{{ asset('upload/sjk_logo/logo-header.png') }}" alt="pathology-logo"
                                     style="height:58px;">
                             </div>
+                            
                             <div class="idcardcard-content" id="ICARD">
-                                <img src="{{ asset('upload/staff_images/' . $staffIdCard->photo) }}" alt="staff-image"
-                                    width="55px" height="90px">
+                                <img src="data:image/{{ $photoType }};base64,{{ $photoData }}" width="55px" height="90px">
+                                {{-- <img src="{{ public_path($staffIdCard->photo ?? 'upload/no_image.jpg') }}" alt="staff-image" width="55px" height="90px"> --}}
+                                {{-- <img src="{{ (!empty($staffIdCard->photo)) ? url($staffIdCard->photo) : url('upload/no_image.jpg') }}" alt="staff-image" width="55px" height="90px"> --}}
+                                {{-- <img src="{{ asset($staffIdCard->photo) }}" alt="staff-image"
+                                    width="55px" height="90px"> --}}
                                 <table>
                                     <tr>
                                         <td><strong>Name:</strong></td>

@@ -18,11 +18,22 @@
                     <div class="banner-content-twelve">
                         <div class="banner-title-twelve aos" data-aos="fade-up" data-aos-delay="400">
                             <h1>Now You Can Book Lab Test at Home</h1>
-                            <p>Comprehensive Lab Testing for Informed Health</p>
+                            <p>Get a Call Back within 10 Minutes from our SJK Team</p>
                         </div>
+
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
                         <div class="banner-form-field">
                             <span>Home Visit</span>
-                            <form action>
+
+                            <form id="myForm" method="post" action="{{ route('store.bookappointment')}}">
+                                @csrf
+
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-12 col-md-6">
                                         <div class="input-block">
@@ -31,7 +42,7 @@
                                             </div>
                                             <div class="banner-input-box">
                                                 <label class="form-label">Full Name</label>
-                                                <input type="text" class="form-control" placeholder="Amit Kumar">
+                                                <input type="text" name="name" class="form-control" placeholder="Amit Kumar" >
                                             </div>
                                         </div>
                                     </div>
@@ -42,37 +53,40 @@
                                             </div>
                                             <div class="banner-input-box">
                                                 <label class="form-label">Mobile Number</label>
-                                                <input type="text" class="form-control" placeholder="+91-8920XXXXX">
+                                                <input type="tel" name="phone" class="form-control" id="phonenumberInput" maxlength="10" placeholder="Enter your phone number" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                                    <span id="phone-error" class="invalid-feedback"></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-12 col-md-6">
+                                    {{-- <div class="col-xl-6 col-lg-12 col-md-6">
                                         <div class="input-block">
                                             <div class="icon-badge">
                                                 <span><i class="feather-mail"></i></span>
                                             </div>
                                             <div class="banner-input-box">
                                                 <label class="form-label">Email</label>
-                                                <input type="email" class="form-control" placeholder="amit@gmail.com">
+                                                <input type="email" name="email" class="form-control" placeholder="amit@gmail.com">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-12 col-md-6">
+                                    </div> --}}
+                                    {{-- <div class="col-xl-6 col-lg-12 col-md-6">
                                         <div class="input-block">
                                             <div class="icon-badge">
                                                 <span><i class="feather-map-pin"></i></span>
                                             </div>
                                             <div class="banner-input-box">
                                                 <label class="form-label">Address</label>
-                                                <input type="text" class="form-control"
+                                                <input type="text" name="address" class="form-control"
                                                     placeholder="Home-12,Gali No.12,Village-Pahi Hardo,Post-Bighapur,Dist.Unnao">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="banner-btns">
-                                    <a href="#" class="btn appoint-btn"><i class="feather-smartphone me-2"></i>Book an
-                                        Appointment</a>
+                                    <button type="submit" class="btn appoint-btn"><i class="feather-smartphone me-2"></i>Book an
+                                        Appointment</button>
+                                    {{-- <a href="#" class="btn appoint-btn"><i class="feather-smartphone me-2"></i>Book an
+                                        Appointment</a> --}}
                                 </div>
                             </form>
                         </div>
@@ -3156,5 +3170,51 @@
             </div>
         </div>
     </section>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+    
+        $('#myForm').validate({
+            rules: {
+                name: {
+                    required: true,
+                },
+                phone: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    uniquePhone: true // Add the uniquePhone method
+                },
+            },
+            messages: {
+                name: {
+                    required: 'Please Enter Name',
+                },
+                phone: {
+                    required: 'Please Enter Mobile Number',
+                    digits: 'Please enter a valid 10-digit mobile number',
+                    minlength: 'Mobile number must be exactly 10 digits',
+                    maxlength: 'Mobile number must be exactly 10 digits',
+                    uniquePhone: 'Mobile number already exists.',
+                },
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-groups').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+    
+    
+    </script>
 
 @endsection

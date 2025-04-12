@@ -76,15 +76,24 @@
         }
     </style>
 </head>
-
+@php
+    function embedImage($path) {
+        $fullPath = public_path($path);
+        if (file_exists($fullPath)) {
+            $type = pathinfo($fullPath, PATHINFO_EXTENSION);
+            $data = base64_encode(file_get_contents($fullPath));
+            return "data:image/{$type};base64,{$data}";
+        }
+        return '';
+    }
+@endphp
 <body>
     <div class="card">
         <div class="card-header">
             <img src="upload/sjk_logo/logo-header.png" alt="pathology-logo" style="height:58px;">
         </div>
         <div class="card-content" id="ICARD">
-            <img src="upload/staff_images/{{ $staffPrintIdcard->photo }}" alt="staff-image" width="55px"
-                height="90px">
+            <img src="{{ embedImage($staffPrintIdcard->photo ?? 'upload/no_image.jpg') }}" width="55px" height="90px" alt="staff-image">
             <table>
                 <tr>
                     <td><strong>Name:</strong></td>

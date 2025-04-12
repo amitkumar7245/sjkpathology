@@ -34,6 +34,15 @@ class DoctorController extends Controller
         return view('admin.doctor.doctor_list', compact('doctorlist'), $data);
     }
 
+    public function DoctorCommission()
+    {
+        $data['header_title'] = "Doctor Commission List";
+
+        $doctorcommission = User::where('role', 'doctor')->with(['doctor.zone'])->latest()->get();
+        $zone = Zone::where('status', 'active')->latest()->get();
+        return view('admin.doctor.doctor_commission_list',compact('doctorcommission','zone'), $data);
+    }
+
     public function DoctorAdd()
     {
         $data['header_title'] = "Doctor Add";

@@ -16,9 +16,9 @@
                 <div class="col-auto">
                     <div class="avatar-lg">
                         @if ($doctor_view->photo != '')
-                            <img src="{{ asset('upload/doctor_images/'.$doctor_view->photo) }}" alt="" class="img-thumbnail rounded-circle">
+                            <img src="{{ asset($doctor_view->photo) }}" alt="" class="img-thumbnail rounded-circle">
                         @else
-                            @if ($doctor_view->gender == '1') <!-- Assuming '1' for Male -->
+                            @if ($doctor_view->gender == '1')
                                 <img src="{{ asset('backend/assets/images/users/male-dummy.png') }}" alt="" class="img-thumbnail rounded-circle">
                             @elseif ($doctor_view->gender == '0') <!-- Assuming '0' for Female -->
                                 <img src="{{ asset('backend/assets/images/users/female-dummy.png') }}" alt="" class="img-thumbnail rounded-circle">

@@ -15,10 +15,14 @@
             <div class="row g-4">
                 <div class="col-auto">
                     <div class="avatar-lg">
+
+                        {{-- <img src="{{ asset($staff_view->photo ? 'upload/staff_images/'.$staff_view->photo : ($staff_view->gender == '1' ? 'backend/assets/images/users/male-dummy.png' : ($staff_view->gender == '0' ? 'backend/assets/images/users/female-dummy.png' : 'backend/assets/images/users/user-dummy-img.jpg'))) }}" alt="" class="img-thumbnail rounded-circle"> --}}
+
+                        
                         @if ($staff_view->photo != '')
-                            <img src="{{ asset('upload/staff_images/'.$staff_view->photo) }}" alt="" class="img-thumbnail rounded-circle">
+                            <img src="{{ asset($staff_view->photo) }}" alt="" class="img-thumbnail rounded-circle">
                         @else
-                            @if ($staff_view->gender == '1') <!-- Assuming '1' for Male -->
+                            @if ($staff_view->gender == '1')
                                 <img src="{{ asset('backend/assets/images/users/male-dummy.png') }}" alt="" class="img-thumbnail rounded-circle">
                             @elseif ($staff_view->gender == '0') <!-- Assuming '0' for Female -->
                                 <img src="{{ asset('backend/assets/images/users/female-dummy.png') }}" alt="" class="img-thumbnail rounded-circle">

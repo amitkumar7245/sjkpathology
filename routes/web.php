@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\BookappointmentControlller;
 use App\Http\Controllers\Backend\AreaController;
 use App\Http\Controllers\Backend\BankController;
 use App\Http\Controllers\Backend\UserController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\Backend\SocialMediaTypeController;
 use App\Http\Controllers\Backend\ZoneController;
 use App\Http\Controllers\Backend\HospitalController;
 use App\Http\Controllers\Backend\PenddingController;
+use App\Http\Controllers\Backend\AppointmentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,10 @@ use App\Http\Controllers\Backend\PenddingController;
 Route::get('/', function () {
     return view('frontend.index');
 });
+
+
+Route::post('store/bookappointment',[BookappointmentControlller::class,'StoreBookappointment'])->name('store.bookappointment');
+
 
 Route::get('/app/login',[AuthController::class,'Login'])->name('login');
 Route::post('/auth/login',[AuthController::class,'AuthLogin'])->name('auth.login');
@@ -86,6 +92,12 @@ Route::group(['middleware' => 'admin'], function(){
         Route::get('/hospitalwise/reports','HospitalwiseReport')->name('hospitalwise.report');
         Route::get('/pathologywise/reports','PathologywiseReport')->name('pathologywise.report');
         Route::get('/collectionwise/reports','CollectionwiseReport')->name('collectionwise.report');
+    });
+
+    Route::controller(AppointmentsController::class)->group(function(){
+        Route::get('/appointments/list','AppointmentsIndex')->name('all.appointments');
+        Route::get('/bookAppointments/pending/{id}','BookAppointmentsPending')->name('pending.bookappointments');
+        Route::get('/bookAppointments/done/{id}','BookAppointmentsDone')->name('done.bookappointments');
     });
 
     Route::controller(ZoneController::class)->group(function(){
@@ -369,6 +381,7 @@ Route::group(['middleware' => 'admin'], function(){
         Route::get('/doctor/print/{id}','DoctorPrint')->name('print.doctor');
         Route::get('/doctor/inactive/{id}', 'DoctorInactive')->name('inactive.doctor');
         Route::get('/doctor/active/{id}', 'DoctorActive')->name('active.doctor');
+        Route::get('/doctor/Commission/list','DoctorCommission')->name('Doctor.Commission');
 
         Route::post('/check-phone', 'checkPhone')->name('check.phone');
         
